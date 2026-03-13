@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hasta Portalı — DişSeansım</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--ink0:#0C1E22;--ink1:#132D32;--ink2:#1C3E44;--t4:#2ECAD8;--t5:#4DD8E4;--gold:#C9A96E;--goldl:#E8C98A;--cream:#EEE8DE;--cream2:#D4CCBC;--cream3:#A89E8C;--red:#E05252;--green:#2DA84A;--bdr:rgba(46,202,216,.12);--D:'Cormorant Garamond',Georgia,serif;--B:'Manrope',system-ui,sans-serif}
+html{-webkit-font-smoothing:antialiased;color-scheme:dark}
+body{font-family:var(--B);background:var(--ink0);color:var(--cream);min-height:100vh}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--ink2);border-radius:99px}
+
+/* header */
+.header{background:var(--ink1);border-bottom:1px solid var(--bdr);padding:0 20px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10}
+.hlogo{display:flex;align-items:center;gap:8px}
+.hlogo-ic{width:30px;height:30px;background:linear-gradient(135deg,var(--t4),var(--t5));border-radius:7px;display:grid;place-items:center;font-size:14px}
+.hlogo-t{font-family:var(--D);font-size:16px;font-style:italic}
+.hclinic{font-size:12px;color:var(--cream3)}
+
+.wrap{max-width:680px;margin:0 auto;padding:24px 16px}
+
+/* patient card */
+.pt-card{background:linear-gradient(135deg,var(--ink1),var(--ink2));border:1px solid var(--bdr);border-radius:16px;padding:20px;margin-bottom:20px;display:flex;align-items:center;gap:16px}
+.pt-av{width:52px;height:52px;background:linear-gradient(135deg,var(--t4),var(--gold));border-radius:14px;display:grid;place-items:center;font-family:var(--D);font-size:20px;font-weight:600;color:var(--ink0);flex-shrink:0}
+.pt-name{font-family:var(--D);font-size:22px;font-style:italic;color:var(--cream);margin-bottom:4px}
+.pt-meta{display:flex;gap:12px;flex-wrap:wrap}
+.pt-meta span{font-size:12px;color:var(--cream3)}
+
+/* tabs */
+.tabs{display:flex;gap:2px;background:var(--ink2);border-radius:10px;padding:3px;margin-bottom:20px;overflow-x:auto}
+.tab{padding:7px 14px;border-radius:8px;font-size:12px;font-weight:500;color:var(--cream3);cursor:pointer;transition:all .15s;white-space:nowrap;flex-shrink:0}
+.tab.active{background:var(--ink1);color:var(--cream);box-shadow:0 1px 6px rgba(0,0,0,.3)}
+
+/* cards */
+.card{background:var(--ink1);border:1px solid var(--bdr);border-radius:14px;padding:18px;margin-bottom:12px}
+.card-title{font-size:13px;font-weight:600;color:var(--cream);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+
+/* apt item */
+.apt-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--bdr)}
+.apt-row:last-child{border-bottom:none}
+.apt-date{min-width:80px;font-size:12px;font-weight:600;color:var(--t5)}
+.apt-info{flex:1}
+.apt-type{font-size:13px;font-weight:500;color:var(--cream)}
+.apt-sub{font-size:11px;color:var(--cream3)}
+
+/* plan */
+.plan-row{padding:12px 0;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap-12px}
+.plan-row:last-child{border-bottom:none}
+.plan-title{font-size:13px;font-weight:600;color:var(--cream);margin-bottom:4px}
+.plan-sub{font-size:11px;color:var(--cream3)}
+.plan-cost{margin-left:auto;font-family:var(--D);font-size:18px;color:var(--goldl)}
+.approve-btn{margin-top:8px;padding:7px 16px;background:var(--t4);color:var(--ink0);border:none;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--B);transition:all .15s}
+.approve-btn:hover{background:var(--t5)}
+.approve-btn:disabled{opacity:.4;cursor:not-allowed}
+
+/* odontogram */
+.odonto{display:flex;flex-direction:column;gap:5px;align-items:center}
+.odonto-row{display:flex;gap:3px}
+.tooth{width:26px;height:32px;border-radius:5px 5px 3px 3px;border:1.5px solid var(--bdr);background:var(--ink2);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:7px;color:var(--cream3);font-weight:600;position:relative}
+.tooth.caries{background:rgba(232,160,32,.2);border-color:var(--gold)}
+.tooth.filled{background:rgba(46,202,216,.2);border-color:var(--t4)}
+.tooth.crown{background:rgba(201,169,110,.2);border-color:var(--goldl)}
+.tooth.implant{background:rgba(45,168,74,.2);border-color:var(--green)}
+.tooth.rct{background:rgba(224,82,82,.15);border-color:var(--red)}
+.tooth.extracted,.tooth.missing{opacity:.25}
+.tooth-n{font-size:6px;color:var(--cream3);opacity:.6}
+
+/* invoice */
+.inv-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--bdr)}
+.inv-row:last-child{border-bottom:none}
+.inv-no{font-size:12px;font-weight:700;color:var(--cream)}
+.inv-date{font-size:11px;color:var(--cream3)}
+.inv-amount{text-align:right}
+.inv-total{font-family:var(--D);font-size:17px;color:var(--cream)}
+.inv-paid{font-size:11px;color:var(--green)}
+.inv-due{font-size:11px;color:var(--red)}
+
+/* badge */
+.badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:99px;font-size:10px;font-weight:600}
+.badge-t{background:rgba(46,202,216,.12);color:var(--t5);border:1px solid rgba(46,202,216,.2)}
+.badge-g{background:rgba(45,168,74,.12);color:#5FC878;border:1px solid rgba(45,168,74,.2)}
+.badge-a{background:rgba(232,160,32,.12);color:#F0C050;border:1px solid rgba(232,160,32,.2)}
+.badge-r{background:rgba(224,82,82,.12);color:#F07070;border:1px solid rgba(224,82,82,.2)}
+
+/* rx */
+.rx-drug{background:var(--ink2);border-radius:7px;padding:8px 10px;margin-bottom:6px;font-size:12px}
+.rx-drug strong{color:var(--cream);display:block;margin-bottom:2px}
+.rx-drug span{color:var(--cream3)}
+
+/* loading / error */
+.loading{text-align:center;padding:80px 20px;color:var(--cream3)}
+.loading .spin{animation:spin 1s linear infinite;display:inline-block;font-size:32px;margin-bottom:16px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.error-state{text-align:center;padding:60px 20px}
+.error-state .e-ic{font-size:48px;margin-bottom:16px}
+.error-state h2{font-family:var(--D);font-size:24px;font-style:italic;color:var(--cream);margin-bottom:8px}
+.error-state p{font-size:13px;color:var(--cream3);line-height:1.7}
+
+footer{text-align:center;padding:24px;font-size:11px;color:var(--cream3);opacity:.4;border-top:1px solid var(--bdr);margin-top:32px}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="hlogo">
+    <div class="hlogo-ic">🦷</div>
+    <div class="hlogo-t">DişSeansım</div>
+  </div>
+  <div class="hclinic" id="clinic-name">Hasta Portalı</div>
+</div>
+
+<div class="wrap" id="wrap">
+  <div class="loading"><div class="spin">⏳</div><div>Bilgileriniz yükleniyor...</div></div>
+</div>
+
+<script>
+var BACKEND_URL = 'https://disseansimback-production.up.railway.app';
+var params = new URLSearchParams(window.location.search);
+var TOKEN = params.get('t');
+
+async function load() {
+  var wrap = document.getElementById('wrap');
+  if (!TOKEN) {
+    wrap.innerHTML = errorHTML('Bağlantı Geçersiz', 'Bu sayfaya erişmek için kliniğinizden geçerli bir bağlantı almanız gerekiyor.');
+    return;
+  }
+  try {
+    var r = await fetch(BACKEND_URL + '/api/portal/me?t=' + TOKEN);
+    var d = await r.json();
+    if (!r.ok || d.error) {
+      wrap.innerHTML = errorHTML('Bağlantı Süresi Doldu', d.error || 'Bu bağlantının süresi dolmuş. Yeni bir bağlantı için kliniğinizi arayın.');
+      return;
+    }
+    render(d);
+  } catch(e) {
+    wrap.innerHTML = errorHTML('Bağlantı Hatası', 'Sunucuya ulaşılamıyor. Lütfen internet bağlantınızı kontrol edin.');
+  }
+}
+
+function errorHTML(title, msg) {
+  return '<div class="error-state"><div class="e-ic">🔒</div><h2>'+title+'</h2><p>'+msg+'</p></div>';
+}
+
+function render(d) {
+  var p = d.patient;
+  var age = p.birth_date ? Math.floor((Date.now()-new Date(p.birth_date))/(365.25*24*3600*1000)) : null;
+  document.getElementById('clinic-name').textContent = d.clinic.name || 'Hasta Portalı';
+  document.title = p.first_name + ' ' + p.last_name + ' — DişSeansım';
+
+  document.getElementById('wrap').innerHTML =
+    '<div class="pt-card">' +
+      '<div class="pt-av">' + p.first_name[0] + p.last_name[0] + '</div>' +
+      '<div>' +
+        '<div class="pt-name">' + p.first_name + ' ' + p.last_name + '</div>' +
+        '<div class="pt-meta">' +
+          (age ? '<span>🎂 '+age+' yaş</span>' : '') +
+          (p.blood_type ? '<span>🩸 '+p.blood_type+'</span>' : '') +
+          (p.phone ? '<span>📞 '+p.phone+'</span>' : '') +
+        '</div>' +
+      '</div>' +
+    '</div>' +
+
+    '<div class="tabs">' +
+      '<div class="tab active" onclick="switchTab(this,\'t-apts\')">📅 Randevular</div>' +
+      '<div class="tab" onclick="switchTab(this,\'t-plans\')">📋 Tedavi Planları</div>' +
+      '<div class="tab" onclick="switchTab(this,\'t-odo\')">🦷 Diş Durumu</div>' +
+      '<div class="tab" onclick="switchTab(this,\'t-rx\')">💊 Reçeteler</div>' +
+      '<div class="tab" onclick="switchTab(this,\'t-inv\')">💰 Faturalar</div>' +
+    '</div>' +
+
+    renderApts(d.appointments) +
+    renderPlans(d.plans) +
+    renderOdonto(d.teeth) +
+    renderRx(d.prescriptions) +
+    renderInv(d.invoices);
+}
+
+function switchTab(el, id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  ['t-apts','t-plans','t-odo','t-rx','t-inv'].forEach(tid => {
+    var el2 = document.getElementById(tid);
+    if (el2) el2.style.display = tid === id ? 'block' : 'none';
+  });
+}
+
+function renderApts(apts) {
+  var upcoming = (apts||[]).filter(a => new Date(a.starts_at) >= new Date() && a.status !== 'cancelled');
+  var past = (apts||[]).filter(a => new Date(a.starts_at) < new Date() || a.status === 'cancelled');
+  var rows = '';
+  if (upcoming.length) {
+    rows += '<div style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--t5);margin-bottom:8px">Yaklaşan</div>';
+    rows += upcoming.map(a => aptRow(a)).join('');
+  }
+  if (past.length) {
+    rows += '<div style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--cream3);margin:12px 0 8px">Geçmiş</div>';
+    rows += past.slice(0,5).map(a => aptRow(a)).join('');
+  }
+  if (!rows) rows = '<div style="text-align:center;padding:24px;color:var(--cream3);font-size:13px">Randevu kaydı bulunamadı.</div>';
+  return '<div id="t-apts"><div class="card"><div class="card-title">📅 Randevularım</div>' + rows + '</div></div>';
+}
+
+function aptRow(a) {
+  var d = new Date(a.starts_at);
+  var dateStr = d.toLocaleDateString('tr-TR', { weekday:'short', day:'numeric', month:'short' });
+  var timeStr = d.toLocaleTimeString('tr-TR', { hour:'2-digit', minute:'2-digit' });
+  var badges = { scheduled:'badge-t', completed:'badge-g', cancelled:'badge-r' };
+  var labels = { scheduled:'Planlandı', completed:'Tamamlandı', cancelled:'İptal', arrived:'Geldi', 'no-show':'Gelmedi' };
+  return '<div class="apt-row"><div class="apt-date">'+dateStr+'<br>'+timeStr+'</div><div class="apt-info"><div class="apt-type">'+a.type+'</div></div><span class="badge '+(badges[a.status]||'badge-t')+'">'+(labels[a.status]||a.status)+'</span></div>';
+}
+
+function renderPlans(plans) {
+  var rows = (plans||[]).map(p => {
+    var badges = { planned:'badge-t', approved:'badge-g', in_progress:'badge-a', completed:'badge-g' };
+    var labels = { planned:'Planlandı', approved:'Onaylandı', in_progress:'Devam Ediyor', completed:'Tamamlandı' };
+    var canApprove = p.status === 'planned';
+    return '<div class="plan-row" id="plan-'+p.id+'"><div style="flex:1">' +
+      '<div class="plan-title">'+p.title+'</div>' +
+      '<div class="plan-sub">'+(p.diagnosis||'')+(p.est_cost?' · ₺'+parseFloat(p.est_cost).toLocaleString('tr-TR',{minimumFractionDigits:2}):'')+'</div>' +
+      (canApprove ? '<button class="approve-btn" onclick="approvePlan(\''+p.id+'\')" id="abtn-'+p.id+'">✓ Tedaviyi Onaylıyorum</button>' : '') +
+      '</div><span class="badge '+(badges[p.status]||'badge-t')+'">'+(labels[p.status]||p.status)+'</span></div>';
+  }).join('') || '<div style="text-align:center;padding:24px;color:var(--cream3);font-size:13px">Tedavi planı bulunamadı.</div>';
+  return '<div id="t-plans" style="display:none"><div class="card"><div class="card-title">📋 Tedavi Planlarım</div>' + rows + '</div></div>';
+}
+
+async function approvePlan(planId) {
+  var btn = document.getElementById('abtn-' + planId);
+  if (!btn) return;
+  btn.disabled = true;
+  btn.textContent = 'Onaylanıyor...';
+  try {
+    var r = await fetch(BACKEND_URL + '/api/portal/approve-plan?t=' + TOKEN, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ plan_id: planId })
+    });
+    var d = await r.json();
+    if (d.ok) {
+      btn.style.background = 'var(--green)';
+      btn.textContent = '✓ Onaylandı';
+      document.querySelector('#plan-' + planId + ' .badge').className = 'badge badge-g';
+      document.querySelector('#plan-' + planId + ' .badge').textContent = 'Onaylandı';
+    } else {
+      btn.disabled = false;
+      btn.textContent = '✓ Tedaviyi Onaylıyorum';
+      alert(d.error || 'Hata oluştu');
+    }
+  } catch(e) {
+    btn.disabled = false;
+    btn.textContent = '✓ Tedaviyi Onaylıyorum';
+  }
+}
+
+function renderOdonto(teeth) {
+  var map = {};
+  (teeth||[]).forEach(t => map[t.tooth_no] = t);
+  var rows = [
+    [18,17,16,15,14,13,12,11,'|',21,22,23,24,25,26,27,28],
+    [48,47,46,45,44,43,42,41,'|',31,32,33,34,35,36,37,38]
+  ];
+  var html = '<div class="odonto">';
+  rows.forEach(row => {
+    html += '<div class="odonto-row">';
+    row.forEach(n => {
+      if (n==='|') { html += '<div style="width:1px;background:var(--bdr);margin:0 4px"></div>'; return; }
+      var t = map[n] || {};
+      var icon = {caries:'●',filled:'◆',crown:'♛',implant:'⬟',rct:'⊕',extracted:'✕'}[t.status]||'';
+      html += '<div class="tooth '+(t.status||'healthy')+'" title="'+n+(t.status?' — '+t.status:'')+'">' + icon + '<span class="tooth-n">'+n+'</span></div>';
+    });
+    html += '</div>';
+  });
+  html += '</div>';
+  var legend = [['Çürük','caries','var(--gold)'],['Dolgulu','filled','var(--t4)'],['Kuron','crown','var(--goldl)'],['İmplant','implant','var(--green)'],['Kanal','rct','var(--red)']];
+  html += '<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;padding-top:12px;border-top:1px solid var(--bdr)">'+legend.map(([l,c,col])=>'<div style="display:flex;align-items:center;gap:4px;font-size:11px;color:var(--cream3)"><div style="width:10px;height:10px;border-radius:3px;background:'+col+'"></div>'+l+'</div>').join('')+'</div>';
+  return '<div id="t-odo" style="display:none"><div class="card"><div class="card-title">🦷 Diş Durumum</div>' + html + '</div></div>';
+}
+
+function renderRx(rxs) {
+  var rows = (rxs||[]).map(rx => {
+    var drugs = (typeof rx.drugs === 'string' ? JSON.parse(rx.drugs) : rx.drugs) || [];
+    return '<div class="card" style="margin-bottom:10px">' +
+      '<div style="display:flex;justify-content:space-between;margin-bottom:10px">' +
+        '<span class="badge badge-t">'+new Date(rx.rx_date).toLocaleDateString('tr-TR')+'</span>' +
+        (rx.diagnosis ? '<span style="font-size:11px;color:var(--cream3)">'+rx.diagnosis+'</span>' : '') +
+      '</div>' +
+      drugs.map(d => '<div class="rx-drug"><strong>'+d.name+(d.dose?' — '+d.dose:'')+'</strong><span>'+(d.frequency||'')+(d.duration?' · '+d.duration:'')+'</span></div>').join('') +
+    '</div>';
+  }).join('') || '<div style="text-align:center;padding:24px;color:var(--cream3);font-size:13px">Reçete bulunamadı.</div>';
+  return '<div id="t-rx" style="display:none"><div style="font-size:13px;color:var(--cream3);margin-bottom:12px">Son reçeteleriniz</div>' + rows + '</div>';
+}
+
+function renderInv(invs) {
+  var totalDue = (invs||[]).reduce((s,i) => s + Math.max(0, parseFloat(i.total||0)-parseFloat(i.amount_paid||0)), 0);
+  var summary = totalDue > 0 ?
+    '<div style="background:rgba(232,160,32,.08);border:1px solid rgba(232,160,32,.2);border-radius:10px;padding:14px;margin-bottom:14px;text-align:center"><div style="font-size:11px;color:var(--cream3);margin-bottom:4px">Toplam Bekleyen Ödeme</div><div style="font-family:var(--D);font-size:28px;color:var(--goldl)">₺'+totalDue.toLocaleString('tr-TR',{minimumFractionDigits:2})+'</div></div>' : '';
+
+  var rows = (invs||[]).map(i => {
+    var total = parseFloat(i.total||0);
+    var paid = parseFloat(i.amount_paid||0);
+    var due = Math.max(0, total-paid);
+    var stCls = {paid:'badge-g',partial:'badge-a',draft:'badge-ink'}[i.status]||'badge-t';
+    var stLbl = {paid:'Ödendi',partial:'Kısmi',draft:'Taslak',void:'İptal'}[i.status]||i.status;
+    return '<div class="inv-row">' +
+      '<div><div class="inv-no">'+i.inv_no+'</div><div class="inv-date">'+new Date(i.inv_date).toLocaleDateString('tr-TR')+'</div></div>' +
+      '<div style="text-align:center"><span class="badge '+stCls+'">'+stLbl+'</span></div>' +
+      '<div class="inv-amount"><div class="inv-total">₺'+total.toLocaleString('tr-TR',{minimumFractionDigits:2})+'</div>'+(due>0?'<div class="inv-due">Kalan: ₺'+due.toLocaleString('tr-TR',{minimumFractionDigits:2})+'</div>':'<div class="inv-paid">✓ Ödendi</div>')+'</div>' +
+    '</div>';
+  }).join('') || '<div style="text-align:center;padding:24px;color:var(--cream3);font-size:13px">Fatura bulunamadı.</div>';
+
+  return '<div id="t-inv" style="display:none">' + summary + '<div class="card">' + rows + '</div></div>';
+}
+
+load();
+</script>
+<footer>🦷 DişSeansım · Bu sayfa size özel olarak oluşturulmuştur.</footer>
+</body>
+</html>

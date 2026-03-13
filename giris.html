@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Giriş — DişSeansım</title>
+<link rel="manifest" href="/manifest.json">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--ink0:#0C1E22;--ink1:#132D32;--ink2:#1C3E44;--t4:#2ECAD8;--t5:#4DD8E4;--gold:#C9A96E;--goldl:#E8C98A;--cream:#EEE8DE;--cream2:#D4CCBC;--cream3:#A89E8C;--red:#E05252;--bdr:rgba(46,202,216,.12);--D:'Cormorant Garamond',Georgia,serif;--B:'Manrope',system-ui,sans-serif}
+html{-webkit-font-smoothing:antialiased;color-scheme:dark;min-height:100%}
+body{font-family:var(--B);background:var(--ink0);color:var(--cream);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;overflow:hidden;position:relative}
+body::before{content:'';position:fixed;top:-200px;left:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(46,202,216,.07),transparent 70%);pointer-events:none}
+body::after{content:'';position:fixed;bottom:-150px;right:-150px;width:500px;height:500px;background:radial-gradient(circle,rgba(201,169,110,.05),transparent 70%);pointer-events:none}
+.wrap{width:100%;max-width:400px;position:relative;z-index:1;animation:up .5s ease}
+@keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.logo{text-align:center;margin-bottom:32px}
+.logo-ic{width:48px;height:48px;background:linear-gradient(135deg,var(--t4),var(--t5));border-radius:13px;display:grid;place-items:center;font-size:24px;margin:0 auto 12px;box-shadow:0 4px 20px rgba(46,202,216,.25)}
+.logo-t{font-family:var(--D);font-size:26px;font-style:italic}
+.logo-s{font-size:12px;color:var(--cream3);letter-spacing:.07em;margin-top:2px}
+.card{background:var(--ink1);border:1px solid var(--bdr);border-radius:18px;padding:28px}
+.tabs{display:flex;background:var(--ink2);border-radius:9px;padding:3px;margin-bottom:24px}
+.tab{flex:1;text-align:center;padding:8px;border-radius:7px;font-size:13px;font-weight:500;color:var(--cream3);cursor:pointer;transition:all .15s}
+.tab.active{background:var(--ink1);color:var(--cream);box-shadow:0 1px 6px rgba(0,0,0,.3)}
+label{display:block;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--cream3);margin-bottom:5px}
+input,select{width:100%;background:var(--ink2);border:1px solid var(--bdr);border-radius:8px;padding:10px 13px;font-size:13px;font-family:var(--B);color:var(--cream);outline:none;transition:border .15s;margin-bottom:14px}
+input::placeholder{color:var(--cream3);opacity:.4}
+input:focus,select:focus{border-color:var(--t4);box-shadow:0 0 0 3px rgba(46,202,216,.1);margin-bottom:14px}
+.row2{display:grid;grid-template-columns:80px 1fr;gap:10px}
+.btn{display:block;width:100%;padding:12px;border-radius:9px;font-size:14px;font-weight:600;font-family:var(--B);cursor:pointer;border:none;transition:all .2s;text-align:center;margin-top:4px}
+.btn-p{background:var(--t4);color:var(--ink0)}.btn-p:hover{background:var(--t5);transform:translateY(-1px);box-shadow:0 4px 16px rgba(46,202,216,.3)}
+.btn-g{background:linear-gradient(135deg,var(--gold),var(--goldl));color:#fff}.btn-g:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(201,169,110,.3)}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.err{background:rgba(224,82,82,.1);border:1px solid rgba(224,82,82,.2);border-radius:8px;padding:9px 13px;font-size:12px;color:#F07070;margin-bottom:14px;display:none}
+.check-row{display:flex;align-items:flex-start;gap:8px;font-size:11px;color:var(--cream3);margin-bottom:14px;line-height:1.5}
+.check-row input{width:auto;margin:0;accent-color:var(--t4)}
+.check-row a{color:var(--t5)}
+.note{text-align:center;font-size:11px;color:var(--cream3);margin-top:16px;opacity:.6}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="logo">
+    <div class="logo-ic">🦷</div>
+    <div class="logo-t">DişSeansım</div>
+    <div class="logo-s">Klinik Yönetim Yazılımı</div>
+  </div>
+  <div class="card">
+    <div class="tabs">
+      <div class="tab active" id="tab-l" onclick="switchTab('login')">Giriş</div>
+      <div class="tab" id="tab-r" onclick="switchTab('register')">Kayıt Ol</div>
+    </div>
+    <div id="err" class="err"></div>
+
+    <div id="f-login">
+      <label>E-posta</label>
+      <input id="l-email" type="email" placeholder="hekim@klinik.com" autocomplete="email">
+      <label>Şifre</label>
+      <input id="l-pass" type="password" placeholder="••••••••" autocomplete="current-password">
+      <button class="btn btn-p" id="btn-login" onclick="login()">Giriş Yap →</button>
+    </div>
+
+    <div id="f-reg" style="display:none">
+      <div class="row2">
+        <div><label>Unvan</label><select id="r-title"><option>Dr.</option><option>Uzm. Dr.</option><option>Prof. Dr.</option><option>Doç. Dr.</option></select></div>
+        <div><label>Ad Soyad *</label><input id="r-name" placeholder="Ada Yılmaz"></div>
+      </div>
+      <label>Klinik Adı</label>
+      <input id="r-clinic" placeholder="Yılmaz Diş Kliniği">
+      <label>E-posta *</label>
+      <input id="r-email" type="email" placeholder="ada@klinik.com">
+      <label>Şifre * (en az 8 karakter)</label>
+      <input id="r-pass" type="password" placeholder="••••••••">
+      <div class="check-row">
+        <input type="checkbox" id="r-terms">
+        <label for="r-terms" style="text-transform:none;letter-spacing:0;font-size:11px;color:var(--cream3)">
+          <a href="#">Kullanım Koşulları</a> ve <a href="#">KVKK Aydınlatma Metni</a>'ni okudum, kabul ediyorum.
+        </label>
+      </div>
+      <button class="btn btn-g" id="btn-reg" onclick="register()">14 Gün Ücretsiz Başla 🚀</button>
+    </div>
+  </div>
+  <div class="note">🔒 256-bit SSL · KVKK uyumlu · Türkiye sunucuları</div>
+</div>
+<script>
+var BACKEND_URL = 'https://disseansimback-production.up.railway.app';
+var params = new URLSearchParams(window.location.search);
+if (params.get('ref')) localStorage.setItem('ds_ref', params.get('ref'));
+if (params.get('tab') === 'register') switchTab('register');
+
+// PWA Service Worker
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});
+
+function switchTab(t) {
+  document.getElementById('tab-l').classList.toggle('active', t === 'login');
+  document.getElementById('tab-r').classList.toggle('active', t === 'register');
+  document.getElementById('f-login').style.display = t === 'login' ? 'block' : 'none';
+  document.getElementById('f-reg').style.display = t === 'register' ? 'block' : 'none';
+  document.getElementById('err').style.display = 'none';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    if (document.getElementById('f-login').style.display !== 'none') login();
+    else register();
+  }
+});
+
+function showErr(m) { var e = document.getElementById('err'); e.textContent = m; e.style.display = 'block'; }
+
+async function login() {
+  document.getElementById('err').style.display = 'none';
+  var email = document.getElementById('l-email').value.trim();
+  var pass = document.getElementById('l-pass').value;
+  if (!email || !pass) { showErr('E-posta ve şifre zorunlu'); return; }
+  var btn = document.getElementById('btn-login');
+  btn.textContent = 'Giriş yapılıyor...'; btn.disabled = true;
+  try {
+    var r = await fetch(BACKEND_URL + '/api/auth/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, password: pass }) });
+    var d = await r.json();
+    if (d.error) { showErr(d.error); return; }
+    localStorage.setItem('ds_token', d.accessToken);
+    localStorage.setItem('ds_refresh', d.refreshToken);
+    if (d.user?.membership) localStorage.setItem('ds_tenant', d.user.membership.tenantId);
+    window.location.href = 'app.html';
+  } catch { showErr('Bağlantı hatası. Lütfen tekrar deneyin.'); }
+  finally { btn.textContent = 'Giriş Yap →'; btn.disabled = false; }
+}
+
+async function register() {
+  document.getElementById('err').style.display = 'none';
+  var name = document.getElementById('r-name').value.trim();
+  var email = document.getElementById('r-email').value.trim();
+  var pass = document.getElementById('r-pass').value;
+  var clinic = document.getElementById('r-clinic').value.trim();
+  var title = document.getElementById('r-title').value;
+  if (!name || !email || !pass) { showErr('Ad, e-posta ve şifre zorunlu'); return; }
+  if (pass.length < 8) { showErr('Şifre en az 8 karakter olmalı'); return; }
+  if (!document.getElementById('r-terms').checked) { showErr('Kullanım koşullarını kabul etmeniz gerekiyor'); return; }
+  var btn = document.getElementById('btn-reg');
+  btn.textContent = 'Hesap oluşturuluyor...'; btn.disabled = true;
+  try {
+    var r = await fetch(BACKEND_URL + '/api/auth/register', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, email, password: pass, clinicName: clinic || null, title, terms: true, referredBy: localStorage.getItem('ds_ref') || undefined }) });
+    var d = await r.json();
+    if (d.error) { showErr(d.error); return; }
+    localStorage.setItem('ds_token', d.accessToken);
+    localStorage.setItem('ds_refresh', d.refreshToken);
+    if (d.user?.membership) localStorage.setItem('ds_tenant', d.user.membership.tenantId);
+    localStorage.removeItem('ds_ref');
+    window.location.href = 'app.html';
+  } catch { showErr('Bağlantı hatası. Lütfen tekrar deneyin.'); }
+  finally { btn.textContent = '14 Gün Ücretsiz Başla 🚀'; btn.disabled = false; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Diş Kliniği Yönetimi Rehberleri — DişSeansım Blog</title>
+<meta name="description" content="Diş kliniği yönetimi, no-show önleme, AI not asistanı, KVKK uyumu, hasta deneyimi ve dijitalleşme hakkında Türk diş hekimlerine özel pratik rehberler.">
+<meta name="keywords" content="diş kliniği yazılımı, diş hekimi programı, klinik yönetimi, no-show önleme, hasta takip sistemi, KVKK diş kliniği, diş kliniği dijitalleşme, SMS hatırlatma, AI klinik not">
+<meta property="og:title" content="Diş Kliniği Yönetimi Rehberleri — DişSeansım Blog">
+<meta property="og:description" content="Türkiye'deki diş hekimlerine özel klinik verimlilik, dijitalleşme ve hasta deneyimi rehberleri.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://disseansim.com/blog.html">
+<link rel="canonical" href="https://disseansim.com/blog.html">
+<link rel="manifest" href="/manifest.json">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --i0:#080E10;--i1:#0D1A1D;--i2:#132329;
+  --t4:#2ECAD8;--t5:#4DD8E4;
+  --gl:#E0BE88;--cr:#EDE7DB;--c2:#CEC6B6;--c3:#8A8275;
+  --gn:#27A349;--re:#E05252;--am:#D4920A;
+  --bd:rgba(46,202,216,.09);
+  --D:"Cormorant Garamond",Georgia,serif;
+  --B:"Manrope",system-ui,sans-serif
+}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;color-scheme:dark}
+body{font-family:var(--B);background:var(--i0);color:var(--cr);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;font-family:var(--B)}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:var(--i2)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;height:56px;z-index:300;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;border-bottom:1px solid var(--bd);background:rgba(8,14,16,.92);backdrop-filter:blur(28px)}
+.nlogo{display:flex;align-items:center;gap:9px;cursor:pointer}
+.nic{width:29px;height:29px;background:linear-gradient(135deg,var(--t4),var(--t5));border-radius:7px;display:grid;place-items:center;font-size:13px;flex-shrink:0}
+.nwm{font-family:var(--D);font-size:17px;font-style:italic}
+.nright{display:flex;gap:10px}
+.bgh{padding:6px 15px;border:1px solid rgba(255,255,255,.1);border-radius:6px;font-size:12px;font-weight:600;color:var(--c2);transition:all .15s}.bgh:hover{border-color:var(--t4);color:var(--t5)}
+.bpr{padding:8px 20px;background:var(--t4);color:var(--i0);border-radius:6px;font-size:12px;font-weight:800;border:none;transition:all .2s}.bpr:hover{background:var(--t5);transform:translateY(-1px)}
+
+/* LIST */
+.lhero{padding:96px 5vw 44px;max-width:900px;margin:0 auto}
+.chip{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--t4);padding:3px 10px;background:rgba(46,202,216,.07);border-radius:99px;margin-bottom:14px}
+.lhero h1{font-family:var(--D);font-size:clamp(36px,4.5vw,52px);font-weight:600;letter-spacing:-.025em;line-height:1.04;margin-bottom:10px}
+.lhero h1 em{font-style:italic;color:var(--t5)}
+.lhero p{font-size:13px;color:var(--c3);line-height:1.8;font-weight:300;max-width:500px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;padding:18px 5vw 0;max-width:900px;margin:0 auto}
+.ftb{padding:5px 13px;border:1px solid var(--bd);border-radius:99px;font-size:11px;font-weight:600;color:var(--c3);background:transparent;transition:all .15s}.ftb:hover,.ftb.on{border-color:var(--t4);color:var(--t5);background:rgba(46,202,216,.07)}
+.alist{max-width:900px;margin:18px auto 0;padding:0 5vw}
+.acard{display:grid;grid-template-columns:1fr 185px;gap:28px;padding:30px 0;border-bottom:1px solid var(--bd);cursor:pointer;transition:opacity .2s}.acard:first-child{border-top:1px solid var(--bd)}.acard:hover{opacity:.82}.acard:hover .atit{color:var(--t5)}
+.ameta{display:flex;align-items:center;gap:9px;margin-bottom:11px;flex-wrap:wrap}
+.atag{font-size:8.5px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--t5);padding:2px 8px;background:rgba(46,202,216,.08);border-radius:99px}
+.adt,.ard{font-size:10px;color:var(--c3);font-weight:300}
+.atit{font-family:var(--D);font-size:clamp(17px,1.8vw,23px);font-weight:600;color:var(--cr);line-height:1.34;margin-bottom:8px;letter-spacing:-.02em;transition:color .2s}
+.aexc{font-size:12px;color:var(--c3);line-height:1.78;margin-bottom:12px;font-weight:300}
+.acta{font-size:11px;font-weight:700;color:var(--t4)}
+.athumb{border-radius:10px;height:122px;display:flex;align-items:center;justify-content:center;font-size:40px;border:1px solid var(--bd);flex-shrink:0;align-self:start;margin-top:4px}
+.newsbox{background:var(--i1);border:1px solid var(--bd);border-radius:14px;padding:28px;text-align:center;max-width:440px;margin:36px auto 60px}
+.nbh{font-family:var(--D);font-size:19px;font-weight:600;margin-bottom:6px}
+.nbs{font-size:11px;color:var(--c3);margin-bottom:14px;font-weight:300;line-height:1.7}
+.nbf{display:flex;gap:7px;max-width:320px;margin:0 auto}
+.nbi{flex:1;background:var(--i0);border:1px solid var(--bd);border-radius:6px;padding:9px 11px;font-size:12px;color:var(--cr);font-family:var(--B);outline:none;transition:border-color .15s}.nbi:focus{border-color:var(--t4)}
+.nbb{padding:9px 14px;background:var(--t4);color:var(--i0);border:none;border-radius:6px;font-size:11px;font-weight:800;font-family:var(--B);white-space:nowrap;transition:all .15s}.nbb:hover{background:var(--t5)}
+
+/* POST */
+.post{max-width:700px;margin:0 auto;padding:52px 5vw 80px;display:none}.post.active{display:block}
+.pbk{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:var(--c3);margin-bottom:30px;background:none;border:none;transition:color .15s}.pbk:hover{color:var(--t5)}
+.pmeta{margin-bottom:20px}
+.ptag{font-size:8.5px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--t5);padding:2px 8px;background:rgba(46,202,216,.08);border-radius:99px}
+.pdate{font-size:10.5px;color:var(--c3);margin-top:7px;font-weight:300}
+.post h1{font-family:var(--D);font-size:clamp(24px,3.2vw,38px);font-weight:600;letter-spacing:-.025em;line-height:1.17;margin-bottom:14px}
+.post-lead{font-size:14px;color:var(--c2);line-height:1.82;margin-bottom:28px;border-left:3px solid var(--t4);padding-left:17px;font-weight:300}
+.post h2{font-family:var(--D);font-size:clamp(18px,2vw,25px);font-weight:600;color:var(--cr);margin:28px 0 10px;letter-spacing:-.02em}
+.post p{font-size:13.5px;color:var(--c3);line-height:1.88;margin-bottom:15px;font-weight:300}
+.post p strong{color:var(--cr);font-weight:600}
+.post ul,.post ol{padding-left:20px;margin-bottom:16px}
+.post li{font-size:13.5px;color:var(--c3);line-height:1.82;margin-bottom:6px;font-weight:300}
+.post li strong{color:var(--cr);font-weight:600}
+.callout{background:rgba(46,202,216,.05);border:1px solid rgba(46,202,216,.12);border-radius:10px;padding:16px 18px;margin:20px 0}
+.callout p{margin:0;font-size:13px;color:var(--c2);line-height:1.75}
+.callout p strong{color:var(--t5)}
+.warn{background:rgba(212,146,10,.05);border:1px solid rgba(212,146,10,.16);border-radius:10px;padding:16px 18px;margin:20px 0}
+.warn p{margin:0;font-size:13px;color:#E8C97A;line-height:1.75}
+.sb{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}
+.sbn{font-family:var(--D);font-size:28px;font-weight:600;color:var(--t5);line-height:1;margin-bottom:3px}
+.sbl{font-size:10px;color:var(--c3);font-weight:300;line-height:1.5}
+.sbox{background:var(--i1);border:1px solid var(--bd);border-radius:10px;padding:14px;text-align:center}
+.pcta{background:linear-gradient(135deg,rgba(46,202,216,.07),rgba(201,169,110,.04));border:1px solid rgba(46,202,216,.12);border-radius:14px;padding:24px;text-align:center;margin-top:36px}
+.pcta h3{font-family:var(--D);font-size:20px;font-weight:600;margin-bottom:6px}
+.pcta p{font-size:12px;color:var(--c3);margin-bottom:13px;font-weight:300}
+.pcta a{display:inline-flex;align-items:center;gap:7px;padding:10px 22px;background:var(--t4);color:var(--i0);border-radius:8px;font-size:12px;font-weight:800;transition:all .2s}.pcta a:hover{background:var(--t5);transform:translateY(-1px)}
+.shr{display:flex;align-items:center;gap:10px;margin-top:24px;padding-top:18px;border-top:1px solid var(--bd)}
+.shrl{font-size:11px;color:var(--c3);font-weight:300}
+.shrb{padding:5px 12px;border:1px solid var(--bd);border-radius:6px;font-size:10.5px;font-weight:600;color:var(--c2);transition:all .15s}.shrb:hover{border-color:var(--t4);color:var(--t5)}
+
+footer{background:var(--i1);border-top:1px solid var(--bd);padding:22px 5vw;text-align:center}
+.fc{font-size:10px;color:var(--c3);opacity:.4;font-weight:300}
+
+@media(max-width:620px){.acard{grid-template-columns:1fr}.athumb{display:none}.sb{grid-template-columns:1fr 1fr}.nbf{flex-direction:column}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nlogo" onclick="location.href='index.html'">
+    <div class="nic">🦷</div>
+    <div class="nwm">DişSeansım</div>
+  </div>
+  <div class="nright">
+    <a href="index.html" class="bgh">← Ana Sayfa</a>
+    <button class="bpr" onclick="location.href='giris.html?tab=register'">Ücretsiz Dene →</button>
+  </div>
+</nav>
+
+<!-- LIST VIEW -->
+<div id="lview">
+  <div class="lhero">
+    <div class="chip">Bilgi Merkezi</div>
+    <h1>Klinik yönetiminde <em>rehberiniz</em></h1>
+    <p>Verimlilik, dijital dönüşüm, hasta deneyimi ve yapay zekâ — Türk diş hekimlerine özel kanıta dayalı pratik içerik.</p>
+  </div>
+  <div class="filters">
+    <button class="ftb on" onclick="sf('all',this)">Tümü (10)</button>
+    <button class="ftb" onclick="sf('verimlilik',this)">Verimlilik</button>
+    <button class="ftb" onclick="sf('ai',this)">Yapay Zekâ</button>
+    <button class="ftb" onclick="sf('girisim',this)">Girişim</button>
+    <button class="ftb" onclick="sf('hukuk',this)">Hukuk & KVKK</button>
+    <button class="ftb" onclick="sf('hasta',this)">Hasta Deneyimi</button>
+    <button class="ftb" onclick="sf('dijital',this)">Dijitalleşme</button>
+  </div>
+  <div class="alist" id="alist"></div>
+  <div style="max-width:900px;margin:0 auto;padding:0 5vw">
+    <div class="newsbox">
+      <div class="nbh">📬 Haber Bülteni</div>
+      <p class="nbs">Ayda bir klinik yönetimi ve dijitalleşme içerikleri. Reklam yok, sadece değer.</p>
+      <div class="nbf">
+        <input class="nbi" type="email" placeholder="e-posta@adresiniz.com" id="nlemail">
+        <button class="nbb" onclick="nlsub()">Abone Ol</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- POST CONTAINER -->
+<div id="pcon"></div>
+
+<footer><div class="fc">© 2025 DişSeansım · <a href="index.html" style="color:var(--t4)">Ana Sayfa</a> · TerapiSeansım Ailesi 🦷</div></footer>
+
+<script>
+const POSTS = [
+{
+  id:"noshow", cat:"verimlilik", tag:"Verimlilik",
+  date:"15 Ocak 2025", read:"6 dk",
+  emoji:"📅", bg:"rgba(224,82,82,.1),rgba(46,202,216,.07)",
+  seo_desc:"Türk diş kliniklerinde no-show oranı ve SMS ile çözüm yolları.",
+  title:"Diş Kliniğinde No-Show Problemi: Veri, Sebep ve SMS ile Çözüm",
+  excerpt:"Türkiye'deki kliniklerde no-show oranı ortalama %18 — her 5 randevudan 1'i boşa gidiyor. SMS hatırlatmanın bu oranı nasıl yarıya indirdiğini veri ve vakalarla inceledik.",
+  body:`
+<p>Türkiye'deki diş kliniklerinde no-show oranı ortalama <strong>%18</strong>'dir. Günde 12 hasta gören bir klinik için bu, haftada yaklaşık 12 boş koltuk, yani ciddi bir gelir ve zaman kaybı anlamına geliyor.</p>
+
+<div class="sb">
+  <div class="sbox"><div class="sbn">%18</div><div class="sbl">TR ortalama no-show oranı</div></div>
+  <div class="sbox"><div class="sbn">%52</div><div class="sbl">SMS ile ortalama düşüş</div></div>
+  <div class="sbox"><div class="sbn">₺2.200</div><div class="sbl">Aylık kurtarılan ortalama gelir</div></div>
+</div>
+
+<h2>No-Show'un Gerçek Maliyeti</h2>
+<p>Ortalama seans gelirini ₺350 olarak alsak, aylık 52 boş seans = <strong>₺18.200 kaybedilen gelir</strong>. Bu, yıllık bir klinik yönetim yazılımının 10–15 katı bir kayıp. Üstelik hazırlanan malzeme ve personel saati de boşa gider. Resepsiyonist her randevuyu tek tek arayarak doldurmaya çalışırsa günde 30–45 dakika ek mesai demektir.</p>
+
+<h2>No-Show Neden Oluyor?</h2>
+<p>Araştırmalara göre no-show'ların <strong>%64'ü unutkanlıktan</strong> kaynaklanıyor. Geri kalanı işten çıkamama, ulaşım sorunu, diş fobisi veya bilinçli iptal etmeden vazgeçme. Çözümlenebilir tek sebep unutkanlık — ve bu tam olarak SMS hatırlatmanın hedeflediği nokta.</p>
+
+<h2>SMS Hatırlatmanın Etkisi</h2>
+<p>SMS'in e-postaya kıyasla <strong>%98 okunma oranı</strong> var (e-posta: %21). Kullanıcılar SMS'i ortalama 3 dakika içinde okuyor. Klinik için en önemli veri: SMS hatırlatma sonrası no-show oranlarında <strong>%40–60 düşüş</strong> gözlemleniyor.</p>
+
+<div class="callout"><p><strong>Gerçek Vaka:</strong> İstanbul'dan bir uzman hekim, DişSeansım SMS aktivasyonundan sonraki ilk ayda no-show oranını %22'den %10'a indirdi. Aylık kazan fark yaklaşık ₺2.800 idi — yıllık abonelik bedelinin 4 katı.</p></div>
+
+<h2>Etkili SMS Mesajı Nasıl Yazılır?</h2>
+<p>160 karakter altında tutun, şu unsurları dahil edin:</p>
+<ul>
+  <li><strong>Klinik adı</strong> — hasta nereye gideceğini hatırlamalı</li>
+  <li><strong>Net tarih ve saat</strong> — "yarın" değil "16 Ocak Perşembe 10:00"</li>
+  <li><strong>Hekim adı</strong> — çok hekimli kliniklerde kritik</li>
+  <li><strong>İptal iletişim numarası</strong> — eylem çağrısı olmadan eksik kalır</li>
+</ul>
+
+<h2>Çoklu Kanal: SMS + E-posta</h2>
+<p>Tek kanal yeterli olmayabilir. İkili kanalın kullanıldığı kliniklerde ek <strong>%12–15 no-show düşüşü</strong> gözlemleniyor. DişSeansım her ikisini aynı anda gönderir, geçmiş kayıtlıdır, elle de tetiklenebilir.</p>`
+},
+{
+  id:"ai-not", cat:"ai", tag:"Yapay Zekâ",
+  date:"10 Ocak 2025", read:"5 dk",
+  emoji:"✨", bg:"rgba(201,169,110,.1),rgba(46,202,216,.06)",
+  seo_desc:"AI destekli SOAP klinik not tutma — diş hekimlerine günde 2 saat kazandırıyor.",
+  title:"AI Destekli Klinik Not Tutma: Diş Hekimleri İçin Pratik Rehber",
+  excerpt:"SOAP formatında not tutmak günde ortalama 1,5–2 saat alıyor. AI asistanı bu süreyi nasıl 10 saniyeye indiriyor? Gerçek kullanım senaryoları ve güvenlik sınırlarıyla anlattık.",
+  body:`
+<p>Araştırmalar diş hekimlerinin günlük çalışma süresinin ortalama <strong>%22'sini</strong> klinik dokümantasyona ayırdığını gösteriyor. 8 saatlik bir günde bu <strong>1 saat 45 dakika</strong> — yıllık ~430 saatlik ücretsiz mesai.</p>
+
+<div class="sb">
+  <div class="sbox"><div class="sbn">%22</div><div class="sbl">Dokümantasyona harcanan süre payı</div></div>
+  <div class="sbox"><div class="sbn">10sn</div><div class="sbl">AI ile SOAP notu oluşturma</div></div>
+  <div class="sbox"><div class="sbn">2sa</div><div class="sbl">Günlük kazanım (12 hasta)</div></div>
+</div>
+
+<h2>SOAP Formatı Neden Standart?</h2>
+<p><strong>S (Subjektif):</strong> Hastanın şikayeti ve anamnezi. <strong>O (Objektif):</strong> Muayene bulguları. <strong>A (Değerlendirme):</strong> Teşhis veya ön tanı. <strong>P (Plan):</strong> Tedavi planı. Bu format hem uluslararası standart hem Türkiye'de medikolegal süreçlerde aranan belgedir.</p>
+
+<h2>AI Not Asistanı Nasıl Çalışıyor?</h2>
+<p>Siz 3–5 anahtar kelime giriyorsunuz — <em>"kanal 16, ağrı var, enfeksiyon, 3 seans planı"</em> — sistem bunu SOAP formatında 80–120 kelimelik Türkçe klinik nota dönüştürüyor. Claude (Anthropic) altyapısı kullanılıyor, Türkçe klinik terminolojiye özel eğitim uygulandı.</p>
+
+<div class="callout"><p><strong>Örnek Girdi:</strong> "Hasta: Ayşe K. Diş: 26. Şikayet: soğuğa hassasiyet 2 haftadır. Muayene: derin çürük, vitalite pozitif. Karar: kanal tedavisi, 3 seans."<br><strong>Çıktı:</strong> Tam SOAP notu, tarih ve imza ile otomatik hasta dosyasına eklendi.</p></div>
+
+<h2>AI Reçete Önerisi</h2>
+<p>Teşhisi girin, AI diş hekimliğinde sık kullanılan ilaçları doz ve süreyle listeler. Allerji varsa otomatik alternatif önerir. Hâlâ siz karar verirsiniz — AI seçenek sunar, onaylar.</p>
+
+<div class="warn"><p>⚠️ <strong>Önemli:</strong> AI çıktıları her zaman hekim tarafından gözden geçirilmeli. Not Asistanı klinik karar verme aracı değil, dokümantasyon asistanıdır. Tüm notlar düzenlenebilir.</p></div>
+
+<h2>Hukuki Güvence</h2>
+<p>AI tarafından oluşturulan notlar hangi kullanıcı tarafından, hangi tarih/saatte oluşturulduğuyla birlikte değiştirilemez arşive kaydedilir. Medikolegal süreçlerde eksiksiz dokümantasyon en güçlü savunmadır.</p>`
+},
+{
+  id:"klinikacar", cat:"girisim", tag:"Girişim",
+  date:"5 Ocak 2025", read:"8 dk",
+  emoji:"🏗️", bg:"rgba(39,163,73,.09),rgba(46,202,216,.06)",
+  seo_desc:"Türkiye'de diş kliniği açmak — 2025 dijital altyapı ve başlangıç maliyeti rehberi.",
+  title:"Türkiye'de Diş Kliniği Açmak: 2025 Dijital Altyapı ve Maliyet Rehberi",
+  excerpt:"Lisans, ekipman, personel, yazılım — klinik açmanın toplam maliyeti ve dijital altyapının bu bütçedeki kritik yeri. Yeni mezun ve deneyimli hekimler için kapsamlı yol haritası.",
+  body:`
+<h2>Başlangıç Maliyetleri: Gerçekçi Tablo</h2>
+<p>2025 yılı için solo diş kliniği başlangıç maliyeti (İstanbul, orta segment):</p>
+<ul>
+  <li><strong>Dekorasyon ve tadilat:</strong> ₺150.000 – 400.000</li>
+  <li><strong>Ünit ve temel ekipman:</strong> ₺200.000 – 600.000</li>
+  <li><strong>Röntgen cihazı:</strong> ₺80.000 – 250.000</li>
+  <li><strong>Malzeme deposu (ilk ay):</strong> ₺30.000 – 80.000</li>
+  <li><strong>Ruhsatlar ve harçlar:</strong> ₺15.000 – 40.000</li>
+  <li><strong>Dijital altyapı (tek seferlik + yıllık):</strong> ₺20.000 – 40.000</li>
+</ul>
+<p>Dijital altyapı toplam bütçenin yalnızca <strong>%2–3'ü</strong>, ama verimliliğin %30–40'ını belirliyor.</p>
+
+<h2>Dijital Altyapı Neyi Kapsar?</h2>
+<p><strong>Klinik yönetim yazılımı</strong> (aylık ₺400–1.200), <strong>bilgisayar/tablet</strong> (₺10.000–20.000), <strong>fiber internet + GSM yedek</strong> (aylık ₺500–800), <strong>yazıcı</strong> (₺3.000–8.000).</p>
+
+<div class="callout"><p><strong>Altın Kural:</strong> Yazılım için aylık en az ₺600 bütçe ayırın. Bu, tek bir boş randevunun kaybettirdiği gelirin altında. Doğru yazılım yatırımı ilk 1–2 ayda kendini amorti eder.</p></div>
+
+<h2>Bulut mu, Desktop mu?</h2>
+<p>Desktop dezavantajları: belirli bilgisayara bağımlılık, uzaktan erişim imkânsız, güncelleme zorluğu, yedekleme riski. <strong>2025'te yeni klinik kuranlar için bulut tabanlı çözüm standart olmalı.</strong></p>
+
+<h2>KVKK Uyumunu Başından Planlayın</h2>
+<p>Hasta başvurusunda imzalatılacak aydınlatma metni, yazılım sağlayıcıyla veri işleme sözleşmesi ve rol bazlı erişim sistemi — başlangıçta kurmak sonradan çok daha kolay.</p>
+
+<h2>İlk 3 Ay: Öncelikler</h2>
+<ol>
+  <li>Yazılım kur, personeli eğit (hafta 1–2)</li>
+  <li>SMS + e-posta hatırlatmayı aktif et (hafta 3)</li>
+  <li>İlk aylık raporu çıkar, no-show oranını ölç (ay sonu)</li>
+  <li>Hasta portal linkini yeni hastalara göndermeye başla (ay 2)</li>
+</ol>`
+},
+{
+  id:"kvkk", cat:"hukuk", tag:"Hukuk & KVKK",
+  date:"28 Aralık 2024", read:"6 dk",
+  emoji:"⚖️", bg:"rgba(212,146,10,.09),rgba(46,202,216,.05)",
+  seo_desc:"KVKK'nın diş kliniklerine etkileri, hasta verisi yönetimi ve pratik uyum adımları.",
+  title:"Diş Kliniği ve KVKK: Hasta Verilerini Yasal Olarak Yönetmenin 8 Adımı",
+  excerpt:"Kişisel Verilerin Korunması Kanunu diş kliniklerini özel yükümlülükler altına sokuyor. İhlal cezaları ₺26.000'dan başlıyor. Pratik uyum adımları ve kontrol listesi.",
+  body:`
+<div class="warn"><p>⚠️ <strong>Hukuki Uyarı:</strong> Bu yazı genel bilgi amaçlıdır ve hukuki danışmanlık yerine geçmez. KVKK uyumu için lisanslı bir veri koruma danışmanından destek almanızı öneririz.</p></div>
+
+<h2>Neden Diş Klinikleri Özel Risk Altında?</h2>
+<p>KVKK'ya göre sağlık verileri <strong>"özel nitelikli kişisel veri"</strong> kategorisindedir. Diş kliniğindeki hasta kayıtları — muayene notları, tedavi planları, röntgenler, faturalar — standart kişisel verilerden çok daha sıkı kurallara tabi. İhlal cezaları <strong>₺26.000 ile ₺1.967.000</strong> arasında değişebilir.</p>
+
+<h2>8 Adımlı Uyum Kontrol Listesi</h2>
+<ol>
+  <li><strong>Veri envanteri çıkarın</strong> — hangi verileri, neden, ne kadar süre sakladığınızı belgeleyin</li>
+  <li><strong>Aydınlatma metni hazırlayın</strong> — her hastadan imzalı onay alın</li>
+  <li><strong>Veri işleme sözleşmesi (VİS)</strong> — yazılım sağlayıcı dahil tüm üçüncü taraflarla</li>
+  <li><strong>Rol bazlı erişim kurun</strong> — muhasebe personeli klinik notlara ulaşamamalı</li>
+  <li><strong>Silme prosedürü tanımlayın</strong> — hasta talebiyle veri silebilir olun</li>
+  <li><strong>Güvenlik önlemleri alın</strong> — HTTPS, güçlü parola, otomatik oturum kapatma</li>
+  <li><strong>Saklama süresini belirleyin</strong> — yetişkinler için minimum 10 yıl öneriliyor</li>
+  <li><strong>İhlal planı oluşturun</strong> — 72 saat içinde KVKK'ya bildirme prosedürü</li>
+</ol>
+
+<h2>WhatsApp ile Veri Paylaşımı Riski</h2>
+<p>Hasta röntgeni veya tedavi planını WhatsApp üzerinden göndermek KVKK ihlali riski taşır. WhatsApp, sağlık verisi için gereken veri işleme sözleşmesi ve güvenlik standartlarını karşılamaz. <strong>Hasta portalı gibi güvenli, denetlenebilir kanallar tercih edin.</strong></p>
+
+<div class="callout"><p><strong>DişSeansım KVKK Uyumu:</strong> Türkiye sunucularında barındırma, rol bazlı erişim, tam denetim günlüğü (audit log), HTTPS şifreli iletişim ve hasta rıza kaydı yerleşik olarak geliyor.</p></div>`
+},
+{
+  id:"portal", cat:"hasta", tag:"Hasta Deneyimi",
+  date:"20 Aralık 2024", read:"5 dk",
+  emoji:"🔗", bg:"rgba(46,202,216,.09),rgba(201,169,110,.06)",
+  seo_desc:"Hasta portalı ile dijital tedavi onayı — hukuki güvence, daha yüksek onay oranı.",
+  title:"Hasta Portalı ile Tedavi Onayını Dijitalleştirmenin 5 Avantajı",
+  excerpt:"Türkiye'deki çoğu klinik tedavi planı onayını sözel ya da WhatsApp'tan alıyor. Bu hem hukuki risk hem de kötü hasta deneyimi yaratıyor. Dijital hasta portalı bu denklemi köklü biçimde değiştiriyor.",
+  body:`
+<h2>1. Hukuki Güvence — Zaman Damgalı İmza</h2>
+<p>Portal üzerinden yapılan onaylarda tam isim, tarih, saat ve IP adresi otomatik kaydedilir. Bu kayıt değiştirilemez biçimde arşivlenir. Hasta "bana bunu söylemediler" iddiasında bulunduğunda elinizde somut dijital kanıt vardır.</p>
+
+<h2>2. Hasta Memnuniyeti — Şeffaflık Güven Yaratır</h2>
+<p>Hastanın kendi telefonundan tedavi planını, maliyeti ve tahmini süreyi görebilmesi güven yaratır. Araştırmalar <strong>tedavi maliyetini önceden bilen hastaların ödeme ihtimalinin %34 daha yüksek</strong> olduğunu gösteriyor.</p>
+
+<h2>3. Onay Oranı 3× Artıyor</h2>
+<p>Portaldaki rahat inceleme ortamı, koltukta baskı altında karar vermekten çok daha sağlıklı. Portal kullanan kliniklerde "düşüneyim" oranı <strong>%40 düşüyor</strong>, onay süreci 3–5 günden 24 saate iniyor.</p>
+
+<h2>4. Personel Verimliliği</h2>
+<p>Portal üzerinden hastaya otomatik "onayınız bekleniyor" bildirimi gönderiliyor. Resepsiyonist her tedavi planı için ayrı ayrı aramak zorunda kalmıyor. Klinikler haftada ortalama <strong>2–3 saat personel tasarrufu</strong> bildiriyor.</p>
+
+<h2>5. KVKK Uyumu — WhatsApp Riski Ortadan Kalkıyor</h2>
+<p>Sağlık verilerini WhatsApp üzerinden paylaşmak KVKK ihlali riski taşır. Hasta portalı şifreli, Türkiye sunucusunda barındırılan ve denetlenebilir bir iletişim kanalı sunar.</p>
+
+<div class="callout"><p><strong>Nasıl Çalışır:</strong> Hasta kaydı sonrası "Portal Linki Gönder" düğmesine basın. Sistem 30 günlük JWT token bazlı bağlantı üretir. Hasta linki açar — şifre girmeden randevusunu, tedavi planını ve faturasını görür, onay verir.</p></div>`
+},
+{
+  id:"yazilim-secimi", cat:"dijital", tag:"Dijitalleşme",
+  date:"12 Aralık 2024", read:"7 dk",
+  emoji:"💻", bg:"rgba(46,202,216,.08),rgba(46,202,216,.03)",
+  seo_desc:"Diş kliniği yazılımı seçim kriterleri — bulut, KVKK, fiyat, destek.",
+  title:"Diş Kliniği Yazılımı Seçerken Sormanız Gereken 10 Kritik Soru",
+  excerpt:"Türkiye'de 20+ diş kliniği yazılımı var. Yanlış seçim yıllarca verimsizlik ve değiştirme maliyeti demek. Doğru soruları sormak her şeyden önce geliyor.",
+  body:`
+<h2>1. Web tabanlı mı, desktop mu?</h2>
+<p>Desktop uygulamalar belirli bir bilgisayara bağlar, uzaktan erişimi imkânsız kılar. Bulut tabanlı çözümler her cihazdan çalışır, otomatik yedekleme, her zaman güncel. <strong>2025'te yeni klinikler için bulut tabanlı standart olmalı.</strong></p>
+
+<h2>2. Sunucular Türkiye'de mi?</h2>
+<p>KVKK açısından kritik. Yurt dışı sunucular uyumu karmaşıklaştırır. <strong>Türkiye'de barındırılan çözümler tercih edin.</strong></p>
+
+<h2>3. Çok kullanıcı ve çok şube desteği var mı?</h2>
+<p>Bugün solo pratiğiniz olsa da yarın asistan, resepsiyon veya ikinci şube ekleyebilirsiniz. Baştan ölçeklenebilir seçin.</p>
+
+<h2>4. Rol bazlı erişim kontrolü var mı?</h2>
+<p>Muhasebe personelinin klinik notlara, asistanın faturalara erişmemesi gerekir. Granüler yetki sistemi hem güvenlik hem KVKK için şart.</p>
+
+<h2>5. SMS ve e-posta entegrasyonu dahil mi?</h2>
+<p>Ek ücretli mi, yoksa planın içinde mi? NetGSM gibi Türk SMS sağlayıcılarıyla entegrasyon mu? Fiyatlandırmaya dikkat.</p>
+
+<h2>6. Hasta portalı var mı?</h2>
+<p>Dijital tedavi planı onayı, fatura görüntüleme. Artık lüks değil — KVKK ve hasta deneyimi için gereklilik.</p>
+
+<h2>7. PDF çıktı kalitesi nasıl?</h2>
+<p>Tedavi planı, fatura, reçete — profesyonel, yazdırılabilir çıktılar olmalı. Demo sırasında mutlaka isteyin.</p>
+
+<h2>8. Veri taşıma ve çıkış stratejisi?</h2>
+<p>Tüm hasta verilerini standart formatta (CSV/JSON) dışa aktarabilir misiniz? Kilitleme riski olan yazılımlara dikkat.</p>
+
+<h2>9. Fiyatlandırma modeli şeffaf mı?</h2>
+<p>Gizli ücretler, SMS başına ücret, yıllık zorunlu ödeme, iptal cezası — imzadan önce tüm maliyet kalemlerini netleştirin.</p>
+
+<h2>10. Türkçe destek ve yanıt hızı?</h2>
+<p>Klinik saatinde sistem çöktüğünde 24 saat içinde Türkçe yanıt alabilir misiniz? Demo sırasında destek kanalını test edin.</p>
+
+<div class="callout"><p><strong>DişSeansım bu 10 soruyu geçiyor.</strong> 14 gün ücretsiz demo hesapla test edin, karar sonra.</p></div>`
+},
+{
+  id:"odontogram", cat:"verimlilik", tag:"Verimlilik",
+  date:"5 Aralık 2024", read:"4 dk",
+  emoji:"🦷", bg:"rgba(46,202,216,.1),rgba(201,169,110,.05)",
+  seo_desc:"Dijital odontogram avantajları — FDI notasyonu, arama, hukuki değer.",
+  title:"Dijital Odontogram Neden Kağıt Çizimden Üstündür?",
+  excerpt:"FDI notasyonu, standart semboller, arama ve filtreleme. Dijital odontogramın klinik verimlilik, hata azaltma ve hasta iletişimindeki somut katkıları.",
+  body:`
+<h2>FDI Notasyonu ve Standartlaşma</h2>
+<p>Dijital odontogram uluslararası FDI 2-digit notasyonunu tam olarak destekler. 11–48 numara aralığı, semboller (çürük, dolgu, kuron, implant, köprü, kanal, eksik) standartlaştırılmış biçimde kaydedilir. Farklı hekimler aynı hastanın kaydını tutarsızlık olmadan yorumlar.</p>
+
+<h2>Arama ve Filtreleme</h2>
+<p>Kağıt dosyada "bu yıl implant yapılan tüm hastalar" sorgusunu çalıştıramazsınız. Dijital sistemde bir saniyede filtreleyebilirsiniz. Bu hem klinik araştırma hem iş geliştirme için değerli bir kapasitedir.</p>
+
+<h2>Hasta İletişimini Güçlendiriyor</h2>
+<p>Ekranda gösterilen renkli odontogram hastanın durumunu anlamasını kolaylaştırır. Tedavi planı onayı görsel anlayışla birlikte yükseliyor. "16 numaralı diş" soyuttur; odontogramda sarı ile işaretlenmiş çürük somuttur.</p>
+
+<h2>Hukuki Değeri</h2>
+<p>Kağıt odontogram silinebilir, değiştirilebilir, kaybolabilir. Dijital kayıt zaman damgalı, değiştirilemez, yedeklenmiş. Medikolegal süreçlerde dijital kayıt çok daha güçlü delil niteliği taşır.</p>
+
+<h2>Geçiş Ne Kadar Sürer?</h2>
+<p>Mevcut kağıt dosyaları toplu dijitalleştirme gerekmez — yeni hastalarda dijital başlayın. Eski hastalar için kritik bilgileri (aktif tedaviler, alerjiler) bir kez girin. Ortalama geçiş 2–3 haftada tamamlanıyor.</p>`
+},
+{
+  id:"cok-sube", cat:"girisim", tag:"Girişim",
+  date:"28 Kasım 2024", read:"6 dk",
+  emoji:"🏢", bg:"rgba(201,169,110,.09),rgba(39,163,73,.06)",
+  seo_desc:"Çok şubeli diş kliniği yönetimi — sorunlar ve merkezi yazılım çözümleri.",
+  title:"Çok Şubeli Diş Kliniği Yönetiminde 6 Kritik Zorluk ve Çözümleri",
+  excerpt:"İkinci şubeyi açtığınızda her şey karmaşıklaşıyor: iki sistem, iki raporlama, iki envanter. Merkezi çoklu şube yönetiminin farkı.",
+  body:`
+<h2>1. Merkezi Raporlama Yokluğu</h2>
+<p><strong>Sorun:</strong> Her şubeden ayrı Excel. Toplam geliri hesaplamak için dosyaları birleştirmek gerekiyor.<br><strong>Çözüm:</strong> Çok kiracılı mimari ile owner seviyesinde tek dashboard'dan tüm şubelerin KPI'ları anlık görünür.</p>
+
+<h2>2. Hasta Transferi</h2>
+<p><strong>Sorun:</strong> Hasta şube değiştirdiğinde dosyası gelmiyor, hekim geçmişi göremez.<br><strong>Çözüm:</strong> Merkezi hasta veritabanı — hangi şubede olursa olsun tam dosyaya erişim.</p>
+
+<h2>3. Stok Koordinasyonu</h2>
+<p><strong>Sorun:</strong> Şube A'da malzeme bitti, B'de fazla — kimse bilmiyor.<br><strong>Çözüm:</strong> Şube bazlı envanter takibi, kritik stok uyarısı ve haftalık konsolidasyon raporu.</p>
+
+<h2>4. Personel Çizelge Çakışması</h2>
+<p><strong>Sorun:</strong> Bir hekim iki şubede çalışıyor, takvimler çakışıyor.<br><strong>Çözüm:</strong> Kullanıcılar birden fazla şubeye atanabilir, çakışma kontrolü otomatik çalışır.</p>
+
+<h2>5. Standart Olmayan Protokoller</h2>
+<p><strong>Sorun:</strong> Her şubede farklı not formatı, fiyat, randevu süresi.<br><strong>Çözüm:</strong> Merkezi şablon yönetimi — owner belirler, tüm şubeler uygular.</p>
+
+<h2>6. IT Yükü Katlanması</h2>
+<p><strong>Sorun:</strong> Her şubede ayrı sunucu — güncelleme, yedekleme, güvenlik açığı.<br><strong>Çözüm:</strong> Tek bulut platform — IT yükü sıfır, yedekleme ve güvenlik merkezi yönetilir.</p>
+
+<div class="callout"><p><strong>Kritik Tavsiye:</strong> 2. şubeyi açmadan önce yazılımın çok şube desteğini test edin. Sonradan geçiş çok daha pahalı ve risklidir.</p></div>`
+},
+{
+  id:"hasta-sadakat", cat:"hasta", tag:"Hasta Deneyimi",
+  date:"20 Kasım 2024", read:"5 dk",
+  emoji:"❤️", bg:"rgba(39,163,73,.09),rgba(46,202,216,.05)",
+  seo_desc:"Diş kliniğinde hasta sadakati artırma stratejileri — geri dönüş ve tavsiye.",
+  title:"Diş Hekimliğinde Hasta Sadakati: Geri Dönüşü Artıran 7 Strateji",
+  excerpt:"Yeni hasta bulmak mevcut hastayı tutmaktan 5× daha pahalı. Ama kliniklerin büyük çoğunluğu pazarlama bütçesini yalnızca yeni hasta edinmeye harcıyor.",
+  body:`
+<div class="sb">
+  <div class="sbox"><div class="sbn">5×</div><div class="sbl">Yeni hasta edinme maliyet farkı</div></div>
+  <div class="sbox"><div class="sbn">%67</div><div class="sbl">Deneyim için fazla ödeme isteği</div></div>
+  <div class="sbox"><div class="sbn">%90</div><div class="sbl">Hatırlatma alan hastaların geri dönüş oranı</div></div>
+</div>
+
+<h2>1. Periyodik Kontrol Hatırlatması</h2>
+<p>6 aylık kontrol randevusu için otomatik SMS veya e-posta hatırlatması en basit ve etkili sadakat aracı. DişSeansım'da tek seferlik yapılandırılır, sonra otomatik çalışır.</p>
+
+<h2>2. Doğum Günü Mesajı</h2>
+<p>Diş kliniğinden doğum günü mesajı sürpriz ve sıcak. Küçük bir indirim kodu eklemek süreci randevuya dönüştürüyor.</p>
+
+<h2>3. Tedavi Sonrası Takip</h2>
+<p>Büyük tedaviler (implant, kanal, cerrahi) sonrası 48–72 saat içinde gönderilen "nasılsınız?" mesajı bakım kalitesini gösterir. Bu basit dokunuş yorum puanlarını belirgin biçimde artırıyor.</p>
+
+<h2>4. Referans Programı</h2>
+<p>Mevcut hasta bir arkadaşını getirirse her ikisine indirim. Ağ etkisiyle en düşük maliyetli hasta edinme kanalı. DişSeansım'ın yerleşik referans programı süreci otomatize eder.</p>
+
+<h2>5. Şeffaf Tedavi Planı</h2>
+<p>Ne yapılacağını, neden ve ne kadara mal olacağını baştan bilen hasta güven duyar. Güven, geri dönüş ve tavsiyenin temel belirleyicisi.</p>
+
+<h2>6. Hızlı İletişim Kanalı</h2>
+<p>Hasta acil durumda veya sorusu olduğunda kolayca ulaşabilmeli. Portal mesajı, klinik e-posta ve net telefon bu beklentiyi karşılar.</p>
+
+<h2>7. Google Yorumu İste</h2>
+<p>Google My Business yorumları yeni hasta kararını etkileyen 1 numaralı faktör. Tedavi sonrası otomatik "deneyiminizi paylaşır mısınız?" mesajı, gönüllü ama hatırlatılmış yorum almanın en etkili yolu.</p>`
+},
+{
+  id:"gelir-analitik", cat:"dijital", tag:"Dijitalleşme",
+  date:"14 Kasım 2024", read:"5 dk",
+  emoji:"📊", bg:"rgba(201,169,110,.09),rgba(212,146,10,.05)",
+  seo_desc:"Diş kliniği için gelir analitiği ve takip edilmesi gereken 8 KPI.",
+  title:"Klinik Gelir Analitiği: Takip Etmeniz Gereken 8 Kritik Metrik",
+  excerpt:"Çoğu hekim kliniğinin finansal durumunu yalnızca aylık toplam gelirden ibaret görüyor. Bu, büyük resmin küçük bir köşesi. Doğru metrikler, kazancı artıracak kararları görünür kılar.",
+  body:`
+<h2>1. No-Show Oranı</h2>
+<p>Formül: (iptal + gelmedi) / toplam randevu × 100. Türkiye ortalaması %18. Bu oran <strong>%10'un altına</strong> indiğinde aylık gelir ciddi artıyor. Haftalık takip edin.</p>
+
+<h2>2. Hasta Başına Ortalama Gelir (ARPU)</h2>
+<p>Toplam gelir / aktif hasta sayısı. Hangi hasta segmentinin en değerli olduğunu gösterir. Trendi takip edin — düşüyorsa nedeni araştırın.</p>
+
+<h2>3. İşlem Bazlı Gelir Kırılımı</h2>
+<p>Kanal tedavisinin, implantın, diştaşı temizliğinin toplam gelirdeki payı. Bu bilgi olmadan ekipman yatırımı veya uzmanlaşma kararı veremezsiniz.</p>
+
+<h2>4. Tahsilat Hızı</h2>
+<p>Fatura oluşturma ile ödeme arasındaki ortalama gün sayısı. 30 günü geçiyorsa aktif takip gerekiyor. DişSeansım'da gecikmiş faturalar otomatik bildirim üretiyor.</p>
+
+<h2>5. Yeni Hasta Büyüme Oranı</h2>
+<p>Aylık yeni hasta / geçen ay yeni hasta. 3 ay üst üste düşüş, bir şeyin değişmesi gerektiğini gösterir.</p>
+
+<h2>6. Tedavi Plan Tamamlanma Oranı</h2>
+<p>Oluşturulan tedavi planlarının kaçı tamamlandı? Düşük oran hasta motivasyonu veya maliyet sorununun işareti. Yüksek tutmak hem gelir hem hasta sağlığı açısından kritik.</p>
+
+<h2>7. Net Promoter Score (NPS)</h2>
+<p>"Bu kliniği arkadaşınıza tavsiye eder misiniz?" sorusu. 9–10 verenler promoter. Skor <strong>50+</strong> çok iyi. Tedavi sonrası SMS ile otomatik ölçün.</p>
+
+<h2>8. Tekrar Ziyaret Oranı</h2>
+<p>Gelen hastaların kaçı ilk 12 ayda tekrar geldi? <strong>%70+</strong> sağlıklı klinik göstergesi.</p>
+
+<div class="callout"><p><strong>Başlangıç Noktası:</strong> 8 metriğin tamamını birden ölçmeye çalışmayın. No-show oranı ve tahsilat hızıyla başlayın — en çabuk etkili ikili bu.</p></div>`
+}
+];
+
+let curId = null;
+
+function renderList() {
+  document.getElementById('alist').innerHTML = POSTS.map(p =>
+    `<div class="acard" data-cat="${p.cat}" onclick="openPost('${p.id}')">
+      <div>
+        <div class="ameta">
+          <span class="atag">${p.tag}</span>
+          <span class="adt">${p.date}</span>
+          <span class="ard">${p.read} okuma</span>
+        </div>
+        <div class="atit">${p.title}</div>
+        <div class="aexc">${p.excerpt}</div>
+        <div class="acta">Devamını Oku →</div>
+      </div>
+      <div class="athumb" style="background:linear-gradient(135deg,${p.bg})">${p.emoji}</div>
+    </div>`
+  ).join('');
+}
+
+function openPost(id) {
+  const p = POSTS.find(x => x.id === id);
+  if (!p) return;
+  curId = id;
+  document.getElementById('lview').style.display = 'none';
+  document.getElementById('pcon').innerHTML = `
+    <article class="post active" itemscope itemtype="https://schema.org/Article">
+      <button class="pbk" onclick="closePost()">← Blog'a Dön</button>
+      <div class="pmeta">
+        <span class="ptag">${p.tag}</span>
+        <div class="pdate">${p.date} · ${p.read} okuma</div>
+      </div>
+      <h1 itemprop="headline">${p.title}</h1>
+      <div class="post-lead">${p.excerpt}</div>
+      ${p.body}
+      <div class="pcta">
+        <h3>14 Gün Ücretsiz Deneyin</h3>
+        <p>Kredi kartı yok, kurulum yok, Türkçe destek.</p>
+        <a href="giris.html?tab=register">Ücretsiz Başla →</a>
+      </div>
+      <div class="shr">
+        <span class="shrl">Paylaş:</span>
+        <button class="shrb" onclick="cpLink()">🔗 Linki Kopyala</button>
+      </div>
+    </article>`;
+  window.scrollTo(0, 56);
+  document.title = p.title + ' — DişSeansım Blog';
+  document.querySelector('meta[name="description"]').setAttribute('content', p.seo_desc);
+  history.pushState({id}, '', '#' + id);
+}
+
+function closePost() {
+  curId = null;
+  document.getElementById('pcon').innerHTML = '';
+  document.getElementById('lview').style.display = 'block';
+  window.scrollTo(0, 0);
+  document.title = 'Diş Kliniği Yönetimi Rehberleri — DişSeansım Blog';
+  document.querySelector('meta[name="description"]').setAttribute('content', 'Diş kliniği yönetimi, no-show önleme, AI not asistanı, KVKK uyumu, hasta deneyimi ve dijitalleşme hakkında pratik rehberler.');
+  history.pushState({}, '', 'blog.html');
+}
+
+function sf(cat, btn) {
+  document.querySelectorAll('.ftb').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.acard').forEach(a => {
+    a.style.display = (cat === 'all' || a.dataset.cat === cat) ? '' : 'none';
+  });
+}
+
+function cpLink() {
+  navigator.clipboard.writeText(location.href).then(() => {
+    document.querySelectorAll('.shrb').forEach(b => {
+      b.textContent = '✓ Kopyalandı!';
+      setTimeout(() => b.textContent = '🔗 Linki Kopyala', 2500);
+    });
+  });
+}
+
+function nlsub() {
+  const v = document.getElementById('nlemail').value.trim();
+  if (!v || !v.includes('@')) return;
+  document.getElementById('nlemail').value = '';
+  const btn = document.querySelector('.nbb');
+  btn.textContent = '✓ Teşekkürler!'; btn.style.background = '#27A349';
+  setTimeout(() => { btn.textContent = 'Abone Ol'; btn.style.background = ''; }, 3000);
+}
+
+renderList();
+const initHash = location.hash.replace('#', '');
+if (initHash) openPost(initHash);
+
+window.addEventListener('popstate', () => {
+  const h = location.hash.replace('#', '');
+  if (!h) closePost(); else openPost(h);
+});
+</script>
+</body>
+</html>
