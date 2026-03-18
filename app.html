@@ -716,7 +716,7 @@ input[type=file]{padding:7px 12px;cursor:pointer;font-size:12.5px}
   <div class="fr"><label>Adres</label><input id="pt-addr"></div>
   <div class="fr fc2"><div><label>Alerjiler (virgülle)</label><input id="pt-allergy" placeholder="Penisilin, lateks…"></div><div><label>Sistemik Hastalıklar</label><input id="pt-sysdi" placeholder="Diyabet, HT…"></div></div>
   <div class="fr fc3"><div><label>Sigorta Türü</label><select id="pt-ins-t"><option value="">Yok</option><option>SGK</option><option>Özel Sigorta</option><option>Bağkur</option></select></div><div><label>Kurum</label><input id="pt-ins"></div><div><label>Sigorta No</label><input id="pt-insno"></div></div>
-  <div style="display:flex;align-items:flex-start;gap:9px;background:var(--t50);border:1px solid var(--t100);border-radius:var(--r);padding:11px 13px"><input type="checkbox" id="pt-kvkk" style="width:auto;margin-top:2px"><span class="sm c1" style="line-height:1.6">KVKK Aydınlatma Metni kapsamında kişisel verilerimin işlenmesine onay veriyorum.</span></div>
+  <div style="display:flex;align-items:flex-start;gap:9px;background:var(--t50);border:1px solid var(--t100);border-radius:var(--r);padding:11px 13px"><input type="checkbox" id="pt-kvkk" style="width:auto;margin-top:3px;cursor:pointer;flex-shrink:0"><label for="pt-kvkk" class="sm c1" style="line-height:1.6;cursor:pointer;font-weight:400;text-transform:none;letter-spacing:0">KVKK Aydınlatma Metni kapsamında kişisel verilerimin işlenmesine onay veriyorum. <a href="#" onclick="event.preventDefault();openM('m-kvkk')" style="color:var(--t600);font-weight:600">Metni oku →</a></label></div>
 </div>
 <div class="mft"><button class="btn btn-s" onclick="closeM('m-pt')">İptal</button><button class="btn btn-p" onclick="savePt()">💾 Kaydet</button></div></div></div>
 
@@ -817,6 +817,26 @@ input[type=file]{padding:7px 12px;cursor:pointer;font-size:12.5px}
   <div class="fl g8"><button class="btn btn-p btn-sm" onclick="copyPortalLink()" style="flex:1">📋 Kopyala</button><button class="btn btn-s btn-sm" onclick="sharePortalLink()" style="flex:1">📤 Paylaş</button></div>
   <div class="xs c3 mt8">🔒 30 gün geçerli · Şifresiz · Sadece bu hastanın verisi</div>
 </div></div></div>
+
+<!-- KVKK Modal -->
+<div class="mbg" id="m-kvkk"><div class="mbox mlg" style="max-height:85vh;display:flex;flex-direction:column"><div class="mhd"><div class="mt">⚖️ KVKK Aydınlatma Metni</div><button class="mx" onclick="closeM('m-kvkk')">✕</button></div>
+<div class="mb" style="overflow-y:auto;flex:1">
+  <div style="font-size:13px;color:var(--c1);line-height:1.8">
+    <p style="font-weight:700;margin-bottom:10px">Kişisel Verilerin Korunması Kanunu (KVKK) Kapsamında Aydınlatma Metni</p>
+    <p style="margin-bottom:10px">6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") uyarınca, klinik olarak veri sorumlusu sıfatıyla aşağıdaki bilgilendirmeyi yapmaktayız.</p>
+    <p style="font-weight:600;margin-bottom:6px">1. İşlenen Kişisel Veriler</p>
+    <p style="margin-bottom:10px">Ad, soyad, TC kimlik numarası, doğum tarihi, cinsiyet, telefon, e-posta, adres, kan grubu, alerji bilgileri ve sağlık durumuna ilişkin tüm klinik kayıtlar.</p>
+    <p style="font-weight:600;margin-bottom:6px">2. Kişisel Verilerin İşlenme Amaçları</p>
+    <p style="margin-bottom:10px">Klinik hizmetlerinin sunulması, muayene ve tedavi süreçlerinin yönetilmesi, randevu organizasyonu, yasal yükümlülüklerin yerine getirilmesi ve idari işlemler.</p>
+    <p style="font-weight:600;margin-bottom:6px">3. Kişisel Verilerin Aktarımı</p>
+    <p style="margin-bottom:10px">Verileriniz; ilgili kamu kurumları ve yargı mercileri haricinde üçüncü kişilerle paylaşılmamaktadır.</p>
+    <p style="font-weight:600;margin-bottom:6px">4. Haklarınız</p>
+    <p style="margin-bottom:10px">KVKK'nın 11. maddesi kapsamında; verilerinize erişim, düzeltme, silme, işlemenin kısıtlanması ve itiraz etme haklarına sahipsiniz.</p>
+    <p style="font-weight:600;margin-bottom:6px">5. Saklama Süresi</p>
+    <p style="margin-bottom:4px">Klinik kayıtlar, son işlem tarihinden itibaren yasal zorunluluk olan <strong>10 yıl</strong> süre ile saklanır.</p>
+  </div>
+</div>
+<div class="mft"><button class="btn btn-s" onclick="closeM('m-kvkk')">Kapat</button><button class="btn btn-p" onclick="closeM('m-kvkk');document.getElementById('pt-kvkk').checked=true">✓ Okudum, Onaylıyorum</button></div></div></div>
 
 <!-- X-Ray Viewer -->
 <div class="xv" id="xv" onclick="closeXV(event)">
@@ -1153,24 +1173,42 @@ async function searchPts(){var q=document.getElementById('pt-search').value;var 
 function openPtModal(pt){
   _editId=pt?.id||null;
   ['pt-fname','pt-lname','pt-tc','pt-phone','pt-email','pt-addr','pt-allergy','pt-sysdi','pt-ins','pt-insno'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('pt-dob').value='';
+  document.getElementById('pt-gender').value='';
+  document.getElementById('pt-blood').value='';
+  document.getElementById('pt-ins-t').value='';
   document.getElementById('pt-kvkk').checked=false;
-  if(pt){['fname','lname','tc','phone','email','addr'].forEach(f=>document.getElementById('pt-'+f).value=pt[f==='fname'?'first_name':f==='lname'?'last_name':f]||'');
+  if(pt){
+    ['fname','lname','tc','phone','email','addr'].forEach(f=>document.getElementById('pt-'+f).value=pt[f==='fname'?'first_name':f==='lname'?'last_name':f]||'');
     document.getElementById('pt-allergy').value=(pt.allergies||[]).join(', ');
     document.getElementById('pt-sysdi').value=(pt.systemic_diseases||[]).join(', ');
     document.getElementById('pt-ins').value=pt.insurance||'';
     document.getElementById('pt-insno').value=pt.insurance_no||'';
-    document.getElementById('pt-kvkk').checked=true;}
+    if(pt.birth_date)document.getElementById('pt-dob').value=pt.birth_date.slice?.(0,10)||'';
+    if(pt.gender)document.getElementById('pt-gender').value=pt.gender;
+    if(pt.blood_type)document.getElementById('pt-blood').value=pt.blood_type;
+    document.getElementById('pt-kvkk').checked=true;
+  }
   openM('m-pt');
 }
 function quickNewPt(){nav('patients');setTimeout(()=>openPtModal(null),100);}
 async function savePt(){
   var fname=document.getElementById('pt-fname').value.trim(),lname=document.getElementById('pt-lname').value.trim();
   if(!fname||!lname){toast('Ad ve soyad zorunlu','e');return;}
-  if(!document.getElementById('pt-kvkk').checked){toast('KVKK onayı zorunlu','e');return;}
-  var body={first_name:fname,last_name:lname,tc:document.getElementById('pt-tc').value,phone:document.getElementById('pt-phone').value,email:document.getElementById('pt-email').value,address:document.getElementById('pt-addr').value,allergies:document.getElementById('pt-allergy').value.split(',').map(s=>s.trim()).filter(Boolean),systemic_diseases:document.getElementById('pt-sysdi').value.split(',').map(s=>s.trim()).filter(Boolean),insurance:document.getElementById('pt-ins').value,insurance_no:document.getElementById('pt-insno').value,birth_date:document.getElementById('pt-dob').value||null,gender:document.getElementById('pt-gender').value||null,blood_type:document.getElementById('pt-blood').value||null,gdpr_consented_at:new Date().toISOString()};
+  var tc=document.getElementById('pt-tc').value.trim();
+  if(tc&&(tc.length!==11||!/^\d{11}$/.test(tc))){toast('TC kimlik no 11 haneli sayı olmalı','e');return;}
+  if(!document.getElementById('pt-kvkk').checked){toast('KVKK onayı zorunlu — metni okumak için "Metni oku" bağlantısına tıklayın','e');return;}
+  var btn=document.querySelector('#m-pt .btn-p');if(btn){btn.disabled=true;btn.textContent='⏳ Kaydediliyor...';}
+  var body={first_name:fname,last_name:lname,tc:tc,phone:document.getElementById('pt-phone').value.trim(),email:document.getElementById('pt-email').value.trim(),address:document.getElementById('pt-addr').value.trim(),allergies:document.getElementById('pt-allergy').value.split(',').map(s=>s.trim()).filter(Boolean),systemic_diseases:document.getElementById('pt-sysdi').value.split(',').map(s=>s.trim()).filter(Boolean),insurance:document.getElementById('pt-ins').value,insurance_no:document.getElementById('pt-insno').value.trim(),birth_date:document.getElementById('pt-dob').value||null,gender:document.getElementById('pt-gender').value||null,blood_type:document.getElementById('pt-blood').value||null,gdpr_consented_at:new Date().toISOString()};
   var r=_editId?await api('PUT','/api/patients/'+_editId,body):await api('POST','/api/patients',body);
-  if(r&&!r.error){toast(_editId?'Hasta güncellendi ✓':'Hasta kaydedildi ✓');closeM('m-pt');loadPts();markOB('patient');}
-  else if(r){if(r.upgrade)showUpgrade('Hasta Limiti Doldu');else toast(r.error,'e');}
+  if(btn){btn.disabled=false;btn.textContent='💾 Kaydet';}
+  if(r&&!r.error){
+    toast(_editId?'Hasta güncellendi ✓':'Hasta kaydedildi ✓','s');
+    closeM('m-pt');
+    loadPts();
+    markOB('patient');
+    if(_editId&&_curPtId===_editId)openPtDetail(_editId);
+  } else if(r){if(r.upgrade)showUpgrade('Hasta Limiti Doldu');else toast(r.error||'Kayıt başarısız','e');}
 }
 
 // ── PATIENT DETAIL ────────────────────────────────────────────
@@ -1602,7 +1640,7 @@ async function delInv(id){if(!confirm('Malzeme silinsin mi?'))return;await api('
 async function loadSMS(){
   var stats=await api('GET','/api/sms/stats');
   if(stats){document.getElementById('sms-sent').textContent=stats.sent||0;document.getElementById('sms-rate').textContent=(stats.successRate||0)+'%';document.getElementById('sms-tom').textContent=stats.tomorrow||0;}
-  var d=await api('GET','/api/notifications?channel=sms&limit=50');
+  var d=await api('GET','/api/sms/history');
   var msgs=Array.isArray(d)?d:(d?.notifications||[]);
   var tb=document.getElementById('sms-tb');
   if(!msgs.length){tb.innerHTML='<tr><td colspan="5" class="te">Gönderim geçmişi yok</td></tr>';return;}
