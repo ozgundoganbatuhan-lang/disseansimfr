@@ -51,16 +51,16 @@ nav{background:white;border-bottom:1px solid var(--bdr);height:62px;display:flex
 </div>
 <div class="pg">
   <div class="pc">
-    <div class="pn">Solo Hekim</div><div class="pam" id="p1">₺590</div><div class="pper" id="pp1">/ay (KDV hariç)</div>
+    <div class="pn">Solo Hekim</div><div class="pam" id="p1">₺890</div><div class="pper" id="pp1">/ay (KDV hariç)</div>
     <div class="pdesc">Tek hekim klinikler için tüm temel özellikler.</div>
-    <div class="pfl"><div class="pf">2.000 hasta kaydı</div><div class="pf">Odontogram (FDI) + Röntgen</div><div class="pf">SMS + E-posta hatırlatma</div><div class="pf">Sterilizasyon defteri</div><div class="pf">Fatura & stok yönetimi</div><div class="pf">2 kullanıcı · 1 şube</div></div>
+    <div class="pfl"><div class="pf">3.000 hasta kaydı</div><div class="pf">Odontogram (FDI) + Röntgen arşivi</div><div class="pf">Otomatik SMS + E-posta hatırlatma</div><div class="pf">Sterilizasyon kayıt defteri</div><div class="pf">Fatura, stok & alacak takibi</div><div class="pf">Tedavi planı + hasta onayı</div><div class="pf">3 kullanıcı · 1 şube</div></div>
     <a href="giris.html?action=register&plan=starter"><button class="pbtn pb-s">Ücretsiz Dene</button></a>
   </div>
   <div class="pc pop">
     <div class="pop-tag">En Popüler</div>
-    <div class="pn">Klinik</div><div class="pam" id="p2">₺1.190</div><div class="pper" id="pp2">/ay (KDV hariç)</div>
+    <div class="pn">Klinik</div><div class="pam" id="p2">₺1.690</div><div class="pper" id="pp2">/ay (KDV hariç)</div>
     <div class="pdesc">Büyüyen klinikler için AI destekli tam paket.</div>
-    <div class="pfl"><div class="pf">Sınırsız hasta kaydı</div><div class="pf">✨ AI Not Asistanı (SOAP)</div><div class="pf">✨ AI İlaç Önerisi</div><div class="pf">Hasta Portalı (dijital onay)</div><div class="pf">8 kullanıcı · 3 şube</div><div class="pf">Gelişmiş raporlar & analitik</div></div>
+    <div class="pfl"><div class="pf">Sınırsız hasta kaydı</div><div class="pf">✨ AI Not Asistanı (SOAP formatı)</div><div class="pf">✨ AI İlaç & Protokol Önerisi</div><div class="pf">Hasta Portalı (dijital plan onayı)</div><div class="pf">10 kullanıcı · 5 şube</div><div class="pf">Gelişmiş raporlar & analitik</div><div class="pf">Öncelikli destek</div></div>
     <a href="giris.html?action=register&plan=growth"><button class="pbtn pb-p">Ücretsiz Dene →</button></a>
   </div>
   <div class="pc">
@@ -72,7 +72,7 @@ nav{background:white;border-bottom:1px solid var(--bdr);height:62px;display:flex
 </div>
 <div class="note">Tüm fiyatlara KDV dahil değildir. Yıllık ödeme seçeneğinde 2 ay ücretsiz.</div>
 <script>
-var yr=false,prices={p1:[590,4900/12],p2:[1190,9900/12]};
+var yr=false,prices={p1:[890,Math.round(890*10/12)],p2:[1690,Math.round(1690*10/12)]};
 function toggleBilling(){yr=!yr;document.getElementById('tg').classList.toggle('yr',yr);['p1','p2'].forEach(id=>{document.getElementById(id).textContent='₺'+Math.round(yr?prices[id][1]:prices[id][0]);});document.getElementById('pp1').textContent=yr?'/ay (yıllık ödeme)':'/ay (KDV hariç)';document.getElementById('pp2').textContent=yr?'/ay (yıllık ödeme)':'/ay (KDV hariç)';}
 </script>
 </body>
