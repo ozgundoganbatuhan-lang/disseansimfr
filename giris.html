@@ -162,22 +162,17 @@ document.addEventListener('keydown',e=>{if(e.key==='Enter'){var active=document.
 var p=new URLSearchParams(location.search);
 if(p.get('action')==='register')sw('reg');
 // Already logged in
-// Validate existing token before redirecting
 (async function(){
-  var tok=localStorage.getItem('ds_tok');
-  var tid=localStorage.getItem('ds_tid');
-  if(tok&&tid){
-    try{
-      var r=await fetch('https://disseansimback-production.up.railway.app/api/auth/me',{
-        headers:{'Authorization':'Bearer '+tok,'X-Tenant-ID':tid}
-      });
-      if(r.ok){location.href='app.html';return;}
-    }catch(e){}
-    // Token invalid — clear it
-    localStorage.removeItem('ds_tok');
-    localStorage.removeItem('ds_tid');
-    localStorage.removeItem('ds_ref');
-  }
+  var tok=localStorage.getItem('ds_tok'),tid=localStorage.getItem('ds_tid');
+  if(!tok||!tid)return;
+  try{
+    var r=await fetch('https://disseansimback-production.up.railway.app/api/auth/me',{
+      headers:{'Authorization':'Bearer '+tok,'X-Tenant-ID':tid},
+      signal:AbortSignal.timeout?AbortSignal.timeout(6000):undefined
+    });
+    if(r.ok){location.href='app.html';return;}
+    if(r.status===401){localStorage.removeItem('ds_tok');localStorage.removeItem('ds_tid');localStorage.removeItem('ds_ref');}
+  }catch(e){}
 })();
 </script>
 </body>

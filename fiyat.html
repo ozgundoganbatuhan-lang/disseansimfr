@@ -4,76 +4,236 @@
 <meta charset="UTF-8">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦷</text></svg>">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>DişSeansım — Fiyatlar</title>
+<title>DişSeansım Fiyatları — Aylık ₺890'dan Başlayan Planlar</title>
+<meta name="description" content="DişSeansım fiyat planları: Solo Hekim ₺890/ay, Klinik ₺1.690/ay. 14 gün ücretsiz deneyin, kredi kartı gerekmez.">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,400;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}:root{--tl:#0D9488;--tl2:#14B8A6;--am:#D97706;--am2:#F59E0B;--ink:#111827;--ink2:#374151;--ink3:#6B7280;--bdr:#E5E7EB;--bdr2:#F3F4F6;--D:'Fraunces',Georgia,serif;--B:'Plus Jakarta Sans',system-ui,sans-serif}
-html{-webkit-font-smoothing:antialiased}body{font-family:var(--B);background:#F9FAFB;min-height:100vh}
-nav{background:white;border-bottom:1px solid var(--bdr);height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw}
-.nb{font-family:var(--D);font-size:20px;font-style:italic;font-weight:600;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:9px}
-.nb-ic{width:32px;height:32px;background:linear-gradient(135deg,var(--tl),#0F766E);border-radius:8px;display:grid;place-items:center;font-size:15px}
-.btn-cta{padding:8px 18px;background:var(--tl);color:white;border-radius:8px;font-size:14px;font-weight:700;text-decoration:none;transition:all .15s}
-.btn-cta:hover{background:var(--tl2)}
-.hero{text-align:center;padding:60px 5vw 44px;background:white;border-bottom:1px solid var(--bdr)}
-.hero h1{font-family:var(--D);font-size:44px;font-style:italic;font-weight:700;color:var(--ink);margin-bottom:12px;letter-spacing:-1px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--tl:#0D9488;--tl2:#14B8A6;--am:#D97706;--ink:#111827;--ink2:#374151;--ink3:#6B7280;--ink4:#9CA3AF;--bdr:#E5E7EB;--D:'Fraunces',Georgia,serif;--B:'Plus Jakarta Sans',system-ui,sans-serif}
+html{-webkit-font-smoothing:antialiased}
+body{font-family:var(--B);background:#F9FAFB;color:var(--ink)}
+a{text-decoration:none;color:inherit}
+
+nav{background:white;border-bottom:1px solid var(--bdr);height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;position:sticky;top:0;z-index:100}
+.nb{font-family:var(--D);font-size:20px;font-style:italic;font-weight:600;display:flex;align-items:center;gap:9px}
+.nb-ic{width:34px;height:34px;background:linear-gradient(135deg,var(--tl),#0F766E);border-radius:9px;display:grid;place-items:center;font-size:16px}
+.nav-links{display:flex;gap:24px;font-size:14px;color:var(--ink3)}
+.nav-links a:hover{color:var(--tl)}
+.btn-cta{padding:9px 20px;background:var(--tl);color:white;border-radius:9px;font-size:14px;font-weight:700;transition:all .15s;display:inline-block}
+.btn-cta:hover{background:#0F766E;transform:translateY(-1px)}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,#F0FDF9 0%,white 60%);text-align:center;padding:72px 5vw 56px;border-bottom:1px solid var(--bdr)}
+.hero h1{font-family:var(--D);font-size:clamp(32px,5vw,52px);font-style:italic;font-weight:600;color:var(--ink);margin-bottom:14px;letter-spacing:-.5px}
 .hero h1 em{color:var(--tl)}
-.hero p{font-size:17px;color:var(--ink3);max-width:500px;margin:0 auto 28px}
-.toggle{display:flex;align-items:center;justify-content:center;gap:12px;font-size:14px;font-weight:600;color:var(--ink3)}
-.tg-pill{width:48px;height:26px;background:var(--tl);border-radius:99px;cursor:pointer;position:relative;transition:background .2s}
-.tg-thumb{width:20px;height:20px;background:white;border-radius:50%;position:absolute;top:3px;left:3px;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
-.toggle.yr .tg-thumb{transform:translateX(22px)}
-.save{background:rgba(245,158,11,.14);color:var(--am);padding:3px 10px;border-radius:99px;font-size:12px;font-weight:700}
-.pg{padding:52px 5vw;max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.pc{background:white;border:1.5px solid var(--bdr);border-radius:20px;padding:32px;position:relative;transition:all .2s}
-.pc:hover{box-shadow:0 20px 40px rgba(0,0,0,.08)}
-.pc.pop{border-color:var(--tl);box-shadow:0 0 0 3px rgba(20,184,166,.1)}
-.pop-tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--tl);color:white;padding:3px 16px;border-radius:99px;font-size:12px;font-weight:700;white-space:nowrap}
-.pn{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);margin-bottom:10px}
-.pam{font-family:var(--D);font-size:50px;font-weight:700;color:var(--ink);line-height:1;letter-spacing:-2px}
-.pper{font-size:13px;color:var(--ink3);margin-top:5px}
-.pdesc{font-size:14px;color:var(--ink3);line-height:1.7;margin:18px 0;padding-top:18px;border-top:1px solid var(--bdr2)}
-.pfl{margin-bottom:28px;display:flex;flex-direction:column;gap:10px}
-.pf{display:flex;align-items:flex-start;gap:8px;font-size:13.5px;color:var(--ink2)}
-.pf::before{content:'✓';color:var(--tl);font-weight:700;flex-shrink:0;margin-top:1px}
-.pbtn{width:100%;padding:13px;border-radius:9px;font-size:15px;font-weight:700;cursor:pointer;border:none;font-family:var(--B);transition:all .18s}
-.pb-p{background:var(--tl);color:white;box-shadow:0 2px 8px rgba(13,148,136,.28)}.pb-p:hover{background:#0F766E;transform:translateY(-1px)}
-.pb-s{background:#F9FAFB;color:var(--ink2);border:1.5px solid var(--bdr)}.pb-s:hover{background:#F3F4F6}
-.note{text-align:center;padding:16px;color:var(--ink3);font-size:13px}
-@media(max-width:768px){.pg{grid-template-columns:1fr}}
+.hero p{font-size:17px;color:var(--ink3);max-width:480px;margin:0 auto 32px;line-height:1.65}
+
+/* Toggle */
+.toggle-wrap{display:flex;align-items:center;justify-content:center;gap:14px;font-size:14px;font-weight:600}
+.tgl-label{color:var(--ink3);transition:color .15s}
+.tgl-label.active{color:var(--ink)}
+.tgl{width:52px;height:28px;background:var(--tl);border-radius:99px;cursor:pointer;position:relative;transition:background .2s;flex-shrink:0}
+.tgl-dot{width:22px;height:22px;background:white;border-radius:50%;position:absolute;top:3px;left:3px;transition:transform .2s;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+.tgl.yr .tgl-dot{transform:translateX(24px)}
+.save-badge{background:#FEF3C7;color:#92400E;border:1px solid #FDE68A;padding:3px 12px;border-radius:99px;font-size:12px;font-weight:700}
+
+/* Plans grid */
+.plans{max-width:1060px;margin:0 auto;padding:60px 5vw;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.plan{background:white;border:2px solid var(--bdr);border-radius:20px;padding:36px 32px;position:relative;transition:all .2s;display:flex;flex-direction:column}
+.plan:hover{box-shadow:0 16px 48px rgba(0,0,0,.08);transform:translateY(-2px)}
+.plan.popular{border-color:var(--tl);box-shadow:0 0 0 4px rgba(20,184,166,.08)}
+.pop-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--tl);color:white;padding:4px 18px;border-radius:99px;font-size:12px;font-weight:700;white-space:nowrap;letter-spacing:.03em}
+.plan-name{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ink3);margin-bottom:12px}
+.plan-price{display:flex;align-items:flex-end;gap:6px;margin-bottom:6px}
+.plan-amount{font-family:var(--D);font-size:54px;font-weight:600;color:var(--ink);line-height:1;letter-spacing:-2px}
+.plan-per{font-size:13px;color:var(--ink3);margin-bottom:8px;line-height:1.5}
+.plan-desc{font-size:14px;color:var(--ink3);line-height:1.65;padding:18px 0;border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr);margin-bottom:20px}
+.features{display:flex;flex-direction:column;gap:11px;flex:1;margin-bottom:28px}
+.feat{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;color:var(--ink2);line-height:1.4}
+.feat-ic{width:18px;height:18px;background:#DCFCE7;border-radius:50%;display:grid;place-items:center;font-size:10px;flex-shrink:0;margin-top:1px}
+.feat-ic.ai{background:#EDE9FE;color:#7C3AED}
+.plan-btn{width:100%;padding:14px;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;border:none;font-family:var(--B);transition:all .18s;margin-top:auto}
+.pb-primary{background:var(--tl);color:white;box-shadow:0 4px 14px rgba(13,148,136,.3)}
+.pb-primary:hover{background:#0F766E;transform:translateY(-1px)}
+.pb-secondary{background:#F9FAFB;color:var(--ink2);border:2px solid var(--bdr)}
+.pb-secondary:hover{background:#F3F4F6}
+
+/* FAQ */
+.faq-section{max-width:700px;margin:0 auto;padding:0 5vw 80px}
+.faq-title{font-family:var(--D);font-size:32px;font-style:italic;font-weight:600;text-align:center;margin-bottom:32px;letter-spacing:-.3px}
+.faq-item{border-bottom:1px solid var(--bdr);overflow:hidden}
+.faq-q{padding:18px 0;font-size:15px;font-weight:600;color:var(--ink);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.faq-q::after{content:'↓';font-size:18px;color:var(--tl);transition:transform .2s;flex-shrink:0}
+.faq-item.open .faq-q::after{transform:rotate(180deg)}
+.faq-a{font-size:14px;color:var(--ink3);line-height:1.75;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease}
+.faq-item.open .faq-a{max-height:200px;padding-bottom:18px}
+
+/* Trust bar */
+.trust{background:white;border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr);padding:24px 5vw;display:flex;justify-content:center;gap:40px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink3);font-weight:600}
+.trust-ic{font-size:20px}
+
+/* Footer */
+footer{text-align:center;padding:32px;font-size:13px;color:var(--ink4)}
+footer a{color:var(--tl);font-weight:600}
+
+@media(max-width:768px){.plans{grid-template-columns:1fr}.nav-links{display:none}.plan.popular{order:-1}}
 </style>
 </head>
 <body>
-<nav><a class="nb" href="index.html"><div class="nb-ic">🦷</div>DişSeansım</a><a href="giris.html?action=register" class="btn-cta">Ücretsiz Başla</a></nav>
+
+<nav>
+  <a href="index.html" class="nb"><div class="nb-ic">🦷</div>DişSeansım</a>
+  <div class="nav-links">
+    <a href="index.html">Ana Sayfa</a>
+    <a href="blog.html">Blog</a>
+    <a href="giris.html">Giriş</a>
+  </div>
+  <a href="giris.html?action=register" class="btn-cta">14 Gün Ücretsiz →</a>
+</nav>
+
 <div class="hero">
-  <h1>Büyüklüğünüze <em>göre</em> fiyat</h1>
-  <p>14 gün ücretsiz deneyin. Kredi kartı gerekmez. İstediğinizde iptal edin.</p>
-  <div class="toggle" id="tg"><span>Aylık</span><div class="tg-pill" onclick="toggleBilling()"><div class="tg-thumb"></div></div><span>Yıllık</span><span class="save">2 ay bedava</span></div>
-</div>
-<div class="pg">
-  <div class="pc">
-    <div class="pn">Solo Hekim</div><div class="pam" id="p1">₺890</div><div class="pper" id="pp1">/ay (KDV hariç)</div>
-    <div class="pdesc">Tek hekim klinikler için tüm temel özellikler.</div>
-    <div class="pfl"><div class="pf">3.000 hasta kaydı</div><div class="pf">Odontogram (FDI) + Röntgen arşivi</div><div class="pf">Otomatik SMS + E-posta hatırlatma</div><div class="pf">Sterilizasyon kayıt defteri</div><div class="pf">Fatura, stok & alacak takibi</div><div class="pf">Tedavi planı + hasta onayı</div><div class="pf">3 kullanıcı · 1 şube</div></div>
-    <a href="giris.html?action=register&plan=starter"><button class="pbtn pb-s">Ücretsiz Dene</button></a>
-  </div>
-  <div class="pc pop">
-    <div class="pop-tag">En Popüler</div>
-    <div class="pn">Klinik</div><div class="pam" id="p2">₺1.690</div><div class="pper" id="pp2">/ay (KDV hariç)</div>
-    <div class="pdesc">Büyüyen klinikler için AI destekli tam paket.</div>
-    <div class="pfl"><div class="pf">Sınırsız hasta kaydı</div><div class="pf">✨ AI Not Asistanı (SOAP formatı)</div><div class="pf">✨ AI İlaç & Protokol Önerisi</div><div class="pf">Hasta Portalı (dijital plan onayı)</div><div class="pf">10 kullanıcı · 5 şube</div><div class="pf">Gelişmiş raporlar & analitik</div><div class="pf">Öncelikli destek</div></div>
-    <a href="giris.html?action=register&plan=growth"><button class="pbtn pb-p">Ücretsiz Dene →</button></a>
-  </div>
-  <div class="pc">
-    <div class="pn">Poliklinik</div><div class="pam" style="font-size:34px">Özel</div><div class="pper">Fiyat teklifi alın</div>
-    <div class="pdesc">Zincir klinikler için kurumsal çözüm.</div>
-    <div class="pfl"><div class="pf">Sınırsız kullanıcı & şube</div><div class="pf">White-label seçeneği</div><div class="pf">API erişimi</div><div class="pf">Dedicated müşteri temsilcisi</div><div class="pf">%99.9 SLA garantisi</div></div>
-    <a href="mailto:hello@dis.seansim.com"><button class="pbtn pb-s">Teklif Al →</button></a>
+  <h1>Kliniğinize <em>değer katan</em><br>fiyatlar</h1>
+  <p>14 gün ücretsiz deneyin. Kredi kartı gerekmez. İstediğiniz zaman iptal.</p>
+  <div class="toggle-wrap">
+    <span class="tgl-label active" id="lbl-mo">Aylık</span>
+    <div class="tgl" id="tgl" onclick="toggleBilling()"><div class="tgl-dot"></div></div>
+    <span class="tgl-label" id="lbl-yr">Yıllık</span>
+    <span class="save-badge">🎉 2 ay bedava</span>
   </div>
 </div>
-<div class="note">Tüm fiyatlara KDV dahil değildir. Yıllık ödeme seçeneğinde 2 ay ücretsiz.</div>
+
+<div class="trust">
+  <div class="trust-item"><span class="trust-ic">🔒</span>KVKK Uyumlu</div>
+  <div class="trust-item"><span class="trust-ic">🇹🇷</span>TR Sunucu</div>
+  <div class="trust-item"><span class="trust-ic">💳</span>Kredi Kartı Gerekmez</div>
+  <div class="trust-item"><span class="trust-ic">🔄</span>İstediğinizde İptal</div>
+  <div class="trust-item"><span class="trust-ic">📞</span>Türkçe Destek</div>
+</div>
+
+<div class="plans">
+
+  <!-- SOLO -->
+  <div class="plan">
+    <div class="plan-name">Solo Hekim</div>
+    <div class="plan-price">
+      <div class="plan-amount" id="p1-amount">₺890</div>
+    </div>
+    <div class="plan-per" id="p1-per">/ay · KDV hariç</div>
+    <div class="plan-desc">Tek hekim klinikler için tüm temel özellikler. Açılışta ihtiyacınız olan her şey.</div>
+    <div class="features">
+      <div class="feat"><div class="feat-ic">✓</div>3.000 hasta kaydı</div>
+      <div class="feat"><div class="feat-ic">✓</div>Dijital odontogram (FDI 32 diş)</div>
+      <div class="feat"><div class="feat-ic">✓</div>Röntgen arşivi (JPEG, PNG, TIFF)</div>
+      <div class="feat"><div class="feat-ic">✓</div>Otomatik SMS + e-posta hatırlatma</div>
+      <div class="feat"><div class="feat-ic">✓</div>Fatura, stok & alacak takibi</div>
+      <div class="feat"><div class="feat-ic">✓</div>Tedavi planı + hasta onayı</div>
+      <div class="feat"><div class="feat-ic">✓</div>Sterilizasyon kayıt defteri</div>
+      <div class="feat"><div class="feat-ic">✓</div>3 kullanıcı · 1 şube</div>
+    </div>
+    <a href="giris.html?action=register&plan=starter">
+      <button class="plan-btn pb-secondary">Ücretsiz Dene</button>
+    </a>
+  </div>
+
+  <!-- KLİNİK (POPULAR) -->
+  <div class="plan popular">
+    <div class="pop-badge">✨ En Popüler</div>
+    <div class="plan-name">Klinik</div>
+    <div class="plan-price">
+      <div class="plan-amount" id="p2-amount">₺1.690</div>
+    </div>
+    <div class="plan-per" id="p2-per">/ay · KDV hariç</div>
+    <div class="plan-desc">Büyüyen klinikler için AI destekli tam paket. En çok tercih edilen plan.</div>
+    <div class="features">
+      <div class="feat"><div class="feat-ic">✓</div>Sınırsız hasta kaydı</div>
+      <div class="feat"><div class="feat-ic ai">✨</div>AI Not Asistanı (SOAP formatı)</div>
+      <div class="feat"><div class="feat-ic ai">✨</div>AI İlaç & Protokol Önerisi</div>
+      <div class="feat"><div class="feat-ic">✓</div>Hasta Portalı (dijital plan onayı)</div>
+      <div class="feat"><div class="feat-ic">✓</div>Gelişmiş raporlar & analitik</div>
+      <div class="feat"><div class="feat-ic">✓</div>Referans programı ile indirim</div>
+      <div class="feat"><div class="feat-ic">✓</div>10 kullanıcı · 5 şube</div>
+      <div class="feat"><div class="feat-ic">✓</div>Öncelikli destek</div>
+    </div>
+    <a href="giris.html?action=register&plan=growth">
+      <button class="plan-btn pb-primary">Ücretsiz Dene →</button>
+    </a>
+  </div>
+
+  <!-- POLİKLİNİK -->
+  <div class="plan">
+    <div class="plan-name">Poliklinik</div>
+    <div class="plan-price">
+      <div class="plan-amount" style="font-size:36px;letter-spacing:-1px">Özel</div>
+    </div>
+    <div class="plan-per">Fiyat teklifi alın</div>
+    <div class="plan-desc">Zincir klinikler ve poliklinikler için kurumsal çözüm. Özel entegrasyon ve SLA.</div>
+    <div class="features">
+      <div class="feat"><div class="feat-ic">✓</div>Sınırsız kullanıcı & şube</div>
+      <div class="feat"><div class="feat-ic">✓</div>White-label seçeneği</div>
+      <div class="feat"><div class="feat-ic">✓</div>API erişimi & özel entegrasyon</div>
+      <div class="feat"><div class="feat-ic">✓</div>Dedicated müşteri temsilcisi</div>
+      <div class="feat"><div class="feat-ic">✓</div>%99.9 SLA garantisi</div>
+      <div class="feat"><div class="feat-ic">✓</div>Özel eğitim & kurulum</div>
+    </div>
+    <a href="mailto:hello@dis.seansim.com">
+      <button class="plan-btn pb-secondary">Teklif Al →</button>
+    </a>
+  </div>
+
+</div>
+
+<!-- FAQ -->
+<div class="faq-section">
+  <div class="faq-title">Sıkça Sorulan Sorular</div>
+
+  <div class="faq-item" onclick="toggleFaq(this)">
+    <div class="faq-q">14 gün sonra otomatik ücret alınır mı?</div>
+    <div class="faq-a">Hayır. Deneme süreniz bittiğinde hesabınız otomatik olarak askıya alınır, herhangi bir ücret tahsil edilmez. Devam etmek istiyorsanız ödeme bilgilerinizi kendiniz girersiniz.</div>
+  </div>
+  <div class="faq-item" onclick="toggleFaq(this)">
+    <div class="faq-q">Mevcut hasta verilerimi aktarabilir miyim?</div>
+    <div class="faq-a">Excel veya CSV formatındaki hasta listelerinizi kolayca aktarabilirsiniz. Büyük klinikler için ekibimiz ücretsiz veri aktarım desteği sunmaktadır.</div>
+  </div>
+  <div class="faq-item" onclick="toggleFaq(this)">
+    <div class="faq-q">Planı istediğimde değiştirebilir miyim?</div>
+    <div class="faq-a">Evet, her zaman yükseltme veya düşürme yapabilirsiniz. Yükseltme anında devreye girer. Düşürme bir sonraki fatura döneminden itibaren geçerli olur.</div>
+  </div>
+  <div class="faq-item" onclick="toggleFaq(this)">
+    <div class="faq-q">Verilerim nerede saklanıyor?</div>
+    <div class="faq-a">Tüm veriler Türkiye lokasyonundaki sunucularda, 256-bit SSL şifreleme ile saklanmaktadır. KVKK uyumluluğu için gerekli tüm teknik ve idari önlemler alınmıştır.</div>
+  </div>
+  <div class="faq-item" onclick="toggleFaq(this)">
+    <div class="faq-q">İptal ettiğimde verilerime ne olur?</div>
+    <div class="faq-a">İptal sonrasında verileriniz 90 gün boyunca sistemde saklanır ve bu süre içinde dışa aktarabilirsiniz. 90 gün sonunda tüm veriler kalıcı olarak silinir.</div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 DişSeansım · <a href="index.html">Ana Sayfa</a> · <a href="blog.html">Blog</a> · <a href="giris.html">Giriş Yap</a></p>
+  <p style="margin-top:8px">Tüm fiyatlar KDV hariçtir. Yıllık ödemede 2 ay ücretsiz.</p>
+</footer>
+
 <script>
-var yr=false,prices={p1:[890,Math.round(890*10/12)],p2:[1690,Math.round(1690*10/12)]};
-function toggleBilling(){yr=!yr;document.getElementById('tg').classList.toggle('yr',yr);['p1','p2'].forEach(id=>{document.getElementById(id).textContent='₺'+Math.round(yr?prices[id][1]:prices[id][0]);});document.getElementById('pp1').textContent=yr?'/ay (yıllık ödeme)':'/ay (KDV hariç)';document.getElementById('pp2').textContent=yr?'/ay (yıllık ödeme)':'/ay (KDV hariç)';}
+var yr=false;
+var prices={p1:[890,Math.round(890*10/12)],p2:[1690,Math.round(1690*10/12)]};
+
+function toggleBilling(){
+  yr=!yr;
+  document.getElementById('tgl').classList.toggle('yr',yr);
+  document.getElementById('lbl-mo').classList.toggle('active',!yr);
+  document.getElementById('lbl-yr').classList.toggle('active',yr);
+  document.getElementById('p1-amount').textContent='₺'+(yr?prices.p1[1]:prices.p1[0]).toLocaleString('tr-TR');
+  document.getElementById('p2-amount').textContent='₺'+(yr?prices.p2[1]:prices.p2[0]).toLocaleString('tr-TR');
+  document.getElementById('p1-per').textContent=yr?'/ay · yıllık ödeme · KDV hariç':'/ay · KDV hariç';
+  document.getElementById('p2-per').textContent=yr?'/ay · yıllık ödeme · KDV hariç':'/ay · KDV hariç';
+}
+
+function toggleFaq(el){
+  var isOpen=el.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(function(i){i.classList.remove('open');});
+  if(!isOpen)el.classList.add('open');
+}
 </script>
 </body>
 </html>
