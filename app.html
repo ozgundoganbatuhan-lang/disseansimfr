@@ -974,12 +974,18 @@ async function api(m,p,b,_retry){
     return null;
   }
 }
+var _loadMeFails=0;
 async function loadMe(){
   var d=await api('GET','/api/auth/me');
   if(!d||!d.user){
-    // Could be 429 or network error — retry after 3s rather than redirect immediately
+    _loadMeFails++;
+    if(_loadMeFails>=3){
+      // After 3 failures, token is likely invalid — clear and redirect
+      localStorage.clear();location.href='giris.html';return;
+    }
     setTimeout(loadMe,3000);return;
   }
+  _loadMeFails=0;
   USER=d.user;
   MEM=d.user?.membership||d.membership||{};
   TID=MEM?.tenantId||TID;
