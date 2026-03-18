@@ -399,7 +399,7 @@ input[type=file]{padding:7px 12px;cursor:pointer;font-size:12.5px}
 <div class="main">
 <div class="topbar">
   <div class="tb-title" id="tb-title">Dashboard</div>
-    <button onclick="openGS()" title="Hızlı Ara (Ctrl+K)" style="display:flex;align-items:center;gap:7px;padding:6px 12px;background:var(--s2);border:1px solid var(--b0);border-radius:8px;font-size:12.5px;color:var(--c2);cursor:pointer;font-family:var(--B);margin-left:12px;transition:all .12s" onmouseover="this.style.borderColor='var(--t400)'" onmouseout="this.style.borderColor='var(--b0)'">🔍 Ara <kbd style="font-size:10px;color:var(--c4);background:var(--s3);border-radius:4px;padding:1px 5px;border:1px solid var(--b0)">Ctrl+K</kbd></button>
+    <button onclick="openGS()" title="Hızlı Ara (Ctrl+K)" style="display:flex;align-items:center;gap:6px;padding:6px 13px;background:var(--s2);border:1px solid var(--b0);border-radius:8px;font-size:12px;color:var(--c2);cursor:pointer;font-family:var(--B);margin-left:auto;transition:all .12s" onmouseover="this.style.borderColor='var(--t400)'" onmouseout="this.style.borderColor='var(--b0)'">🔍 Ara <kbd style="font-size:10px;color:var(--c4);background:var(--s3);border-radius:3px;padding:1px 5px;border:1px solid var(--b0)">Ctrl+K</kbd></button>
   <div class="tb-right">
     <div class="pt-chip" id="pt-chip" onclick="clearGPt()">
       <div class="ptc-av" id="ptc-av">?</div>
@@ -437,7 +437,7 @@ input[type=file]{padding:7px 12px;cursor:pointer;font-size:12.5px}
   <div class="g2 mb16">
     <div>
       <div class="card mb16">
-        <div class="fl aic jsb mb12"><div class="st" style="font-size:17px">Bu Haftanın Randevuları</div><div class="xs c3 fl aic g8"><span id="today-date"></span><span id="live-clock" style="font-family:monospace;font-size:11px;color:var(--t600);background:var(--t50);padding:2px 7px;border-radius:5px;border:1px solid var(--t100)"></span></div></div>
+        <div class="fl aic jsb mb12"><div class="st" style="font-size:17px">Bu Haftanın Randevuları</div><div class="xs c3" id="today-date"></div></div>
         <div class="wc" id="wc-chart"></div>
         <div class="wd" id="wd-labels"></div>
       </div>
@@ -719,13 +719,10 @@ input[type=file]{padding:7px 12px;cursor:pointer;font-size:12.5px}
   <div class="fr"><label>Adres</label><input id="pt-addr"></div>
   <div class="fr fc2"><div><label>Alerjiler (virgülle)</label><input id="pt-allergy" placeholder="Penisilin, lateks…"></div><div><label>Sistemik Hastalıklar</label><input id="pt-sysdi" placeholder="Diyabet, HT…"></div></div>
   <div class="fr fc3"><div><label>Sigorta Türü</label><select id="pt-ins-t"><option value="">Yok</option><option>SGK</option><option>Özel Sigorta</option><option>Bağkur</option></select></div><div><label>Kurum</label><input id="pt-ins"></div><div><label>Sigorta No</label><input id="pt-insno"></div></div>
-  <div id="kvkk-toggle-box" onclick="toggleKvkk()" style="display:flex;align-items:center;gap:12px;background:var(--s2);border:2px solid var(--b0);border-radius:var(--r2);padding:13px 15px;cursor:pointer;transition:all .15s;user-select:none">
-    <div id="kvkk-toggle-icon" style="width:22px;height:22px;border-radius:5px;border:2px solid var(--c4);background:white;flex-shrink:0;display:grid;place-items:center;font-size:13px;font-weight:700;transition:all .15s"></div>
-    <div style="flex:1">
-      <div style="font-size:13px;font-weight:600;color:var(--c0);line-height:1.4">KVKK onayı</div>
-      <div style="font-size:12px;color:var(--c2);font-weight:400;margin-top:2px">Aydınlatma metni kapsamında kişisel verilerin işlenmesine onay veriyorum.</div>
-    </div>
-    <button onclick="event.stopPropagation();openM('m-kvkk')" style="background:none;border:1px solid var(--t400);border-radius:5px;color:var(--t600);font-size:11px;font-weight:600;padding:4px 9px;cursor:pointer;white-space:nowrap;font-family:var(--B)">Metni oku</button>
+  <div id="kvkk-box" onclick="toggleKvkk()" style="display:flex;align-items:center;gap:12px;background:var(--s2);border:2px solid var(--b0);border-radius:var(--r2);padding:12px 15px;cursor:pointer;user-select:none;transition:all .15s">
+    <div id="kvkk-icon" style="width:22px;height:22px;border-radius:5px;border:2px solid var(--c4);background:white;flex-shrink:0;display:grid;place-items:center;font-size:14px;font-weight:800;color:white;transition:all .15s"></div>
+    <div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--c0)">KVKK Onayı</div><div style="font-size:11.5px;color:var(--c2);margin-top:2px;font-weight:400">Aydınlatma metni kapsamında verilerimin işlenmesine onay veriyorum</div></div>
+    <button onclick="event.stopPropagation();openM('m-kvkk')" style="flex-shrink:0;background:none;border:1px solid var(--t400);border-radius:5px;color:var(--t600);font-size:11px;font-weight:600;padding:4px 9px;cursor:pointer;font-family:var(--B)">Metni Oku</button>
   </div>
   <input type="checkbox" id="pt-kvkk" style="display:none">
 </div>
@@ -829,25 +826,47 @@ input[type=file]{padding:7px 12px;cursor:pointer;font-size:12.5px}
   <div class="xs c3 mt8">🔒 30 gün geçerli · Şifresiz · Sadece bu hastanın verisi</div>
 </div></div></div>
 
+
 <!-- KVKK Modal -->
 <div class="mbg" id="m-kvkk"><div class="mbox mlg" style="max-height:85vh;display:flex;flex-direction:column"><div class="mhd"><div class="mt">⚖️ KVKK Aydınlatma Metni</div><button class="mx" onclick="closeM('m-kvkk')">✕</button></div>
-<div class="mb" style="overflow-y:auto;flex:1">
-  <div style="font-size:13px;color:var(--c1);line-height:1.8">
-    <p style="font-weight:700;margin-bottom:10px">Kişisel Verilerin Korunması Kanunu (KVKK) Kapsamında Aydınlatma Metni</p>
-    <p style="margin-bottom:10px">6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") uyarınca, klinik olarak veri sorumlusu sıfatıyla aşağıdaki bilgilendirmeyi yapmaktayız.</p>
-    <p style="font-weight:600;margin-bottom:6px">1. İşlenen Kişisel Veriler</p>
-    <p style="margin-bottom:10px">Ad, soyad, TC kimlik numarası, doğum tarihi, cinsiyet, telefon, e-posta, adres, kan grubu, alerji bilgileri ve sağlık durumuna ilişkin tüm klinik kayıtlar.</p>
-    <p style="font-weight:600;margin-bottom:6px">2. Kişisel Verilerin İşlenme Amaçları</p>
-    <p style="margin-bottom:10px">Klinik hizmetlerinin sunulması, muayene ve tedavi süreçlerinin yönetilmesi, randevu organizasyonu, yasal yükümlülüklerin yerine getirilmesi ve idari işlemler.</p>
-    <p style="font-weight:600;margin-bottom:6px">3. Kişisel Verilerin Aktarımı</p>
-    <p style="margin-bottom:10px">Verileriniz; ilgili kamu kurumları ve yargı mercileri haricinde üçüncü kişilerle paylaşılmamaktadır.</p>
-    <p style="font-weight:600;margin-bottom:6px">4. Haklarınız</p>
-    <p style="margin-bottom:10px">KVKK'nın 11. maddesi kapsamında; verilerinize erişim, düzeltme, silme, işlemenin kısıtlanması ve itiraz etme haklarına sahipsiniz.</p>
-    <p style="font-weight:600;margin-bottom:6px">5. Saklama Süresi</p>
-    <p style="margin-bottom:4px">Klinik kayıtlar, son işlem tarihinden itibaren yasal zorunluluk olan <strong>10 yıl</strong> süre ile saklanır.</p>
-  </div>
+<div class="mb" style="overflow-y:auto;flex:1;font-size:13px;color:var(--c1);line-height:1.8">
+  <p style="font-weight:700;margin-bottom:10px">6698 Sayılı Kişisel Verilerin Korunması Kanunu Kapsamında Aydınlatma Metni</p>
+  <p style="margin-bottom:10px">Veri sorumlusu sıfatıyla kliniğimiz aşağıdaki kapsamda kişisel verilerinizi işlemektedir.</p>
+  <p style="font-weight:600;margin-bottom:4px">İşlenen Kişisel Veriler</p>
+  <p style="margin-bottom:10px">Ad, soyad, TC kimlik numarası, doğum tarihi, cinsiyet, kan grubu, telefon, e-posta, adres, alerji ve sistemik hastalık bilgileri ile tüm klinik kayıtlar.</p>
+  <p style="font-weight:600;margin-bottom:4px">Amaç ve Hukuki Dayanak</p>
+  <p style="margin-bottom:10px">Klinik hizmetlerin sunulması, tedavi süreçlerinin yönetilmesi ve yasal yükümlülüklerin yerine getirilmesi amacıyla KVKK m.6 kapsamında işlenmektedir.</p>
+  <p style="font-weight:600;margin-bottom:4px">Üçüncü Kişilerle Paylaşım</p>
+  <p style="margin-bottom:10px">Verileriniz; ilgili kamu kurumları ve yargı mercileri dışında üçüncü kişilerle paylaşılmamaktadır.</p>
+  <p style="font-weight:600;margin-bottom:4px">Saklama Süresi</p>
+  <p style="margin-bottom:10px">Klinik kayıtlar son işlem tarihinden itibaren <strong>10 yıl</strong> saklanır.</p>
+  <p style="font-weight:600;margin-bottom:4px">Haklarınız (KVKK m.11)</p>
+  <p>Verilerinize erişim, düzeltme, silme, işlemenin kısıtlanması ve itiraz etme haklarına sahipsiniz.</p>
 </div>
 <div class="mft"><button class="btn btn-s" onclick="closeM('m-kvkk')">Kapat</button><button class="btn btn-p" onclick="closeM('m-kvkk');setKvkk(true)">✓ Okudum, Onaylıyorum</button></div></div></div>
+
+<!-- Treatment Plan Modal -->
+<div class="mbg" id="m-plan"><div class="mbox mlg" style="max-height:92vh;display:flex;flex-direction:column"><div class="mhd"><div class="mt">📋 Yeni Tedavi Planı</div><button class="mx" onclick="closeM('m-plan')">✕</button></div>
+<div class="mb" style="overflow-y:auto;flex:1">
+  <div class="fr fc2">
+    <div><label>Hasta *</label><div class="pr"><input id="pl-pt-in" placeholder="Hasta adı ara…" autocomplete="off" oninput="pdSearch(this,'pl-pt-dd',function(p){_planPtId=p.id})" onfocus="pdSearch(this,'pl-pt-dd',function(p){_planPtId=p.id})"><div class="pt-dd" id="pl-pt-dd"></div></div></div>
+    <div><label>Plan Başlığı *</label><input id="pl-title" placeholder="Ör: Sağ Üst Çeyrek Restorasyon"></div>
+  </div>
+  <div class="fr fc2">
+    <div><label>Teşhis / Bulgular</label><input id="pl-diag" placeholder="Klinik bulgular…"></div>
+    <div><label>Tahmini Maliyet (₺)</label><input id="pl-cost" type="number" placeholder="0.00" min="0" step="0.01"></div>
+  </div>
+  <div class="fr fc2">
+    <div><label>Öncelik</label><select id="pl-prio"><option value="normal">Normal</option><option value="high">Yüksek</option><option value="urgent">Acil</option><option value="low">Düşük</option></select></div>
+    <div class="ibox" style="font-size:12px;display:flex;align-items:center">💡 Hasta portalından dijital onay alabilirsiniz</div>
+  </div>
+  <div class="fr"><label>Tedavi Adımları</label>
+    <div id="pl-items"></div>
+    <button class="btn btn-s btn-sm mt8" onclick="addPlanItem()">+ Adım Ekle</button>
+  </div>
+  <div class="fr"><label>Notlar</label><textarea id="pl-notes" rows="2" placeholder="Hekim notları…"></textarea></div>
+</div>
+<div class="mft"><button class="btn btn-s" onclick="closeM('m-plan')">İptal</button><button class="btn btn-p" onclick="savePlan()">💾 Planı Kaydet</button></div></div></div>
 
 <!-- X-Ray Viewer -->
 <div class="xv" id="xv" onclick="closeXV(event)">
@@ -863,26 +882,24 @@ input[type=file]{padding:7px 12px;cursor:pointer;font-size:12.5px}
 </div>
 
 <div class="toast-stack" id="toast-stack"></div>
-<div id="m-search" style="display:none;position:fixed;inset:0;background:rgba(28,25,23,.45);backdrop-filter:blur(6px);z-index:9000;align-items:flex-start;justify-content:center;padding-top:80px">
-  <div style="background:white;border-radius:16px;width:100%;max-width:520px;box-shadow:0 24px 64px rgba(0,0,0,.18);overflow:hidden">
+<div id="m-search" style="display:none;position:fixed;inset:0;background:rgba(28,25,23,.5);backdrop-filter:blur(6px);z-index:9000;align-items:flex-start;justify-content:center;padding-top:72px">
+  <div style="background:white;border-radius:16px;width:calc(100% - 32px);max-width:540px;box-shadow:0 28px 72px rgba(0,0,0,.22);overflow:hidden">
     <div style="padding:14px 18px;border-bottom:1px solid var(--b0);display:flex;align-items:center;gap:10px">
       <span style="font-size:18px">🔍</span>
-      <input id="gs-input" placeholder="Hasta ara, randevu ekle, ayarlara git…" autocomplete="off"
+      <input id="gs-inp" placeholder="Hasta ara veya sayfaya git…" autocomplete="off"
         style="flex:1;border:none;outline:none;font-size:15px;font-family:var(--B);color:var(--c0);background:transparent"
         oninput="gsSearch(this.value)">
-      <kbd style="font-size:11px;color:var(--c3);background:var(--s2);border:1px solid var(--b0);border-radius:5px;padding:2px 7px">ESC</kbd>
+      <kbd style="font-size:11px;color:var(--c3);background:var(--s2);border:1px solid var(--b0);border-radius:5px;padding:2px 8px">ESC</kbd>
     </div>
-    <div id="gs-results" style="max-height:360px;overflow-y:auto;padding:8px"></div>
-    <div style="padding:10px 18px;border-top:1px solid var(--b0);display:flex;gap:16px">
-      <span style="font-size:11px;color:var(--c3)">↑↓ Gezin</span>
-      <span style="font-size:11px;color:var(--c3)">Enter Seç</span>
-      <span style="font-size:11px;color:var(--c3);margin-left:auto">Ctrl+K ile aç</span>
+    <div id="gs-res" style="max-height:380px;overflow-y:auto;padding:8px 6px"></div>
+    <div style="padding:9px 18px;border-top:1px solid var(--b0);font-size:11px;color:var(--c3);display:flex;gap:16px">
+      <span>↩ Seç</span><span>ESC Kapat</span><span style="margin-left:auto">Ctrl+K</span>
     </div>
   </div>
 </div>
-<div id="conn-banner" style="display:none;position:fixed;top:0;left:0;right:0;z-index:9999;background:#EF4444;color:white;padding:9px 20px;font-size:13px;font-weight:600;align-items:center;justify-content:center;gap:12px;box-shadow:0 2px 8px rgba(0,0,0,.2)">
+<div id="conn-banner" style="display:none;position:fixed;top:0;left:0;right:0;z-index:9999;background:#EF4444;color:white;padding:10px 20px;font-size:13px;font-weight:600;align-items:center;justify-content:center;gap:14px;box-shadow:0 2px 12px rgba(0,0,0,.2)">
   ⚠️ Sunucuya bağlanılamıyor — internet bağlantınızı kontrol edin
-  <button onclick="document.getElementById('conn-banner').style.display='none';location.reload()" style="background:rgba(255,255,255,.2);border:none;border-radius:4px;color:white;font-size:12px;padding:4px 10px;cursor:pointer;font-family:var(--B)">Yenile</button>
+  <button onclick="document.getElementById('conn-banner').style.display='none';location.reload()" style="background:rgba(255,255,255,.22);border:none;border-radius:5px;color:white;font-size:12px;padding:4px 12px;cursor:pointer;font-family:var(--B);font-weight:600">↻ Yenile</button>
 </div>
 <script>
 // ════════════════════════════════════════════════════════════════
@@ -912,13 +929,12 @@ async function api(m,p,b){
   try{
     var o={method:m||'GET',headers:authH()};if(b)o.body=JSON.stringify(b);
     var r=await fetch(B+p,o);
-    if(_connErr){_connErr=false;document.getElementById('conn-banner').style.display='none';}
+    if(_connErr){_connErr=false;var cb=document.getElementById('conn-banner');if(cb)cb.style.display='none';}
     if(r.status===401){localStorage.clear();location.href='giris.html';return null;}
     return await r.json();
   }catch(e){
-    // Only show banner for GET (background loads); show toast for mutations
-    if(m&&m!=='GET'){toast('Bağlantı hatası — lütfen tekrar deneyin','e');}
-    else if(!_connErr){_connErr=true;document.getElementById('conn-banner').style.display='flex';}
+    if(m&&m!=='GET'){toast('Sunucuya ulaşılamadı — tekrar deneyin','e');}
+    else if(!_connErr){_connErr=true;var cb=document.getElementById('conn-banner');if(cb)cb.style.display='flex';}
     return null;
   }
 }
@@ -988,9 +1004,7 @@ function buildPSel(containerId,onSelect){
     <div class="psel-body" style="flex:1">
       <div class="pr" style="flex:1">
         <input id="psel-in-${containerId}" placeholder="🔍 Hasta seç veya ara…" autocomplete="off"
-          oninput="pselSearch('${containerId}',this.value)"
-          onfocus="pselSearch('${containerId}',this.value)"
-          style="font-size:13.5px">
+          oninput="pselSearch('${containerId}',this.value)" onfocus="pselSearch('${containerId}',this.value)" style="font-size:13.5px">
         <div class="pt-dd" id="psel-dd-${containerId}"></div>
       </div>
       <div id="psel-meta-${containerId}" style="font-size:12px;color:var(--c2);margin-top:4px;display:none"></div>
@@ -1006,12 +1020,15 @@ async function pselSearch(cid,q){
   var drop=document.getElementById('psel-dd-'+cid);
   var url=q&&q.length>=1?'/api/patients?q='+encodeURIComponent(q)+'&limit=10':'/api/patients?limit=20';
   var d=await api('GET',url);
-  if(!d?.patients?.length){drop.innerHTML='<div style="padding:10px 14px;font-size:12px;color:var(--c3)">Hasta bulunamadı</div>';drop.classList.add('show');return;}
+  if(!d?.patients?.length){
+    drop.innerHTML='<div style="padding:10px 14px;font-size:12px;color:var(--c3)">'+(q?'Hasta bulunamadı':'Henüz hasta kaydı yok')+'</div>';
+    drop.classList.add('show');return;
+  }
   drop.innerHTML=d.patients.map(p=>{
     var av=(p.first_name[0]+p.last_name[0]).toUpperCase();
     var age=p.birth_date?Math.floor((Date.now()-new Date(p.birth_date))/(365.25*864e5))+'y':'';
     return `<div class="pddi" onclick='pselPick("${cid}",${JSON.stringify(JSON.stringify(p))})'>
-      <div class="pddi-av">${av}</div><div><div class="pddi-nm">${p.first_name} ${p.last_name}</div><div class="pddi-sub">${[p.phone,age,p.insurance].filter(Boolean).join(' · ')||'—'}</div></div></div>`;
+      <div class="pddi-av">${av}</div><div><div class="pddi-nm">${p.first_name} ${p.last_name}</div><div class="pddi-sub">${[p.phone,age].filter(Boolean).join(' · ')||'—'}</div></div></div>`;
   }).join('');
   drop.classList.add('show');
 }
@@ -1057,12 +1074,6 @@ async function loadDash(){
   if(d.lowStockItems>0)document.getElementById('nb-stock').style.display='inline';
   // Date
   document.getElementById('today-date').textContent=new Date().toLocaleDateString('tr-TR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
-  // Live clock
-  function updateClock(){
-    var el=document.getElementById('live-clock');
-    if(el)el.textContent=new Date().toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
-  }
-  updateClock();setInterval(updateClock,1000);
   buildWeekChart(d.weekSchedule||[]);buildTodaySchedule(d.todaySchedule||[]);buildDashAlerts(d);buildDashStock(d.lowStockList||[]);
 }
 
@@ -1159,9 +1170,8 @@ async function loadApts(){
       <td>${(a.reminder_sent||a.email_reminder_sent)?'<span class="bdg bg2">✓ Gönderildi</span>':`<button class="btn btn-g btn-xs" onclick="event.stopPropagation();sendRemind('${a.id}')">SMS Gönder</button>`}</td>
       <td><span class="bdg ${stBdg(a.status)}">${stLbl(a.status)}</span></td>
       <td><div class="fl g8">
-        <button class="btn btn-g btn-xs" onclick="event.stopPropagation();chAptSt('${a.id}','completed')" title="Tamamlandı">✓</button>
-        <button class="btn btn-s btn-xs" onclick="event.stopPropagation();chAptSt('${a.id}','arrived')" title="Bekleme Odasında">🪑</button>
-        <button class="btn btn-d btn-xs" onclick="event.stopPropagation();cancelApt('${a.id}')" title="İptal">✕</button>
+        <button class="btn btn-g btn-xs" onclick="event.stopPropagation();chAptSt('${a.id}','completed')">✓</button>
+        <button class="btn btn-d btn-xs" onclick="event.stopPropagation();cancelApt('${a.id}')">✕</button>
       </div></td></tr>`;
   }).join('');
 }
@@ -1208,10 +1218,9 @@ function renderPtsTable(pts){
   if(!pts.length){tb.innerHTML='<tr><td colspan="6" class="te"><div class="empty"><div class="empty-ic">👥</div><div class="empty-t">Henüz hasta kaydı yok</div><div class="empty-s">+ Yeni Hasta butonu ile ekleyin</div></div></td></tr>';return;}
   tb.innerHTML=pts.map(p=>{
     var age=p.birth_date?Math.floor((Date.now()-new Date(p.birth_date))/(365.25*864e5))+'y':'—';
-    var bday=p.birth_date&&new Date(p.birth_date).toLocaleDateString('tr-TR',{day:'numeric',month:'long'})===new Date().toLocaleDateString('tr-TR',{day:'numeric',month:'long'});
-    return `<tr onclick="openPtDetail('${p.id}')" ${bday?'style="background:var(--a50)"':''}>
+    return `<tr onclick="openPtDetail('${p.id}')">
       <td><div class="fl aic g12"><div style="width:34px;height:34px;background:linear-gradient(135deg,var(--t500),var(--a400));border-radius:9px;display:grid;place-items:center;font-weight:700;color:white;font-size:12px;flex-shrink:0">${p.first_name[0]+p.last_name[0]}</div>
-      <div><strong>${p.first_name} ${p.last_name}</strong>${bday?' <span style="font-size:11px">🎂</span>':''}<div class="xs c3">${p.tc||''}</div></div></div></td>
+      <div><strong>${p.first_name} ${p.last_name}</strong><div class="xs c3">${p.tc||''}</div></div></div></td>
       <td>${p.phone||'—'}</td>
       <td>${p.birth_date?new Date(p.birth_date).toLocaleDateString('tr-TR'):'—'} <span class="xs c3">${age}</span></td>
       <td>${p.insurance?`<span class="bdg bb2">${p.insurance}</span>`:'—'}</td>
@@ -1221,48 +1230,33 @@ function renderPtsTable(pts){
 }
 async function searchPts(){var q=document.getElementById('pt-search').value;var d=await api('GET','/api/patients?q='+encodeURIComponent(q)+'&limit=50');if(d)renderPtsTable(d.patients||[]);}
 function toggleKvkk(){
-  var cb=document.getElementById('pt-kvkk');
-  cb.checked=!cb.checked;
-  var box=document.getElementById('kvkk-toggle-box');
-  var icon=document.getElementById('kvkk-toggle-icon');
-  if(cb.checked){
-    box.style.background='var(--t50)';box.style.borderColor='var(--t400)';
-    icon.style.background='var(--t500)';icon.style.borderColor='var(--t500)';icon.textContent='✓';icon.style.color='white';
-  } else {
-    box.style.background='var(--s2)';box.style.borderColor='var(--b0)';
-    icon.style.background='white';icon.style.borderColor='var(--c4)';icon.textContent='';
-  }
+  var cb=document.getElementById('pt-kvkk');cb.checked=!cb.checked;setKvkkUI(cb.checked);
 }
-function setKvkk(val){
-  var cb=document.getElementById('pt-kvkk');
-  cb.checked=val;
-  var box=document.getElementById('kvkk-toggle-box');
-  var icon=document.getElementById('kvkk-toggle-icon');
-  if(val){
-    box.style.background='var(--t50)';box.style.borderColor='var(--t400)';
-    icon.style.background='var(--t500)';icon.style.borderColor='var(--t500)';icon.textContent='✓';icon.style.color='white';
-  } else {
-    box.style.background='var(--s2)';box.style.borderColor='var(--b0)';
-    icon.style.background='white';icon.style.borderColor='var(--c4)';icon.textContent='';
-  }
+function setKvkk(v){document.getElementById('pt-kvkk').checked=v;setKvkkUI(v);}
+function setKvkkUI(v){
+  var box=document.getElementById('kvkk-box'),icon=document.getElementById('kvkk-icon');
+  if(!box||!icon)return;
+  box.style.background=v?'var(--t50)':'var(--s2)';
+  box.style.borderColor=v?'var(--t500)':'var(--b0)';
+  icon.style.background=v?'var(--t500)':'white';
+  icon.style.borderColor=v?'var(--t500)':'var(--c4)';
+  icon.textContent=v?'✓':'';
 }
 function openPtModal(pt){
   _editId=pt?.id||null;
-  ['pt-fname','pt-lname','pt-tc','pt-phone','pt-email','pt-addr','pt-allergy','pt-sysdi','pt-ins','pt-insno'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('pt-dob').value='';
-  document.getElementById('pt-gender').value='';
-  document.getElementById('pt-blood').value='';
-  document.getElementById('pt-ins-t').value='';
+  ['pt-fname','pt-lname','pt-tc','pt-phone','pt-email','pt-addr','pt-allergy','pt-sysdi','pt-ins','pt-insno'].forEach(id=>{var el=document.getElementById(id);if(el)el.value='';});
+  ['pt-dob','pt-gender','pt-blood','pt-ins-t'].forEach(id=>{var el=document.getElementById(id);if(el)el.value='';});
   setKvkk(false);
   if(pt){
-    ['fname','lname','tc','phone','email','addr'].forEach(f=>document.getElementById('pt-'+f).value=pt[f==='fname'?'first_name':f==='lname'?'last_name':f]||'');
+    var fm={fname:'first_name',lname:'last_name',tc:'tc',phone:'phone',email:'email',addr:'address'};
+    Object.entries(fm).forEach(([k,v])=>{var el=document.getElementById('pt-'+k);if(el)el.value=pt[v]||'';});
     document.getElementById('pt-allergy').value=(pt.allergies||[]).join(', ');
     document.getElementById('pt-sysdi').value=(pt.systemic_diseases||[]).join(', ');
     document.getElementById('pt-ins').value=pt.insurance||'';
     document.getElementById('pt-insno').value=pt.insurance_no||'';
-    if(pt.birth_date)document.getElementById('pt-dob').value=pt.birth_date.slice?.(0,10)||'';
-    if(pt.gender)document.getElementById('pt-gender').value=pt.gender;
-    if(pt.blood_type)document.getElementById('pt-blood').value=pt.blood_type;
+    var dobEl=document.getElementById('pt-dob');if(dobEl&&pt.birth_date)dobEl.value=pt.birth_date.slice(0,10);
+    var gnEl=document.getElementById('pt-gender');if(gnEl&&pt.gender)gnEl.value=pt.gender;
+    var blEl=document.getElementById('pt-blood');if(blEl&&pt.blood_type)blEl.value=pt.blood_type;
     setKvkk(true);
   }
   openM('m-pt');
@@ -1272,19 +1266,15 @@ async function savePt(){
   var fname=document.getElementById('pt-fname').value.trim(),lname=document.getElementById('pt-lname').value.trim();
   if(!fname||!lname){toast('Ad ve soyad zorunlu','e');return;}
   var tc=document.getElementById('pt-tc').value.trim();
-  if(tc&&(tc.length!==11||!/^\d{11}$/.test(tc))){toast('TC kimlik no 11 haneli sayı olmalı','e');return;}
-  if(!document.getElementById('pt-kvkk').checked){toast('KVKK onayı zorunlu — lütfen onay kutusuna tıklayın','e');return;}
-  var btn=document.querySelector('#m-pt .btn-p');if(btn){btn.disabled=true;btn.textContent='⏳ Kaydediliyor...';}
-  var body={first_name:fname,last_name:lname,tc:tc,phone:document.getElementById('pt-phone').value.trim(),email:document.getElementById('pt-email').value.trim(),address:document.getElementById('pt-addr').value.trim(),allergies:document.getElementById('pt-allergy').value.split(',').map(s=>s.trim()).filter(Boolean),systemic_diseases:document.getElementById('pt-sysdi').value.split(',').map(s=>s.trim()).filter(Boolean),insurance:document.getElementById('pt-ins').value,insurance_no:document.getElementById('pt-insno').value.trim(),birth_date:document.getElementById('pt-dob').value||null,gender:document.getElementById('pt-gender').value||null,blood_type:document.getElementById('pt-blood').value||null,gdpr_consented_at:new Date().toISOString()};
+  if(tc&&(!/^\d{11}$/.test(tc))){toast('TC kimlik no 11 haneli rakam olmalı','e');return;}
+  if(!document.getElementById('pt-kvkk').checked){toast('KVKK kutusuna tıklayarak onay verin','e');return;}
+  var btn=document.querySelector('#m-pt .btn-p');
+  if(btn){btn.disabled=true;btn.textContent='⏳ Kaydediliyor...';}
+  var body={first_name:fname,last_name:lname,tc:tc||null,phone:document.getElementById('pt-phone').value.trim()||null,email:document.getElementById('pt-email').value.trim()||null,address:document.getElementById('pt-addr').value.trim()||null,allergies:document.getElementById('pt-allergy').value.split(',').map(s=>s.trim()).filter(Boolean),systemic_diseases:document.getElementById('pt-sysdi').value.split(',').map(s=>s.trim()).filter(Boolean),insurance:document.getElementById('pt-ins').value||null,insurance_no:document.getElementById('pt-insno').value.trim()||null,birth_date:document.getElementById('pt-dob').value||null,gender:document.getElementById('pt-gender').value||null,blood_type:document.getElementById('pt-blood').value||null,gdpr_consented_at:new Date().toISOString()};
   var r=_editId?await api('PUT','/api/patients/'+_editId,body):await api('POST','/api/patients',body);
   if(btn){btn.disabled=false;btn.textContent='💾 Kaydet';}
-  if(r&&!r.error){
-    toast(_editId?'Hasta güncellendi ✓':'Hasta kaydedildi ✓','s');
-    closeM('m-pt');
-    loadPts();
-    markOB('patient');
-    if(_editId&&_curPtId===_editId)openPtDetail(_editId);
-  } else if(r){if(r.upgrade)showUpgrade('Hasta Limiti Doldu');else toast(r.error||'Kayıt başarısız','e');}
+  if(r&&!r.error){toast(_editId?'Hasta güncellendi ✓':'Hasta kaydedildi ✓','s');closeM('m-pt');loadPts();markOB('patient');if(_editId&&_curPtId===_editId)openPtDetail(_editId);}
+  else if(r){if(r.upgrade)showUpgrade('Hasta Limiti Doldu');else toast(r.error||'Kayıt başarısız','e');}
 }
 
 // ── PATIENT DETAIL ────────────────────────────────────────────
@@ -1364,8 +1354,8 @@ function buildOdoHTML(map,ptId){
   var icons={caries:'●',filled:'◆',crown:'♛',implant:'⬟',rct:'⊕',bridge:'⌇',veneer:'◑',extracted:'✕'};
   function tEl(n){
     var t=map[n]||{};
-    var td=JSON.stringify({status:t.status||'healthy',surfaces:t.surfaces||[],notes:t.notes||'',mobility:t.mobility||0}).replace(/'/g,"&#39;");
-    return `<div class="tooth ${t.status||'healthy'}" title="Diş ${n}${t.status?' — '+toothLbl(t.status):''}" onclick="selTooth(${n},'${ptId}',this)" data-tooth="${n}" data-rec='${td}'><div class="t-ic">${icons[t.status]||''}</div><div class="t-no">${n}</div></div>`;
+    var _td=JSON.stringify({status:t.status||'healthy',surfaces:t.surfaces||[],notes:t.notes||'',mobility:t.mobility||0}).replace(/'/g,'&#39;');
+    return `<div class="tooth ${t.status||'healthy'}" title="Diş ${n}${t.status?' — '+toothLbl(t.status):''}" onclick="selTooth(${n},'${ptId}',this)" data-tooth="${n}" data-rec='${_td}'><div class="t-ic">${icons[t.status]||''}</div><div class="t-no">${n}</div></div>`;
   }
   return `<div class="odo-arch"><span>Sağ →</span><span>← Sol</span></div>
     <div class="odo-row">${upper.slice(0,8).map(tEl).join('')}<div style="width:10px;flex-shrink:0"></div>${upper.slice(8).map(tEl).join('')}</div>
@@ -1379,56 +1369,51 @@ function toothLbl(s){return{healthy:'Sağlıklı',caries:'Çürük',filled:'Dolg
 function selTooth(no,ptId,el){
   _selTooth=no;_curPtId=ptId;
   var data={};
-  try{
-    var rec=(el instanceof Element?el:event.currentTarget).dataset.rec;
-    if(rec)data=JSON.parse(rec.replace(/&#39;/g,"'"));
-  }catch(e){console.warn('selTooth parse',e);}
+  try{var rec=(el instanceof Element?el:event.currentTarget).dataset.rec;if(rec)data=JSON.parse(rec.replace(/&#39;/g,"'"));}
+  catch(e){console.warn('selTooth parse error',e);}
   document.querySelectorAll('.tooth').forEach(t=>t.classList.remove('sel'));
   (el instanceof Element?el:event.currentTarget).classList.add('sel');
-  // Find the active panel — prefer the one inside the VISIBLE area
+  // Determine which panel is currently visible
+  var ptOdoPnl=document.getElementById('pt-odo-dpnl');
+  var standalonePnl=document.getElementById('odo-dpnl');
+  var pttOdo=document.getElementById('ptt-odo');
+  var odoCont=document.getElementById('odo-content');
   var pnl=null;
-  var ptOdo=document.getElementById('pt-odo-dpnl');
-  var standalone=document.getElementById('odo-dpnl');
-  // pt-odo-dpnl lives inside ptt-odo which is inside patient detail
-  if(ptOdo&&document.getElementById('ptt-odo')&&document.getElementById('ptt-odo').style.display!=='none'){
-    pnl=ptOdo;
-  } else if(standalone&&document.getElementById('odo-content')&&document.getElementById('odo-content').style.display!=='none'){
-    pnl=standalone;
-  } else {
-    pnl=ptOdo||standalone;
-  }
+  if(ptOdoPnl&&pttOdo&&pttOdo.style.display!=='none')pnl=ptOdoPnl;
+  else if(standalonePnl&&odoCont&&odoCont.style.display!=='none')pnl=standalonePnl;
+  else pnl=ptOdoPnl||standalonePnl;
+  _activePnl=pnl;
   if(!pnl)return;
   pnl.style.display='block';
-  // Query all fields RELATIVE to active panel to avoid ID conflicts
   var q=function(id){return pnl.querySelector('#'+id)||document.getElementById(id);};
   var title=q('pt-odo-t')||q('odo-dpnl-t');
   if(title)title.textContent='Diş '+no+(data.status?' — '+toothLbl(data.status):'');
-  var s=q('tooth-st');if(s)s.value=data.status||'healthy';
-  var sf=q('tooth-sf');if(sf)sf.value=Array.isArray(data.surfaces)?data.surfaces.join(', '):(data.surfaces||'');
-  var m=q('tooth-mob');if(m)m.value=data.mobility||0;
-  var nt=q('tooth-nt');if(nt)nt.value=data.notes||'';
-  _activePnl=pnl;
+  var q2=function(id){return pnl?pnl.querySelector('#'+id)||document.getElementById(id):document.getElementById(id);};
+  var s=q2('tooth-st');if(s)s.value=data.status||'healthy';
+  var sf=q2('tooth-sf');if(sf)sf.value=Array.isArray(data.surfaces)?data.surfaces.join(', '):(data.surfaces||'');
+  var m=q2('tooth-mob');if(m)m.value=data.mobility||0;
+  var nt=q2('tooth-nt');if(nt)nt.value=data.notes||'';
 }
 async function saveTooth(){
   if(!_selTooth||!_curPtId){toast('Önce bir diş seçin','e');return;}
-  var pnl=_activePnl||document.getElementById('pt-odo-dpnl')||document.getElementById('odo-dpnl');
+  var pnl=_activePnl||document.getElementById('odo-dpnl');
   var q=function(id){return pnl?pnl.querySelector('#'+id)||document.getElementById(id):document.getElementById(id);};
   var stEl=q('tooth-st'),sfEl=q('tooth-sf'),mobEl=q('tooth-mob'),ntEl=q('tooth-nt');
-  if(!stEl){toast('Panel bulunamadı','e');return;}
-  var btn=pnl?pnl.querySelector('button.btn-p'):null;
+  if(!stEl){toast('Diş paneli bulunamadı — lütfen bir diş seçin','e');return;}
+  var btn=pnl?Array.from(pnl.querySelectorAll('button')).find(b=>b.onclick?.toString().includes('saveTooth')||b.textContent.includes('Kaydet')):null;
   if(btn){btn.disabled=true;btn.textContent='⏳';}
   var r=await api('PUT','/api/patients/'+_curPtId+'/teeth/'+_selTooth,{
     status:stEl.value,
     surfaces:sfEl.value.split(',').map(s=>s.trim()).filter(Boolean),
-    mobility:parseInt(mobEl.value)||0,
-    notes:ntEl.value
+    mobility:parseInt(mobEl?.value)||0,
+    notes:ntEl?.value||''
   });
   if(btn){btn.disabled=false;btn.textContent='💾 Kaydet';}
   if(r&&!r.error){
-    toast('Diş '+_selTooth+' güncellendi ✓','s');
+    toast('Diş '+_selTooth+' kaydedildi ✓','s');
     if(_odoPt)loadOdo(_odoPt);
-    else if(_gPt){var d=await api('GET','/api/patients/'+_curPtId);if(d){setGPt(d);renderPtOdo(d);}}
-  } else if(r){toast(r.error||'Güncelleme başarısız','e');}
+    else if(_gPt){var d2=await api('GET','/api/patients/'+_curPtId);if(d2){setGPt(d2);renderPtOdo(d2);}}
+  }else if(r){toast(r.error||'Kayıt başarısız','e');}
 }
 
 // ── X-RAYS ────────────────────────────────────────────────────
@@ -1468,14 +1453,40 @@ function previewXray(input){
   reader.readAsDataURL(input.files[0]);
 }
 async function saveXray(){
-  if(!_xrPtId){var pn=document.getElementById('xr-pt-in').value.trim();if(!pn){toast('Hasta seçin','e');return;}var pts=await api('GET','/api/patients?q='+encodeURIComponent(pn)+'&limit=1');_xrPtId=pts?.patients?.[0]?.id;if(!_xrPtId){toast('Hasta bulunamadı','e');return;}}
+  // Resolve patient id
+  if(!_xrPtId&&_gPtId)_xrPtId=_gPtId;
+  if(!_xrPtId){
+    var pn=document.getElementById('xr-pt-in').value.trim();
+    if(!pn){toast('Hasta seçin','e');return;}
+    var pts=await api('GET','/api/patients?q='+encodeURIComponent(pn)+'&limit=1');
+    _xrPtId=pts?.patients?.[0]?.id;
+    if(!_xrPtId){toast('Hasta bulunamadı — önce kaydedin','e');return;}
+  }
   var file=document.getElementById('xr-file').files[0];
   var imgData=null;
-  if(file)imgData=await new Promise(res=>{var r=new FileReader();r.onload=e=>res(e.target.result);r.readAsDataURL(file);});
-  var body={patient_id:_xrPtId,xray_type:document.getElementById('xr-type').value,taken_at:document.getElementById('xr-date').value,tooth_numbers:document.getElementById('xr-teeth').value,notes:document.getElementById('xr-notes').value,image_data:imgData};
+  if(file){
+    if(file.size>10*1024*1024){toast('Dosya 10MB üzeri — lütfen küçültün','e');return;}
+    imgData=await new Promise(res=>{var r=new FileReader();r.onload=e=>res(e.target.result);r.readAsDataURL(file);});
+  }
+  var saveBtn=document.querySelector('#m-xray .btn-p');
+  if(saveBtn){saveBtn.disabled=true;saveBtn.textContent='⏳ Kaydediliyor...';}
+  var body={
+    patient_id:_xrPtId,
+    xray_type:document.getElementById('xr-type').value,
+    taken_at:document.getElementById('xr-date').value||new Date().toISOString().slice(0,10),
+    tooth_numbers:document.getElementById('xr-teeth').value||null,
+    notes:document.getElementById('xr-notes').value||null,
+    image_data:imgData
+  };
   var r=await api('POST','/api/xrays',body);
-  if(r&&!r.error){toast('Röntgen kaydedildi ✓');closeM('m-xray');loadXrays();}
-  else if(r)toast(r.error,'e');
+  if(saveBtn){saveBtn.disabled=false;saveBtn.textContent='💾 Kaydet';}
+  if(r&&!r.error){
+    toast('Röntgen kaydedildi ✓','s');
+    closeM('m-xray');
+    loadXrays();
+    // Refresh patient detail if open
+    if(_curPtId===_xrPtId){var d=await api('GET','/api/patients/'+_curPtId);if(d){setGPt(d);renderPtXray(d);}}
+  }else if(r)toast(r.error||'Röntgen kaydedilemedi','e');
 }
 function openXV(id,type,notes){
   var src=window._xrImgs?.[id];
@@ -1631,13 +1642,71 @@ async function loadPlans(st){
     <td><button class="btn btn-d btn-xs" onclick="delPlan('${p.id}')">🗑</button></td></tr>`).join('');
 }
 function filterPlans(el,st){document.querySelectorAll('#view-plans .tab').forEach(t=>t.classList.remove('on'));el.classList.add('on');loadPlans(st);}
-async function openNewPlan(){openNewPlanFor(_gPtId,_gPt?_gPt.first_name+' '+_gPt.last_name:null);}
-async function openNewPlanFor(ptId,ptName){
-  if(!ptId){ptName=prompt('Hasta adı:');if(!ptName)return;var pts=await api('GET','/api/patients?q='+encodeURIComponent(ptName)+'&limit=1');ptId=pts?.patients?.[0]?.id;if(!ptId){toast('Hasta bulunamadı','e');return;}}
-  var title=prompt('Plan başlığı:');if(!title)return;
-  var r=await api('POST','/api/plans',{patient_id:ptId,title,status:'planned',priority:'normal'});
-  if(r&&!r.error){toast('Plan oluşturuldu ✓');if(_curPtId===ptId){var d=await api('GET','/api/patients/'+ptId);if(d){setGPt(d);renderPtPlans(d);}}else loadPlans();}
+
+function openNewPlan(){openNewPlanFor(_gPtId,_gPt?_gPt.first_name+' '+_gPt.last_name:null);}
+function openNewPlanFor(ptId,ptName){
+  _planPtId=ptId||null;
+  document.getElementById('pl-title').value='';
+  document.getElementById('pl-diag').value='';
+  document.getElementById('pl-cost').value='';
+  document.getElementById('pl-prio').value='normal';
+  document.getElementById('pl-notes').value='';
+  document.getElementById('pl-items').innerHTML='';
+  _planItems=[];
+  if(ptId&&ptName){
+    document.getElementById('pl-pt-in').value=ptName;
+  } else {
+    document.getElementById('pl-pt-in').value='';
+  }
+  addPlanItem();
+  openM('m-plan');
 }
+async function savePlan(){
+  if(!_planPtId){
+    var pn=document.getElementById('pl-pt-in').value.trim();
+    if(!pn){toast('Hasta seçin','e');return;}
+    var pts=await api('GET','/api/patients?q='+encodeURIComponent(pn)+'&limit=1');
+    _planPtId=pts?.patients?.[0]?.id;
+    if(!_planPtId){toast('Hasta bulunamadı','e');return;}
+  }
+  var title=document.getElementById('pl-title').value.trim();
+  if(!title){toast('Plan başlığı zorunlu','e');document.getElementById('pl-title').focus();return;}
+  var btn=document.querySelector('#m-plan .btn-p');
+  if(btn){btn.disabled=true;btn.textContent='⏳ Kaydediliyor...';}
+  var items=_planItems.filter(i=>i.proc&&i.proc.trim());
+  var cost=parseFloat(document.getElementById('pl-cost').value)||null;
+  var body={
+    patient_id:_planPtId,
+    title,
+    diagnosis:document.getElementById('pl-diag').value||null,
+    est_cost:cost,
+    priority:document.getElementById('pl-prio').value,
+    notes:document.getElementById('pl-notes').value||null,
+    status:'planned',
+    items:items
+  };
+  var r=await api('POST','/api/plans',body);
+  if(btn){btn.disabled=false;btn.textContent='💾 Planı Kaydet';}
+  if(r&&!r.error){
+    toast('Tedavi planı oluşturuldu ✓','s');
+    closeM('m-plan');
+    if(_curPtId===_planPtId){var d=await api('GET','/api/patients/'+_curPtId);if(d){setGPt(d);renderPtPlans(d);}}
+    else loadPlans();
+  }else if(r){toast(r.error||'Plan oluşturulamadı','e');}
+}
+var _planPtId=null,_planItems=[];
+function addPlanItem(){
+  var id=Date.now();
+  _planItems.push({id,proc:'',tooth:'',note:''});
+  var el=document.getElementById('pl-items');
+  el.insertAdjacentHTML('beforeend',`<div class="pl-item" id="pli-${id}" style="display:flex;gap:8px;align-items:flex-start;margin-bottom:8px;background:var(--s2);border-radius:var(--r);padding:10px">
+    <div style="flex:2"><label style="font-size:10px;color:var(--c3);font-weight:700;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:4px">İşlem *</label><input placeholder="Dolgu, Kanal, İmplant…" oninput="updatePlanItem(${id},'proc',this.value)" style="width:100%;border:1.5px solid var(--b0);border-radius:var(--r);padding:7px 10px;font-size:13px;font-family:var(--B);outline:none;background:white" onfocus="this.style.borderColor='var(--t400)'" onblur="this.style.borderColor='var(--b0)'"></div>
+    <div style="flex:1"><label style="font-size:10px;color:var(--c3);font-weight:700;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:4px">Diş No</label><input placeholder="16, 17" oninput="updatePlanItem(${id},'tooth',this.value)" style="width:100%;border:1.5px solid var(--b0);border-radius:var(--r);padding:7px 10px;font-size:13px;font-family:var(--B);outline:none;background:white" onfocus="this.style.borderColor='var(--t400)'" onblur="this.style.borderColor='var(--b0)'"></div>
+    <button onclick="removePlanItem(${id})" style="margin-top:22px;background:none;border:none;color:var(--c3);cursor:pointer;font-size:16px;padding:4px;border-radius:4px" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--c3)'">✕</button>
+  </div>`);
+}
+function updatePlanItem(id,field,val){var item=_planItems.find(i=>i.id===id);if(item)item[field]=val;}
+function removePlanItem(id){_planItems=_planItems.filter(i=>i.id!==id);var el=document.getElementById('pli-'+id);if(el)el.remove();}
 async function delPlan(id){if(!confirm('Plan silinsin mi?'))return;await api('DELETE','/api/plans/'+id);toast('Silindi');loadPlans();}
 
 // ── BILLING ───────────────────────────────────────────────────
@@ -1931,64 +2000,53 @@ function toast(msg,type){
   setTimeout(()=>{el.classList.add('out');setTimeout(()=>el.remove(),300);},3400);
 }
 
-// ── GLOBAL SEARCH ─────────────────────────────────────────────
-var _gsTimer=null;
-function openGS(){
-  var m=document.getElementById('m-search');
-  m.style.display='flex';
-  setTimeout(()=>{document.getElementById('gs-input').focus();gsSearch('');},60);
-}
-function closeGS(){document.getElementById('m-search').style.display='none';document.getElementById('gs-input').value='';}
+// ── GLOBAL SEARCH (Ctrl+K) ────────────────────────────────
+var _gsT=null;
+function openGS(){document.getElementById('m-search').style.display='flex';setTimeout(()=>{var i=document.getElementById('gs-inp');i.value='';i.focus();gsSearch('');},50);}
+function closeGS(){document.getElementById('m-search').style.display='none';}
 async function gsSearch(q){
-  clearTimeout(_gsTimer);
-  _gsTimer=setTimeout(async()=>{
-    var el=document.getElementById('gs-results');
-    // Quick nav shortcuts
-    var navOpts=[
-      {k:'randevu',lbl:'📅 Randevular',fn:"nav('appointments')"},
-      {k:'hasta',lbl:'👤 Hastalar',fn:"nav('patients')"},
-      {k:'odonto',lbl:'🦷 Odontogram',fn:"nav('odontogram')"},
-      {k:'fatura',lbl:'💰 Fatura & Ödeme',fn:"nav('billing')"},
-      {k:'stok',lbl:'📦 Stok Yönetimi',fn:"nav('inventory')"},
-      {k:'rapor',lbl:'📈 Raporlar',fn:"nav('reports')"},
-      {k:'ayar',lbl:'⚙️ Ayarlar',fn:"nav('settings')"},
-      {k:'sms',lbl:'💬 SMS & E-Posta',fn:"nav('sms')"},
-      {k:'plan',lbl:'📋 Tedavi Planları',fn:"nav('plans')"},
-      {k:'reçete',lbl:'💊 Reçeteler',fn:"nav('prescriptions')"},
-    ].filter(o=>!q||o.k.includes(q.toLowerCase())||o.lbl.toLowerCase().includes(q.toLowerCase())).slice(0,3);
-    var rows='';
-    if(navOpts.length){
-      rows+='<div style="padding:4px 14px;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--c3);margin-top:4px">Sayfalar</div>';
-      rows+=navOpts.map(o=>`<div class="gs-row" onclick="closeGS();${o.fn}" style="padding:9px 14px;display:flex;align-items:center;gap:10px;cursor:pointer;border-radius:8px;margin:1px 4px;font-size:13.5px;color:var(--c0)">${o.lbl}</div>`).join('');
+  clearTimeout(_gsT);_gsT=setTimeout(async()=>{
+    var el=document.getElementById('gs-res');
+    var navs=[
+      ['randevu','appointments','📅 Randevular'],['hasta','patients','👤 Hastalar'],
+      ['rontgen','xrays','🩻 Röntgenler'],['odonto','odontogram','🦷 Odontogram'],
+      ['plan','plans','📋 Tedavi Planları'],['fatura','billing','💰 Fatura & Ödeme'],
+      ['stok','inventory','📦 Stok Yönetimi'],['rapor','reports','📈 Raporlar'],
+      ['ayar','settings','⚙️ Ayarlar'],['sms','sms','💬 SMS & E-Posta'],
+    ].filter(([k])=>!q||q.length<1||k.includes(q.toLowerCase())||k.normalize('NFD').replace(/[\u0300-\u036f]/g,'').includes(q.toLowerCase())).slice(0,4);
+    var html='';
+    if(navs.length){
+      html+='<div style="padding:4px 10px 2px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--c3)">Sayfalar</div>';
+      html+=navs.map(([k,v,l])=>`<div onclick="closeGS();nav('${v}')" style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;cursor:pointer;font-size:13.5px;color:var(--c0);transition:background .1s" onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background=''">${l}</div>`).join('');
     }
     if(q&&q.length>=1){
-      var d=await api('GET','/api/patients?q='+encodeURIComponent(q)+'&limit=6');
+      var d=await api('GET','/api/patients?q='+encodeURIComponent(q)+'&limit=7');
       if(d?.patients?.length){
-        rows+='<div style="padding:4px 14px;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--c3);margin-top:8px">Hastalar</div>';
-        rows+=d.patients.map(p=>`<div class="gs-row" onclick="closeGS();openPtDetail('${p.id}')" style="padding:9px 14px;display:flex;align-items:center;gap:10px;cursor:pointer;border-radius:8px;margin:1px 4px">
-          <div style="width:30px;height:30px;background:linear-gradient(135deg,var(--t400),var(--a400));border-radius:8px;display:grid;place-items:center;font-size:12px;font-weight:700;color:white;flex-shrink:0">${p.first_name[0]+p.last_name[0]}</div>
-          <div><div style="font-size:13.5px;font-weight:600;color:var(--c0)">${p.first_name} ${p.last_name}</div><div style="font-size:11px;color:var(--c3)">${p.phone||p.tc||'—'}</div></div>
-          <span style="margin-left:auto;font-size:11px;color:var(--c3)">→ Dosya</span>
+        html+='<div style="padding:8px 10px 2px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--c3)">Hastalar</div>';
+        html+=d.patients.map(p=>`<div onclick="closeGS();openPtDetail('${p.id}')" style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;cursor:pointer;transition:background .1s" onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background=''">
+          <div style="width:32px;height:32px;background:linear-gradient(135deg,var(--t400),var(--a400));border-radius:8px;display:grid;place-items:center;font-size:12px;font-weight:700;color:white;flex-shrink:0">${p.first_name[0]+p.last_name[0]}</div>
+          <div><div style="font-size:13px;font-weight:600;color:var(--c0)">${p.first_name} ${p.last_name}</div><div style="font-size:11px;color:var(--c3)">${p.phone||p.tc||'—'}</div></div>
+          <span style="margin-left:auto;font-size:11px;color:var(--t600)">Dosya →</span>
         </div>`).join('');
       }
     }
-    if(!rows)rows='<div style="text-align:center;padding:28px;font-size:13px;color:var(--c3)">Aramak için yazmaya başlayın</div>';
-    el.innerHTML=rows;
-    // Hover highlight
-    el.querySelectorAll('.gs-row').forEach(r=>{
-      r.addEventListener('mouseenter',()=>el.querySelectorAll('.gs-row').forEach(x=>x.style.background=x===r?'var(--s2)':''));
-      r.addEventListener('mouseleave',()=>{r.style.background='';});
-    });
-  },120);
+    if(!html)html='<div style="text-align:center;padding:30px;font-size:13px;color:var(--c3)">Aramak için yazmaya başlayın…</div>';
+    el.innerHTML=html;
+  },100);
 }
 document.addEventListener('keydown',function(e){
   if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openGS();}
-  if(e.key==='Escape'&&document.getElementById('m-search').style.display!=='none'){closeGS();}
+  if(e.key==='Escape'){
+    var gs=document.getElementById('m-search');
+    if(gs&&gs.style.display!=='none'){closeGS();return;}
+    document.querySelectorAll('.mbg.on').forEach(m=>m.classList.remove('on'));
+    document.getElementById('xv').classList.remove('on');
+  }
 });
-document.getElementById('m-search').addEventListener('click',function(e){if(e.target===this)closeGS();});
+document.getElementById('m-search').addEventListener('click',e=>{if(e.target===document.getElementById('m-search'))closeGS();});
 
-// ── DASHBOARD AUTO-REFRESH ─────────────────────────────────────
-setInterval(function(){if(document.getElementById('view-dashboard')?.classList.contains('on'))loadDash();},5*60*1000);
+// Dashboard auto-refresh every 5 min
+setInterval(()=>{if(document.getElementById('view-dashboard')?.classList.contains('on'))loadDash();},300000);
 
 // Init
 init();

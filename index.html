@@ -2,6 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦷</text></svg>">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>DişSeansım — Türkiye'nin Modern Diş Kliniği Yazılımı</title>
 <meta name="description" content="AI destekli not, SMS hatırlatma, odontogram, hasta portalı ve çoklu şube. Solo hekimden polikliniğe tam çözüm. 14 gün ücretsiz.">
@@ -269,6 +270,324 @@ footer{background:#111827;color:rgba(255,255,255,.65);padding:56px 6vw 28px}
 </div>
 
 <!-- FEATURES -->
+
+<!-- ══════════════ PRODUCT DEMO ══════════════ -->
+<section id="demo" style="padding:80px 20px;background:linear-gradient(180deg,#F8F7F5 0%,#F0FDF9 100%);overflow:hidden">
+  <div style="max-width:900px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:48px">
+      <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(20,184,166,.1);border:1px solid rgba(20,184,166,.2);border-radius:99px;padding:6px 16px;font-size:12px;font-weight:600;color:#0D9488;margin-bottom:16px">
+        ▶ Canlı Demo
+      </div>
+      <h2 style="font-family:'Fraunces',Georgia,serif;font-size:clamp(28px,5vw,42px);font-style:italic;font-weight:600;color:#1C1917;margin-bottom:12px;letter-spacing:-.5px">
+        Kliniğinizi nasıl yönetirsiniz?
+      </h2>
+      <p style="font-size:16px;color:#78716C;max-width:520px;margin:0 auto;line-height:1.6">
+        Randevudan faturaya, odontogramdan AI notuna — tüm iş akışını görün.
+      </p>
+    </div>
+
+    <!-- Demo Player -->
+    <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,.15),0 0 0 1px rgba(0,0,0,.06);background:#1C1917">
+      <!-- Browser chrome -->
+      <div style="background:#2A2523;padding:12px 16px;display:flex;align-items:center;gap:8px">
+        <div style="width:12px;height:12px;border-radius:50%;background:#FF5F56"></div>
+        <div style="width:12px;height:12px;border-radius:50%;background:#FFBD2E"></div>
+        <div style="width:12px;height:12px;border-radius:50%;background:#27C93F"></div>
+        <div style="flex:1;background:rgba(255,255,255,.08);border-radius:6px;padding:5px 12px;margin:0 16px;font-size:12px;color:rgba(255,255,255,.4);font-family:monospace">
+          🔒 disseansim.com/app
+        </div>
+        <div style="width:60px;height:22px;background:rgba(255,255,255,.08);border-radius:4px"></div>
+      </div>
+      
+      <!-- Demo canvas -->
+      <div id="demo-canvas" style="height:480px;position:relative;overflow:hidden;background:#F8F7F5">
+        <!-- Screens rendered by JS -->
+      </div>
+      
+      <!-- Progress bar -->
+      <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:rgba(0,0,0,.1)">
+        <div id="demo-progress" style="height:100%;background:linear-gradient(90deg,#14B8A6,#0D9488);width:0%;transition:width .3s linear"></div>
+      </div>
+    </div>
+
+    <!-- Step indicators -->
+    <div id="demo-steps" style="display:flex;justify-content:center;gap:8px;margin-top:24px"></div>
+
+    <!-- CTA -->
+    <div style="text-align:center;margin-top:48px">
+      <p style="font-size:15px;color:#78716C;margin-bottom:20px">Hazır mısınız? Kredi kartı gerekmez.</p>
+      <a href="giris.html?action=register" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#14B8A6,#0D9488);color:white;padding:16px 36px;border-radius:12px;font-size:16px;font-weight:700;text-decoration:none;box-shadow:0 8px 24px rgba(13,148,136,.35);transition:all .2s" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 12px 32px rgba(13,148,136,.45)'" onmouseout="this.style.transform='';this.style.boxShadow='0 8px 24px rgba(13,148,136,.35)'">
+        Ücretsiz Başlayın — 14 gün 🦷
+      </a>
+      <div style="margin-top:14px;font-size:12px;color:#A8A29E">✓ Anında kurulum &nbsp;·&nbsp; ✓ Veri ithali yok &nbsp;·&nbsp; ✓ İstediğinizde iptal</div>
+    </div>
+  </div>
+</section>
+
+<script>
+// ══ PRODUCT DEMO ANIMATION ══
+(function(){
+var SCREENS = [
+  {
+    title:"Dashboard",
+    subtitle:"Günlük özet ve istatistikler",
+    dur:4500,
+    render:function(c){
+      c.innerHTML=`
+      <div style="display:flex;height:100%;font-family:'Plus Jakarta Sans',sans-serif">
+        <!-- Sidebar -->
+        <div style="width:200px;background:white;border-right:1px solid #E8E4DF;padding:12px 8px;flex-shrink:0">
+          <div style="display:flex;align-items:center;gap:8px;padding:6px 8px;margin-bottom:12px">
+            <div style="width:28px;height:28px;background:linear-gradient(135deg,#14B8A6,#0F766E);border-radius:8px;display:grid;place-items:center;font-size:14px">🦷</div>
+            <span style="font-family:Georgia,serif;font-style:italic;font-size:15px;font-weight:600">DişSeansım</span>
+          </div>
+          ${['📊 Dashboard','📅 Randevular','👤 Hastalar','🦷 Odontogram','📋 Planlar','💰 Fatura'].map((n,i)=>`<div style="padding:7px 10px;border-radius:8px;font-size:12px;color:${i===0?'#14B8A6':'#78716C'};background:${i===0?'#F0FDF9':'transparent'};margin-bottom:1px;font-weight:${i===0?'600':'400'}">${n}</div>`).join('')}
+        </div>
+        <!-- Main -->
+        <div style="flex:1;padding:20px;overflow:hidden">
+          <div style="font-size:11px;color:#A8A29E;margin-bottom:16px">Bugün, 18 Mart 2026</div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px">
+            ${[['📅','12','Bugün Randevu'],['👤','248','Toplam Hasta'],['💰','₺47.8K','Bu Ay Gelir'],['✅','89%','Tamamlanma']].map(([ic,v,l])=>`
+            <div style="background:white;border:1px solid #E8E4DF;border-radius:10px;padding:12px">
+              <div style="font-size:18px;margin-bottom:4px">${ic}</div>
+              <div style="font-size:18px;font-weight:700;color:#1C1917">${v}</div>
+              <div style="font-size:10px;color:#A8A29E">${l}</div>
+            </div>`).join('')}
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div style="background:white;border:1px solid #E8E4DF;border-radius:10px;padding:14px">
+              <div style="font-size:12px;font-weight:600;color:#44403C;margin-bottom:10px">Bugünün Programı</div>
+              ${[['09:00','Ahmet Yıldız','Dolgu','#14B8A6'],['10:30','Fatma Şahin','Kanal','#F59E0B'],['13:00','Mehmet Demir','Muayene','#14B8A6']].map(([t,n,type,c])=>`
+              <div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #F4F3F1">
+                <div style="font-size:11px;font-weight:600;color:${c};min-width:38px">${t}</div>
+                <div style="flex:1;font-size:11px;color:#44403C">${n}</div>
+                <div style="font-size:10px;color:#78716C">${type}</div>
+              </div>`).join('')}
+            </div>
+            <div style="background:white;border:1px solid #E8E4DF;border-radius:10px;padding:14px">
+              <div style="font-size:12px;font-weight:600;color:#44403C;margin-bottom:10px">Haftalık Randevu</div>
+              <div style="display:flex;align-items:flex-end;gap:6px;height:80px">
+                ${[40,65,45,82,58,30,0].map((h,i)=>`<div style="flex:1;background:${i===3?'#14B8A6':'#CCFBF1'};border-radius:4px 4px 0 0;height:${Math.max(4,h)}%"></div>`).join('')}
+              </div>
+              <div style="display:flex;gap:6px;margin-top:4px">
+                ${['P','S','Ç','P','C','C','P'].map(d=>`<div style="flex:1;font-size:9px;color:#A8A29E;text-align:center">${d}</div>`).join('')}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>`;
+    }
+  },
+  {
+    title:"Hasta Kaydı",
+    subtitle:"Anında kayıt + KVKK onayı",
+    dur:4000,
+    render:function(c){
+      c.innerHTML=`
+      <div style="display:flex;height:100%;background:#F8F7F5;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',sans-serif">
+        <div style="background:white;border-radius:16px;padding:28px;width:480px;box-shadow:0 8px 32px rgba(0,0,0,.1)">
+          <div style="font-size:16px;font-weight:700;color:#1C1917;margin-bottom:20px">👤 Hasta Kaydı</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:12px">
+            ${[['Ad *','Zeynep',''],['Soyad *','Arslan',''],['TC Kimlik','12345678901','']].map(([l,v,_])=>`
+            <div><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#78716C;margin-bottom:5px">${l}</div><div style="border:1.5px solid ${l.includes('*')?'#14B8A6':'#E8E4DF'};border-radius:6px;padding:8px 10px;font-size:12.5px;color:#1C1917">${v}</div></div>`).join('')}
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+            ${[['Telefon','0532 xxx xxxx'],['Doğum Tarihi','15.06.1992']].map(([l,v])=>`
+            <div><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#78716C;margin-bottom:5px">${l}</div><div style="border:1.5px solid #E8E4DF;border-radius:6px;padding:8px 10px;font-size:12.5px;color:#1C1917">${v}</div></div>`).join('')}
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;background:#F0FDF9;border:2px solid #14B8A6;border-radius:8px;padding:10px 12px;margin-bottom:16px">
+            <div style="width:20px;height:20px;background:#14B8A6;border-radius:4px;display:grid;place-items:center;color:white;font-size:12px;font-weight:800;flex-shrink:0">✓</div>
+            <div style="font-size:11.5px;color:#44403C">KVKK Aydınlatma Metni'ni okudum ve onaylıyorum</div>
+          </div>
+          <div style="display:flex;justify-content:flex-end;gap:10px">
+            <div style="padding:9px 18px;border-radius:7px;border:1px solid #E8E4DF;font-size:13px;color:#78716C">İptal</div>
+            <div style="padding:9px 22px;border-radius:7px;background:#14B8A6;color:white;font-size:13px;font-weight:600">💾 Kaydet</div>
+          </div>
+        </div>
+      </div>`;
+    }
+  },
+  {
+    title:"Odontogram",
+    subtitle:"32 diş, tıkla ve düzenle",
+    dur:5000,
+    render:function(c){
+      var statuses=['healthy','healthy','filled','caries','crown','healthy','healthy','implant','healthy','rct','healthy','healthy','healthy','filled','healthy','healthy'];
+      var colors={healthy:'#F4F3F1',filled:'#CCFBF1',caries:'#FEF3C7',crown:'#FEF9C3',implant:'#D1FAE5',rct:'#FEE2E2',extracted:'#E5E7EB'};
+      var borders={healthy:'#E8E4DF',filled:'#14B8A6',caries:'#FBBF24',crown:'#F59E0B',implant:'#10B981',rct:'#EF4444',extracted:'#D1D5DB'};
+      var icons={filled:'◆',caries:'●',crown:'♛',implant:'⬟',rct:'⊕'};
+      function row(nos,stats){return nos.map((n,i)=>`<div style="width:28px;height:36px;border-radius:5px 5px 3px 3px;border:1.5px solid ${borders[stats[i]]};background:${colors[stats[i]]};display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:8px;color:${stats[i]==='healthy'?'#A8A29E':'#44403C'};cursor:pointer">${icons[stats[i]]||''}<span style="font-size:6px;opacity:.6">${n}</span></div>`).join('');}
+      c.innerHTML=`
+      <div style="font-family:'Plus Jakarta Sans',sans-serif;height:100%;background:#F8F7F5;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px">
+        <div style="background:white;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,.08);width:100%;max-width:600px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+            <div style="font-size:14px;font-weight:700;color:#1C1917">🦷 Zeynep Arslan — Odontogram</div>
+            <div style="font-size:11px;color:#A8A29E">Son güncelleme: Bugün</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:10px;color:#A8A29E;margin-bottom:6px"><span>Sağ →</span><span>← Sol</span></div>
+          <div style="display:flex;gap:3px;justify-content:center;margin-bottom:4px">${row([18,17,16,15,14,13,12,11],statuses.slice(0,8))}<div style="width:8px"></div>${row([21,22,23,24,25,26,27,28],statuses.slice(8,16))}</div>
+          <div style="height:1px;background:#E8E4DF;margin:8px 0;position:relative"><span style="position:absolute;left:50%;transform:translateX(-50%);background:white;padding:0 8px;font-size:10px;color:#A8A29E;top:-8px">Üst / Alt</span></div>
+          <div style="display:flex;gap:3px;justify-content:center;margin-top:8px">${row([48,47,46,45,44,43,42,41],['healthy','healthy','healthy','filled','caries','healthy','healthy','healthy'].slice(0,8))}<div style="width:8px"></div>${row([31,32,33,34,35,36,37,38],['healthy','healthy','healthy','healthy','healthy','filled','healthy','healthy'].slice(0,8))}</div>
+          <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap">
+            ${[['Sağlıklı','#E8E4DF'],['Dolgulu','#14B8A6'],['Çürük','#FBBF24'],['Kuron','#F59E0B'],['İmplant','#10B981'],['Kanal','#EF4444']].map(([l,bg])=>`<div style="display:flex;align-items:center;gap:5px;font-size:10px;color:#78716C"><div style="width:10px;height:10px;border-radius:2px;background:${bg}"></div>${l}</div>`).join('')}
+          </div>
+        </div>
+      </div>`;
+    }
+  },
+  {
+    title:"AI Not Asistanı",
+    subtitle:"Konuş, AI SOAP notu yazar",
+    dur:5000,
+    render:function(c){
+      c.innerHTML=`
+      <div style="font-family:'Plus Jakarta Sans',sans-serif;height:100%;background:#F8F7F5;display:flex;align-items:center;justify-content:center;padding:20px">
+        <div style="background:white;border-radius:16px;padding:24px;width:480px;box-shadow:0 4px 20px rgba(0,0,0,.08)">
+          <div style="font-size:14px;font-weight:700;color:#1C1917;margin-bottom:16px">✨ AI Seans Notu — Zeynep Arslan</div>
+          <div style="background:#F0FDF9;border:1px solid #CCFBF1;border-radius:10px;padding:14px;margin-bottom:14px">
+            <div style="font-size:10px;font-weight:700;color:#0D9488;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Hekim Sözlü Notu</div>
+            <div style="font-size:12.5px;color:#44403C;line-height:1.7;font-style:italic">"16 nolu diş oklüzal yüzeyinde derin çürük, vital, lokal anestezi altında kompozit dolgu yapıldı. Hasta ağrısız tolere etti."</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+            <div style="flex:1;height:1px;background:#E8E4DF"></div>
+            <div style="font-size:11px;color:#A8A29E;white-space:nowrap">✨ Claude AI dönüştürdü</div>
+            <div style="flex:1;height:1px;background:#E8E4DF"></div>
+          </div>
+          ${[['S — Sübjektif','Hasta ağrı şikayeti olmaksızın başvurdu.'],['O — Objektif','#16: derin oklüzal kavite, vitalite +, perküsyon –'],['A — Değerlendirme','Dentin çürüğü, restorasyon endikasyonu.'],['P — Plan','Kompozit dolgu uygulandı. Kontrol 6 ay sonra.']].map(([hd,txt])=>`
+          <div style="margin-bottom:10px">
+            <div style="font-size:10px;font-weight:700;color:#0D9488;text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">${hd}</div>
+            <div style="font-size:12px;color:#44403C;line-height:1.5">${txt}</div>
+          </div>`).join('')}
+          <div style="display:flex;gap:8px;margin-top:16px">
+            <div style="flex:1;padding:9px;border-radius:7px;background:#14B8A6;color:white;font-size:12px;font-weight:600;text-align:center">💾 Kaydet</div>
+            <div style="padding:9px 14px;border-radius:7px;border:1px solid #E8E4DF;font-size:12px;color:#78716C;text-align:center">Düzenle</div>
+          </div>
+        </div>
+      </div>`;
+    }
+  },
+  {
+    title:"Tedavi Planı",
+    subtitle:"Oluştur, paylaş, onaylat",
+    dur:4500,
+    render:function(c){
+      c.innerHTML=`
+      <div style="font-family:'Plus Jakarta Sans',sans-serif;height:100%;background:#F8F7F5;display:flex;align-items:center;justify-content:center;padding:20px">
+        <div style="background:white;border-radius:16px;padding:24px;width:480px;box-shadow:0 4px 20px rgba(0,0,0,.08)">
+          <div style="font-size:14px;font-weight:700;color:#1C1917;margin-bottom:4px">📋 Sağ Üst Çeyrek Restorasyon</div>
+          <div style="font-size:11px;color:#78716C;margin-bottom:16px">Zeynep Arslan · Normal Öncelik · Tahmini ₺3.200</div>
+          ${[['16','Kompozit Dolgu','Tamamlandı','#10B981'],['17','Kron Tedavisi','Devam Ediyor','#F59E0B'],['18','Çekim','Planlandı','#14B8A6']].map(([tooth,proc,st,col])=>`
+          <div style="display:flex;align-items:center;gap:10px;padding:10px;background:#F8F7F5;border-radius:8px;margin-bottom:8px">
+            <div style="width:28px;height:28px;background:${col}20;border:1.5px solid ${col};border-radius:6px;display:grid;place-items:center;font-size:10px;font-weight:700;color:${col}">${tooth}</div>
+            <div style="flex:1"><div style="font-size:12.5px;font-weight:600;color:#1C1917">${proc}</div></div>
+            <div style="font-size:10px;font-weight:600;padding:3px 8px;border-radius:99px;background:${col}15;color:${col}">${st}</div>
+          </div>`).join('')}
+          <div style="display:flex;align-items:center;gap:10px;background:#F0FDF9;border:1px solid #CCFBF1;border-radius:8px;padding:10px;margin-top:12px">
+            <div style="font-size:20px">🔗</div>
+            <div><div style="font-size:11.5px;font-weight:600;color:#0D9488">Hasta Portalı Linki Paylaşıldı</div><div style="font-size:10px;color:#78716C">Hasta dijital onay verdi ✓</div></div>
+            <div style="margin-left:auto;font-size:18px">✅</div>
+          </div>
+        </div>
+      </div>`;
+    }
+  },
+  {
+    title:"Fatura & Ödeme",
+    subtitle:"Anında fatura, nakit veya kart",
+    dur:4000,
+    render:function(c){
+      c.innerHTML=`
+      <div style="font-family:'Plus Jakarta Sans',sans-serif;height:100%;background:#F8F7F5;display:flex;align-items:center;justify-content:center;padding:20px">
+        <div style="background:white;border-radius:16px;padding:24px;width:480px;box-shadow:0 4px 20px rgba(0,0,0,.08)">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+            <div style="font-size:14px;font-weight:700;color:#1C1917">💰 Fatura #2024-0142</div>
+            <div style="font-size:11px;font-weight:600;padding:4px 10px;border-radius:99px;background:#D1FAE5;color:#065F46">Ödendi</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #F4F3F1">
+            <div style="font-size:12px;color:#78716C">Zeynep Arslan</div>
+            <div style="font-size:12px;color:#78716C">18 Mart 2026</div>
+          </div>
+          ${[['Kompozit Dolgu (16)','₺1.200'],['Kron Tedavisi (17)','₺2.000']].map(([n,p])=>`
+          <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #F4F3F1">
+            <div style="font-size:12.5px;color:#44403C">${n}</div>
+            <div style="font-size:12.5px;font-weight:600;color:#1C1917">${p}</div>
+          </div>`).join('')}
+          <div style="display:flex;justify-content:space-between;padding:12px 0;margin-top:4px">
+            <div style="font-size:14px;font-weight:700;color:#1C1917">Toplam</div>
+            <div style="font-size:20px;font-weight:700;color:#1C1917;font-family:Georgia,serif">₺3.200</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:4px">
+            ${[['💵','Nakit','#10B981'],['💳','Kredi','#14B8A6'],['🏦','Havale','#6366F1']].map(([ic,n,col])=>`<div style="padding:10px;border-radius:8px;background:${col}15;border:1.5px solid ${col}30;text-align:center"><div>${ic}</div><div style="font-size:10px;font-weight:600;color:${col};margin-top:3px">${n}</div></div>`).join('')}
+          </div>
+        </div>
+      </div>`;
+    }
+  }
+];
+
+var cur=0, timer=null, prog=0, progTimer=null;
+
+function render(idx){
+  var s=SCREENS[idx];
+  var canvas=document.getElementById('demo-canvas');
+  if(!canvas)return;
+  // Fade transition
+  canvas.style.opacity='0';
+  canvas.style.transition='opacity .4s ease';
+  setTimeout(function(){
+    s.render(canvas);
+    canvas.style.opacity='1';
+  },400);
+  // Update step indicators
+  var steps=document.getElementById('demo-steps');
+  if(steps){
+    steps.innerHTML=SCREENS.map(function(sc,i){
+      return '<div onclick="jumpTo('+i+')" style="display:flex;align-items:center;gap:6px;cursor:pointer;padding:6px 12px;border-radius:99px;background:'+(i===idx?'white':'transparent')+';box-shadow:'+(i===idx?'0 2px 8px rgba(0,0,0,.1)':'')+';transition:all .3s">'
+        +'<span style="font-size:11px;font-weight:'+(i===idx?'700':'400')+';color:'+(i===idx?'#1C1917':'#A8A29E')+'">'+(i===idx?'● ':'○ ')+sc.title+'</span>'
+        +'</div>';
+    }).join('');
+  }
+  // Progress bar animation
+  clearInterval(progTimer);
+  prog=0;
+  var bar=document.getElementById('demo-progress');
+  if(bar){bar.style.transition='none';bar.style.width='0%';}
+  var step=100/(s.dur/100);
+  progTimer=setInterval(function(){
+    prog+=step;
+    if(bar)bar.style.width=Math.min(prog,100)+'%';
+    if(prog>=100){clearInterval(progTimer);}
+  },100);
+}
+
+function jumpTo(idx){
+  clearTimeout(timer);clearInterval(progTimer);
+  cur=idx;render(cur);schedule();
+}
+
+function schedule(){
+  clearTimeout(timer);
+  timer=setTimeout(function(){
+    cur=(cur+1)%SCREENS.length;
+    render(cur);
+    schedule();
+  },SCREENS[cur].dur);
+}
+
+// Start when section in view
+var started=false;
+var obs=new IntersectionObserver(function(entries){
+  if(entries[0].isIntersecting&&!started){
+    started=true;render(0);schedule();
+  }
+},{threshold:0.3});
+var demoEl=document.getElementById('demo-canvas');
+if(demoEl)obs.observe(demoEl);
+
+window.jumpTo=jumpTo;
+})();
+</script>
+
 <section class="feats" id="feats">
   <div class="s-in">
     <div class="sh">
