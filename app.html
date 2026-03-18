@@ -716,7 +716,15 @@ input[type=file]{padding:7px 12px;cursor:pointer;font-size:12.5px}
   <div class="fr"><label>Adres</label><input id="pt-addr"></div>
   <div class="fr fc2"><div><label>Alerjiler (virgülle)</label><input id="pt-allergy" placeholder="Penisilin, lateks…"></div><div><label>Sistemik Hastalıklar</label><input id="pt-sysdi" placeholder="Diyabet, HT…"></div></div>
   <div class="fr fc3"><div><label>Sigorta Türü</label><select id="pt-ins-t"><option value="">Yok</option><option>SGK</option><option>Özel Sigorta</option><option>Bağkur</option></select></div><div><label>Kurum</label><input id="pt-ins"></div><div><label>Sigorta No</label><input id="pt-insno"></div></div>
-  <div style="display:flex;align-items:flex-start;gap:9px;background:var(--t50);border:1px solid var(--t100);border-radius:var(--r);padding:11px 13px"><input type="checkbox" id="pt-kvkk" style="width:auto;margin-top:3px;cursor:pointer;flex-shrink:0"><label for="pt-kvkk" class="sm c1" style="line-height:1.6;cursor:pointer;font-weight:400;text-transform:none;letter-spacing:0">KVKK Aydınlatma Metni kapsamında kişisel verilerimin işlenmesine onay veriyorum. <a href="#" onclick="event.preventDefault();openM('m-kvkk')" style="color:var(--t600);font-weight:600">Metni oku →</a></label></div>
+  <div id="kvkk-toggle-box" onclick="toggleKvkk()" style="display:flex;align-items:center;gap:12px;background:var(--s2);border:2px solid var(--b0);border-radius:var(--r2);padding:13px 15px;cursor:pointer;transition:all .15s;user-select:none">
+    <div id="kvkk-toggle-icon" style="width:22px;height:22px;border-radius:5px;border:2px solid var(--c4);background:white;flex-shrink:0;display:grid;place-items:center;font-size:13px;font-weight:700;transition:all .15s"></div>
+    <div style="flex:1">
+      <div style="font-size:13px;font-weight:600;color:var(--c0);line-height:1.4">KVKK onayı</div>
+      <div style="font-size:12px;color:var(--c2);font-weight:400;margin-top:2px">Aydınlatma metni kapsamında kişisel verilerin işlenmesine onay veriyorum.</div>
+    </div>
+    <button onclick="event.stopPropagation();openM('m-kvkk')" style="background:none;border:1px solid var(--t400);border-radius:5px;color:var(--t600);font-size:11px;font-weight:600;padding:4px 9px;cursor:pointer;white-space:nowrap;font-family:var(--B)">Metni oku</button>
+  </div>
+  <input type="checkbox" id="pt-kvkk" style="display:none">
 </div>
 <div class="mft"><button class="btn btn-s" onclick="closeM('m-pt')">İptal</button><button class="btn btn-p" onclick="savePt()">💾 Kaydet</button></div></div></div>
 
@@ -836,7 +844,7 @@ input[type=file]{padding:7px 12px;cursor:pointer;font-size:12.5px}
     <p style="margin-bottom:4px">Klinik kayıtlar, son işlem tarihinden itibaren yasal zorunluluk olan <strong>10 yıl</strong> süre ile saklanır.</p>
   </div>
 </div>
-<div class="mft"><button class="btn btn-s" onclick="closeM('m-kvkk')">Kapat</button><button class="btn btn-p" onclick="closeM('m-kvkk');document.getElementById('pt-kvkk').checked=true">✓ Okudum, Onaylıyorum</button></div></div></div>
+<div class="mft"><button class="btn btn-s" onclick="closeM('m-kvkk')">Kapat</button><button class="btn btn-p" onclick="closeM('m-kvkk');setKvkk(true)">✓ Okudum, Onaylıyorum</button></div></div></div>
 
 <!-- X-Ray Viewer -->
 <div class="xv" id="xv" onclick="closeXV(event)">
@@ -852,6 +860,10 @@ input[type=file]{padding:7px 12px;cursor:pointer;font-size:12.5px}
 </div>
 
 <div class="toast-stack" id="toast-stack"></div>
+<div id="conn-banner" style="display:none;position:fixed;top:0;left:0;right:0;z-index:9999;background:#EF4444;color:white;padding:9px 20px;font-size:13px;font-weight:600;align-items:center;justify-content:center;gap:12px;box-shadow:0 2px 8px rgba(0,0,0,.2)">
+  ⚠️ Sunucuya bağlanılamıyor — internet bağlantınızı kontrol edin
+  <button onclick="document.getElementById('conn-banner').style.display='none';location.reload()" style="background:rgba(255,255,255,.2);border:none;border-radius:4px;color:white;font-size:12px;padding:4px 10px;cursor:pointer;font-family:var(--B)">Yenile</button>
+</div>
 <script>
 // ════════════════════════════════════════════════════════════════
 // DİŞSEANSIM v9 — Complete Application Logic
@@ -875,13 +887,20 @@ function init(){
   loadMe();
 }
 function authH(){return{'Content-Type':'application/json','Authorization':'Bearer '+TOK,'X-Tenant-ID':TID}}
+var _connErr=false;
 async function api(m,p,b){
   try{
     var o={method:m||'GET',headers:authH()};if(b)o.body=JSON.stringify(b);
     var r=await fetch(B+p,o);
+    if(_connErr){_connErr=false;document.getElementById('conn-banner').style.display='none';}
     if(r.status===401){localStorage.clear();location.href='giris.html';return null;}
     return await r.json();
-  }catch(e){toast('Bağlantı hatası','e');return null;}
+  }catch(e){
+    // Only show banner for GET (background loads); show toast for mutations
+    if(m&&m!=='GET'){toast('Bağlantı hatası — lütfen tekrar deneyin','e');}
+    else if(!_connErr){_connErr=true;document.getElementById('conn-banner').style.display='flex';}
+    return null;
+  }
 }
 async function loadMe(){
   var d=await api('GET','/api/auth/me');if(!d)return;
@@ -949,7 +968,9 @@ function buildPSel(containerId,onSelect){
     <div class="psel-body" style="flex:1">
       <div class="pr" style="flex:1">
         <input id="psel-in-${containerId}" placeholder="🔍 Hasta seç veya ara…" autocomplete="off"
-          oninput="pselSearch('${containerId}',this.value)" style="font-size:13.5px">
+          oninput="pselSearch('${containerId}',this.value)"
+          onfocus="pselSearch('${containerId}',this.value)"
+          style="font-size:13.5px">
         <div class="pt-dd" id="psel-dd-${containerId}"></div>
       </div>
       <div id="psel-meta-${containerId}" style="font-size:12px;color:var(--c2);margin-top:4px;display:none"></div>
@@ -963,13 +984,14 @@ function buildPSel(containerId,onSelect){
 }
 async function pselSearch(cid,q){
   var drop=document.getElementById('psel-dd-'+cid);
-  if(!q||q.length<1){drop.classList.remove('show');return;}
-  var d=await api('GET','/api/patients?q='+encodeURIComponent(q)+'&limit=7');
+  var url=q&&q.length>=1?'/api/patients?q='+encodeURIComponent(q)+'&limit=10':'/api/patients?limit=20';
+  var d=await api('GET',url);
   if(!d?.patients?.length){drop.innerHTML='<div style="padding:10px 14px;font-size:12px;color:var(--c3)">Hasta bulunamadı</div>';drop.classList.add('show');return;}
   drop.innerHTML=d.patients.map(p=>{
     var av=(p.first_name[0]+p.last_name[0]).toUpperCase();
+    var age=p.birth_date?Math.floor((Date.now()-new Date(p.birth_date))/(365.25*864e5))+'y':'';
     return `<div class="pddi" onclick='pselPick("${cid}",${JSON.stringify(JSON.stringify(p))})'>
-      <div class="pddi-av">${av}</div><div><div class="pddi-nm">${p.first_name} ${p.last_name}</div><div class="pddi-sub">${p.phone||''}</div></div></div>`;
+      <div class="pddi-av">${av}</div><div><div class="pddi-nm">${p.first_name} ${p.last_name}</div><div class="pddi-sub">${[p.phone,age,p.insurance].filter(Boolean).join(' · ')||'—'}</div></div></div>`;
   }).join('');
   drop.classList.add('show');
 }
@@ -1108,7 +1130,7 @@ async function loadApts(){
       <td><strong>${st}</strong> – ${et}</td>
       <td><strong>${a.first_name} ${a.last_name}</strong><div class="xs c3">${a.phone||''}</div></td>
       <td>${a.doctor_name||'—'}</td><td>${a.type||'—'}</td>
-      <td>${a.reminder_sent?'<span class="bdg bg2">✓ Gönderildi</span>':`<button class="btn btn-g btn-xs" onclick="event.stopPropagation();sendRemind('${a.id}')">SMS Gönder</button>`}</td>
+      <td>${(a.reminder_sent||a.email_reminder_sent)?'<span class="bdg bg2">✓ Gönderildi</span>':`<button class="btn btn-g btn-xs" onclick="event.stopPropagation();sendRemind('${a.id}')">SMS Gönder</button>`}</td>
       <td><span class="bdg ${stBdg(a.status)}">${stLbl(a.status)}</span></td>
       <td><div class="fl g8">
         <button class="btn btn-g btn-xs" onclick="event.stopPropagation();chAptSt('${a.id}','completed')">✓</button>
@@ -1170,6 +1192,32 @@ function renderPtsTable(pts){
   }).join('');
 }
 async function searchPts(){var q=document.getElementById('pt-search').value;var d=await api('GET','/api/patients?q='+encodeURIComponent(q)+'&limit=50');if(d)renderPtsTable(d.patients||[]);}
+function toggleKvkk(){
+  var cb=document.getElementById('pt-kvkk');
+  cb.checked=!cb.checked;
+  var box=document.getElementById('kvkk-toggle-box');
+  var icon=document.getElementById('kvkk-toggle-icon');
+  if(cb.checked){
+    box.style.background='var(--t50)';box.style.borderColor='var(--t400)';
+    icon.style.background='var(--t500)';icon.style.borderColor='var(--t500)';icon.textContent='✓';icon.style.color='white';
+  } else {
+    box.style.background='var(--s2)';box.style.borderColor='var(--b0)';
+    icon.style.background='white';icon.style.borderColor='var(--c4)';icon.textContent='';
+  }
+}
+function setKvkk(val){
+  var cb=document.getElementById('pt-kvkk');
+  cb.checked=val;
+  var box=document.getElementById('kvkk-toggle-box');
+  var icon=document.getElementById('kvkk-toggle-icon');
+  if(val){
+    box.style.background='var(--t50)';box.style.borderColor='var(--t400)';
+    icon.style.background='var(--t500)';icon.style.borderColor='var(--t500)';icon.textContent='✓';icon.style.color='white';
+  } else {
+    box.style.background='var(--s2)';box.style.borderColor='var(--b0)';
+    icon.style.background='white';icon.style.borderColor='var(--c4)';icon.textContent='';
+  }
+}
 function openPtModal(pt){
   _editId=pt?.id||null;
   ['pt-fname','pt-lname','pt-tc','pt-phone','pt-email','pt-addr','pt-allergy','pt-sysdi','pt-ins','pt-insno'].forEach(id=>document.getElementById(id).value='');
@@ -1177,7 +1225,7 @@ function openPtModal(pt){
   document.getElementById('pt-gender').value='';
   document.getElementById('pt-blood').value='';
   document.getElementById('pt-ins-t').value='';
-  document.getElementById('pt-kvkk').checked=false;
+  setKvkk(false);
   if(pt){
     ['fname','lname','tc','phone','email','addr'].forEach(f=>document.getElementById('pt-'+f).value=pt[f==='fname'?'first_name':f==='lname'?'last_name':f]||'');
     document.getElementById('pt-allergy').value=(pt.allergies||[]).join(', ');
@@ -1187,7 +1235,7 @@ function openPtModal(pt){
     if(pt.birth_date)document.getElementById('pt-dob').value=pt.birth_date.slice?.(0,10)||'';
     if(pt.gender)document.getElementById('pt-gender').value=pt.gender;
     if(pt.blood_type)document.getElementById('pt-blood').value=pt.blood_type;
-    document.getElementById('pt-kvkk').checked=true;
+    setKvkk(true);
   }
   openM('m-pt');
 }
@@ -1197,7 +1245,7 @@ async function savePt(){
   if(!fname||!lname){toast('Ad ve soyad zorunlu','e');return;}
   var tc=document.getElementById('pt-tc').value.trim();
   if(tc&&(tc.length!==11||!/^\d{11}$/.test(tc))){toast('TC kimlik no 11 haneli sayı olmalı','e');return;}
-  if(!document.getElementById('pt-kvkk').checked){toast('KVKK onayı zorunlu — metni okumak için "Metni oku" bağlantısına tıklayın','e');return;}
+  if(!document.getElementById('pt-kvkk').checked){toast('KVKK onayı zorunlu — lütfen onay kutusuna tıklayın','e');return;}
   var btn=document.querySelector('#m-pt .btn-p');if(btn){btn.disabled=true;btn.textContent='⏳ Kaydediliyor...';}
   var body={first_name:fname,last_name:lname,tc:tc,phone:document.getElementById('pt-phone').value.trim(),email:document.getElementById('pt-email').value.trim(),address:document.getElementById('pt-addr').value.trim(),allergies:document.getElementById('pt-allergy').value.split(',').map(s=>s.trim()).filter(Boolean),systemic_diseases:document.getElementById('pt-sysdi').value.split(',').map(s=>s.trim()).filter(Boolean),insurance:document.getElementById('pt-ins').value,insurance_no:document.getElementById('pt-insno').value.trim(),birth_date:document.getElementById('pt-dob').value||null,gender:document.getElementById('pt-gender').value||null,blood_type:document.getElementById('pt-blood').value||null,gdpr_consented_at:new Date().toISOString()};
   var r=_editId?await api('PUT','/api/patients/'+_editId,body):await api('POST','/api/patients',body);
@@ -1288,7 +1336,8 @@ function buildOdoHTML(map,ptId){
   var icons={caries:'●',filled:'◆',crown:'♛',implant:'⬟',rct:'⊕',bridge:'⌇',veneer:'◑',extracted:'✕'};
   function tEl(n){
     var t=map[n]||{};
-    return `<div class="tooth ${t.status||'healthy'}" title="Diş ${n}${t.status?' — '+toothLbl(t.status):''}" onclick="selTooth(${n},'${ptId}',${JSON.stringify(JSON.stringify(t))})" data-tooth="${n}"><div class="t-ic">${icons[t.status]||''}</div><div class="t-no">${n}</div></div>`;
+    var td=JSON.stringify({status:t.status||'healthy',surfaces:t.surfaces||[],notes:t.notes||'',mobility:t.mobility||0}).replace(/'/g,"&#39;");
+    return `<div class="tooth ${t.status||'healthy'}" title="Diş ${n}${t.status?' — '+toothLbl(t.status):''}" onclick="selTooth(${n},'${ptId}',this)" data-tooth="${n}" data-rec='${td}'><div class="t-ic">${icons[t.status]||''}</div><div class="t-no">${n}</div></div>`;
   }
   return `<div class="odo-arch"><span>Sağ →</span><span>← Sol</span></div>
     <div class="odo-row">${upper.slice(0,8).map(tEl).join('')}<div style="width:10px;flex-shrink:0"></div>${upper.slice(8).map(tEl).join('')}</div>
@@ -1299,11 +1348,15 @@ function buildOdoLegend(){
   return `<div class="odo-legend">${[['Sağlıklı','var(--s3)'],['Çürük','#FCD34D'],['Dolgulu','var(--t400)'],['Kuron','var(--a400)'],['İmplant','var(--grn)'],['Kanal','var(--red)'],['Köprü','var(--blu)'],['Veneer','#A78BFA'],['Çekilmiş','var(--c4)']].map(([l,c])=>`<div class="odo-li"><div class="odo-dot" style="background:${c};border:1px solid ${c}"></div>${l}</div>`).join('')}</div>`;
 }
 function toothLbl(s){return{healthy:'Sağlıklı',caries:'Çürük',filled:'Dolgulu',crown:'Kuron',bridge:'Köprü',implant:'İmplant',rct:'Kanal Tedavisi',veneer:'Veneer',extracted:'Çekilmiş',missing:'Konjenital Eksik'}[s]||s;}
-function selTooth(no,ptId,dataStr){
+function selTooth(no,ptId,el){
   _selTooth=no;_curPtId=ptId;
-  var data={};try{data=JSON.parse(dataStr);}catch(e){}
+  var data={};
+  try{
+    var rec=(el instanceof Element?el:event.currentTarget).dataset.rec;
+    if(rec)data=JSON.parse(rec.replace(/&#39;/g,"'"));
+  }catch(e){console.warn('selTooth parse',e);}
   document.querySelectorAll('.tooth').forEach(t=>t.classList.remove('sel'));
-  event.currentTarget.classList.add('sel');
+  (el instanceof Element?el:event.currentTarget).classList.add('sel');
   var pnl=document.getElementById('pt-odo-dpnl')||document.getElementById('odo-dpnl');
   if(!pnl)return;
   pnl.style.display='block';
