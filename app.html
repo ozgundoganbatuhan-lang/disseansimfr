@@ -953,14 +953,33 @@ async function api(m,p,b,_retry){
     return null;
   }
 }
+var _loadMeRetries=0;
 async function loadMe(){
   try{
     var _r=await fetch(B+'/api/auth/me',{headers:authH()});
     if(_r.status===401){localStorage.clear();location.href='giris.html';return;}
-    if(!_r.ok){setTimeout(loadMe,5000);return;}
+    if(!_r.ok){
+      _loadMeRetries++;
+      if(_loadMeRetries<=8){setTimeout(loadMe,Math.min(3000*_loadMeRetries,15000));return;}
+      // After 8 tries (~2 mins), show error but don't redirect — server might be waking up
+      document.getElementById('conn-banner').style.display='flex';
+      _loadMeRetries=0; // reset for manual retry
+      return;
+    }
     var d=await _r.json();
-    if(!d||!d.user){setTimeout(loadMe,5000);return;}
-  }catch(e){setTimeout(loadMe,5000);return;}
+    if(!d||!d.user){
+      _loadMeRetries++;
+      if(_loadMeRetries<=5){setTimeout(loadMe,5000);return;}
+      localStorage.clear();location.href='giris.html';return;
+    }
+  }catch(e){
+    _loadMeRetries++;
+    if(_loadMeRetries<=8){setTimeout(loadMe,Math.min(3000*_loadMeRetries,15000));return;}
+    document.getElementById('conn-banner').style.display='flex';
+    _loadMeRetries=0;return;
+  }
+  _loadMeRetries=0;
+  document.getElementById('conn-banner').style.display='none';
   USER=d.user;MEM=d.user?.membership||{};TID=MEM?.tenantId||TID;
   var ini=(USER.name||'').split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
   document.getElementById('u-av').textContent=ini||'?';

@@ -138,6 +138,7 @@ async function doLogin(){
 }
 
 async function doReg(){
+  _registering=true; // Prevent IIFE from redirecting mid-registration
   var name=document.getElementById('rg-name').value.trim(),email=document.getElementById('rg-email').value.trim(),pass=document.getElementById('rg-pass').value;
   var clinic=document.getElementById('rg-clinic').value.trim(),title=document.getElementById('rg-title').value;
   if(!name||!email||!pass){showErr('Ad, e-posta ve şifre zorunlu');return;}
@@ -162,16 +163,23 @@ document.addEventListener('keydown',e=>{if(e.key==='Enter'){var active=document.
 var p=new URLSearchParams(location.search);
 if(p.get('action')==='register')sw('reg');
 // Already logged in
+// Auto-redirect only if token exists AND user is NOT actively registering
+var _registering=false;
 (async function(){
   var tok=localStorage.getItem('ds_tok'),tid=localStorage.getItem('ds_tid');
   if(!tok||!tid)return;
+  // Don't redirect if user came here to register
+  if(new URLSearchParams(location.search).get('action')==='register')return;
   try{
     var r=await fetch('https://disseansimback-production.up.railway.app/api/auth/me',{
-      headers:{'Authorization':'Bearer '+tok,'X-Tenant-ID':tid},
-      signal:AbortSignal.timeout?AbortSignal.timeout(6000):undefined
+      headers:{'Authorization':'Bearer '+tok,'X-Tenant-ID':tid}
     });
-    if(r.ok){location.href='app.html';return;}
-    if(r.status===401){localStorage.removeItem('ds_tok');localStorage.removeItem('ds_tid');localStorage.removeItem('ds_ref');}
+    if(r.ok&&!_registering){location.href='app.html';return;}
+    if(r.status===401){
+      localStorage.removeItem('ds_tok');
+      localStorage.removeItem('ds_tid');
+      localStorage.removeItem('ds_ref');
+    }
   }catch(e){}
 })();
 </script>
