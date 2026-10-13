@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+<script defer src="https://guzellik.seansim.com/t.js" data-site="dis"></script>
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -110,14 +111,14 @@ input:focus,select:focus{border-color:var(--tl);box-shadow:0 0 0 3px rgba(20,184
       <div class="fr"><label>Şifre * (min 8 karakter)</label><input type="password" id="rg-pass" placeholder="Güçlü bir şifre seçin" autocomplete="new-password"></div>
       <div class="ck-row">
         <input type="checkbox" id="rg-terms">
-        <label for="rg-terms"><a href="#">Kullanım Koşulları</a>'nı ve <a href="#">Gizlilik Politikası</a>'nı okudum, kabul ediyorum.</label>
+        <label for="rg-terms"><a href="yasal.html#kosullar" target="_blank">Kullanım Koşulları</a>'nı ve <a href="yasal.html#kvkk" target="_blank">KVKK Aydınlatma Metni</a>'ni okudum, kabul ediyorum.</label>
       </div>
       <button class="btn-sub" onclick="doReg()">Ücretsiz Başla →</button>
     </div>
   </div>
   <div class="trust">
     <div class="ti">KVKK Uyumlu</div>
-    <div class="ti">256-bit SSL</div>
+    <div class="ti">HTTPS/TLS</div>
     <div class="ti">TR Sunucu</div>
   </div>
   <div class="back"><a href="index.html">← DişSeansım'a dön</a></div>
@@ -168,6 +169,7 @@ async function doReg(){
     localStorage.setItem('ds_tok',d.accessToken||d.token);
     localStorage.setItem('ds_tid',d.user?.membership?.tenantId||d.tenantId||'');
     if(d.refreshToken)localStorage.setItem('ds_ref',d.refreshToken);
+    if(window.seansim)window.seansim('signup');
     showOk('Hoş geldiniz! Yönlendiriliyorsunuz…');
     setTimeout(()=>location.href='app.html',1200);
   }catch(e){showErr('Bağlantı hatası. Lütfen tekrar deneyin.');setLoad(false);}

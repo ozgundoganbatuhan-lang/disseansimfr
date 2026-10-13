@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+<script defer src="https://guzellik.seansim.com/t.js" data-site="dis"></script>
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -20,6 +21,13 @@
 <meta charset="UTF-8">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦷</text></svg>">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="canonical" href="https://dis.seansim.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dis.seansim.com/">
+<meta property="og:title" content="DişSeansım — Diş Kliniği Yönetim Yazılımı">
+<meta property="og:description" content="Randevu, odontogram, röntgen, SMS hatırlatma ve AI not asistanı tek panelde. 14 gün ücretsiz.">
+<meta property="og:locale" content="tr_TR">
+<link rel="manifest" href="/manifest.json">
 <title>DişSeansım — Türkiye'nin Modern Diş Kliniği Yazılımı</title>
 <meta name="description" content="AI destekli not, SMS hatırlatma, odontogram, hasta portalı ve çoklu şube. Solo hekimden polikliniğe tam çözüm. 14 gün ücretsiz.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -205,7 +213,7 @@ footer{background:#111827;color:rgba(255,255,255,.65);padding:56px 6vw 28px}
   <div class="nl">
     <a href="#feats">Özellikler</a>
     <a href="#how">Nasıl Çalışır</a>
-    <a href="blog.html">Blog</a><a href="fiyat.html">Fiyatlar</a>
+    <a href="blog.html">Blog</a><a href="fiyat.html">Fiyatlar</a><a href="#" role="button" data-sx-install>📱 Telefona yükle</a>
   </div>
   <div class="nc">
     <a href="giris.html" class="btn-ng">Giriş Yap</a>
@@ -217,12 +225,12 @@ footer{background:#111827;color:rgba(255,255,255,.65);padding:56px 6vw 28px}
 <section class="hero">
   <div class="hero-in">
     <div>
-      <div class="h-badge">🇹🇷 Türkiye'nin #1 Diş Kliniği Yazılımı</div>
+      <div class="h-badge">🇹🇷 Diş klinikleri için yerli yazılım</div>
       <h1>Kliniğinizi<br><em>dijitalleştirin.</em><br>Hastalara odaklanın.</h1>
       <p class="h-desc">AI destekli seans notları, otomatik SMS hatırlatmaları, dijital hasta dosyası, odontogram ve çok daha fazlası. Solo hekimden polikliniğe tam çözüm.</p>
       <div class="h-ctas">
         <a href="giris.html?action=register" class="btn-h1">Ücretsiz Başla — 14 gün</a>
-        <a href="#feats" class="btn-h2">Özelliklere Bak</a>
+        <a href="#" role="button" class="btn-h2" data-sx-install>📱 Telefona yükle</a>
       </div>
       <div class="h-trust">
         <div class="h-trust-i">Kredi kartı gerekmez</div>
@@ -274,15 +282,13 @@ footer{background:#111827;color:rgba(255,255,255,.65);padding:56px 6vw 28px}
 
 <!-- LOGOS -->
 <div class="logos">
-  <span>NetGSM Entegre</span>
+  <span>FDI Odontogram</span>
   <span>·</span>
-  <span>İyzico Ödeme</span>
-  <span>·</span>
-  <span>PostgreSQL</span>
+  <span>NetGSM SMS altyapısı</span>
   <span>·</span>
   <span>Anthropic Claude AI</span>
   <span>·</span>
-  <span>Railway & Vercel</span>
+  <span>KVKK aydınlatma ve onay</span>
 </div>
 
 <!-- FEATURES -->
@@ -291,13 +297,13 @@ footer{background:#111827;color:rgba(255,255,255,.65);padding:56px 6vw 28px}
     <div class="sh">
       <div class="sbadge sb-teal">✦ Özellikler</div>
       <h2>Kliniğinizin ihtiyaç duyduğu <em>her şey</em></h2>
-      <p class="s-desc">Günde ortalama 2 saat kağıt işi tasarrufu. Daha az bürokrasi, daha çok hasta.</p>
+      <p class="s-desc">Randevudan faturaya kliniğin bütün işi tek panelde. Daha az kâğıt, daha çok hasta.</p>
     </div>
     <div class="fg">
       <div class="fc" style="--fc:#0D9488">
         <div class="fc-ic" style="background:#F0FDF9">✨</div>
         <div class="fc-t">AI Not Asistanı</div>
-        <p class="fc-d">Anahtar kelimeler girin, yapay zeka klinik SOAP notunuzu otomatik oluştursun. Seans başına 5 dakika tasarruf.</p>
+        <p class="fc-d">Anahtar kelimeler girin, yapay zekâ klinik SOAP notunuzu taslak olarak hazırlasın; son kontrol sizde.</p>
         <span class="fc-tag" style="background:#F0FDF9;color:#0D9488">Klinik Plan</span>
       </div>
       <div class="fc" style="--fc:#7C3AED">
@@ -309,7 +315,7 @@ footer{background:#111827;color:rgba(255,255,255,.65);padding:56px 6vw 28px}
       <div class="fc" style="--fc:#D97706">
         <div class="fc-ic" style="background:#FFFBEB">💬</div>
         <div class="fc-t">SMS & E-Posta</div>
-        <p class="fc-d">No-show oranını %40'a kadar düşürün. Randevudan 24 saat önce otomatik hatırlatma. NetGSM ile entegre.</p>
+        <p class="fc-d">Gelmeyen hasta sayısını azaltın. Randevudan önce hastaya otomatik SMS ve e-posta hatırlatması gider.</p>
         <span class="fc-tag" style="background:#FFFBEB;color:#D97706">NetGSM</span>
       </div>
       <div class="fc" style="--fc:#EF4444">
@@ -343,8 +349,8 @@ footer{background:#111827;color:rgba(255,255,255,.65);padding:56px 6vw 28px}
       <p class="s-desc">Kurulum yok, IT ekibi yok. Tarayıcınızı açın ve başlayın.</p>
     </div>
     <div class="how-s">
-      <div class="how-step"><div class="how-n">1</div><div class="how-t">Kayıt Ol</div><p class="how-d">E-posta ile 60 saniyede kayıt olun. Klinik bilgilerinizi girin.</p></div>
-      <div class="how-step"><div class="how-n">2</div><div class="how-t">Hastaları Ekle</div><p class="how-d">Tek tek kaydedin veya içe aktarın. KVKK onayı otomatik.</p></div>
+      <div class="how-step"><div class="how-n">1</div><div class="how-t">Kayıt Ol</div><p class="how-d">E-posta ile dakikalar içinde kayıt olun. Klinik bilgilerinizi girin.</p></div>
+      <div class="how-step"><div class="how-n">2</div><div class="how-t">Hastaları Ekle</div><p class="how-d">Hastalarınızı kaydedin, KVKK onayını sistem üzerinden alın.</p></div>
       <div class="how-step"><div class="how-n">3</div><div class="how-t">Randevu Oluştur</div><p class="how-d">Takvime randevu ekleyin. Sistem otomatik hatırlatma gönderir.</p></div>
       <div class="how-step"><div class="how-n">4</div><div class="how-t">AI ile Not Yaz</div><p class="how-d">Anahtar kelimeler girin, AI SOAP notunuzu tamamlasın.</p></div>
     </div>
@@ -363,7 +369,7 @@ footer{background:#111827;color:rgba(255,255,255,.65);padding:56px 6vw 28px}
       <div class="pc">
         <div class="p-nm">Solo Hekim</div>
         <div class="p-am">₺890</div>
-        <div class="p-per">/ay · veya ₺5.900/yıl (2 ay bedava)</div>
+        <div class="p-per">/ay · veya ₺8.900/yıl (2 ay bedava)</div>
         <div class="p-desc">Tek hekim klinikler için tüm temel özellikler.</div>
         <div class="p-feats">
           <div class="p-f">2.000 hasta kaydı</div>
@@ -379,7 +385,7 @@ footer{background:#111827;color:rgba(255,255,255,.65);padding:56px 6vw 28px}
         <div class="pop-lbl">En Popüler</div>
         <div class="p-nm">Klinik</div>
         <div class="p-am">₺1.690</div>
-        <div class="p-per">/ay · veya ₺11.900/yıl (2 ay bedava)</div>
+        <div class="p-per">/ay · veya ₺16.900/yıl (2 ay bedava)</div>
         <div class="p-desc">Büyüyen klinikler için AI destekli tam paket.</div>
         <div class="p-feats">
           <div class="p-f">Sınırsız hasta kaydı</div>
@@ -401,36 +407,9 @@ footer{background:#111827;color:rgba(255,255,255,.65);padding:56px 6vw 28px}
           <div class="p-f">White-label seçeneği</div>
           <div class="p-f">API erişimi</div>
           <div class="p-f">Dedicated müşteri temsilcisi</div>
-          <div class="p-f">%99.9 SLA garantisi</div>
+          <div class="p-f">Kurulum ve ekip eğitimi</div>
         </div>
-        <a href="mailto:hello@dis.seansim.com"><button class="p-btn p-bs">Teklif Al →</button></a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="tests">
-  <div class="s-in">
-    <div class="sh">
-      <div class="sbadge sb-amber">⭐ Yorumlar</div>
-      <h2>Hekimler <em>ne diyor?</em></h2>
-    </div>
-    <div class="tg">
-      <div class="tc2">
-        <div class="tc2-s">★★★★★</div>
-        <p class="tc2-t">"AI not asistanı gerçekten hayat kurtarıyor. Seans notlarımı artık 2 dakikada tamamlıyorum. Günde 1.5 saat tasarruf ediyorum."</p>
-        <div class="tc2-a"><div class="tc2-av">AK</div><div><div class="tc2-nm">Dr. Ayşe Kaya</div><div class="tc2-rl">Genel Diş Hekimi, İstanbul</div></div></div>
-      </div>
-      <div class="tc2">
-        <div class="tc2-s">★★★★★</div>
-        <p class="tc2-t">"SMS hatırlatmaları sayesinde no-show oranım %35'ten %8'e düştü. Aylık 40–50 boş randevu doldu. ROI inanılmaz."</p>
-        <div class="tc2-a"><div class="tc2-av" style="background:linear-gradient(135deg,var(--am2),var(--am))">MÖ</div><div><div class="tc2-nm">Dr. Murat Öztürk</div><div class="tc2-rl">Ortodonti Uzmanı, Ankara</div></div></div>
-      </div>
-      <div class="tc2">
-        <div class="tc2-s">★★★★★</div>
-        <p class="tc2-t">"3 şubeli kliniğimizi tek panel üzerinden yönetiyoruz. Hasta portalı özelliği hastaların çok işine yarıyor."</p>
-        <div class="tc2-a"><div class="tc2-av" style="background:linear-gradient(135deg,#7C3AED,#A78BFA)">FY</div><div><div class="tc2-nm">Dr. Fatma Yıldız</div><div class="tc2-rl">Klinik Sahibi, İzmir</div></div></div>
+        <a href="mailto:info@seansim.com?subject=Di%C5%9FSeans%C4%B1m%20Poliklinik%20teklifi"><button class="p-btn p-bs">Teklif Al →</button></a>
       </div>
     </div>
   </div>
@@ -442,7 +421,7 @@ footer{background:#111827;color:rgba(255,255,255,.65);padding:56px 6vw 28px}
     <h2>Kliniğinizi bugün <em>dijitalleştirin</em></h2>
     <p class="s-desc">14 gün ücretsiz. Kredi kartı gerekmez. İptal 1 tık.</p>
     <a href="giris.html?action=register"><button class="btn-cta">Ücretsiz Başla → <strong>14 gün</strong></button></a>
-    <div class="cta-tr">4.9/5 puan · 500+ aktif klinik · KVKK uyumlu · Türkiye sunucuları</div>
+    <div class="cta-tr">Kredi kartı gerekmez · Kurulum yok · İstediğiniz zaman iptal</div>
   </div>
 </section>
 
@@ -459,24 +438,68 @@ footer{background:#111827;color:rgba(255,255,255,.65);padding:56px 6vw 28px}
     </div>
     <div class="fcol">
       <div class="fcol-t">Destek</div>
-      <a href="mailto:destek@dis.seansim.com">Destek</a><a href="#">Dokümantasyon</a><a href="#">KVKK</a>
+      <a href="mailto:info@seansim.com">Destek</a><a href="blog.html">Rehberler</a><a href="yasal.html#kvkk">KVKK</a>
     </div>
     <div class="fcol">
       <div class="fcol-t">Şirket</div>
-      <a href="#">Hakkımızda</a><a href="mailto:hello@dis.seansim.com">İletişim</a>
+      <a href="yasal.html">Yasal metinler</a><a href="mailto:info@seansim.com">İletişim · info@seansim.com</a>
     </div>
   </div>
   <div class="fb">
-    <span>© 2025 DişSeansım. Tüm hakları saklıdır.</span>
+    <span>© 2026 DişSeansım. Tüm hakları saklıdır.</span>
     <span>Türkiye'den 🇹🇷 ile yapıldı</span>
   </div>
 </footer>
 
 <script>
 window.addEventListener('scroll',()=>document.getElementById('mnav').classList.toggle('sc',scrollY>20));
-document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{var t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}}));
+document.querySelectorAll('a[href^="#"]:not([data-sx-install])').forEach(a=>a.addEventListener('click',e=>{var t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}}));
 var obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}},{threshold:.1}));
-document.querySelectorAll('.fc,.pc,.tc2,.how-step').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(20px)';el.style.transition='opacity .5s ease, transform .5s ease';obs.observe(el);});
+document.querySelectorAll('.fc,.pc,.how-step').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(20px)';el.style.transition='opacity .5s ease, transform .5s ease';obs.observe(el);});
+</script>
+
+<!-- Telefona yükle: henüz mobil uygulama yok; tıklayanı Merkez'e bildirir, ziyaretçiye bilgi verir -->
+<style>
+.sx-m{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;padding:16px}
+.sx-m[hidden]{display:none}
+.sx-mb{position:absolute;inset:0;background:rgba(8,14,12,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);animation:sxF .2s ease-out}
+.sx-mc{position:relative;width:100%;max-width:400px;background:#fff;color:#14201a;border-radius:20px;padding:28px 24px 20px;box-shadow:0 30px 80px rgba(0,0,0,.25);text-align:center;font-family:"Plus Jakarta Sans",-apple-system,sans-serif;animation:sxU .26s cubic-bezier(.2,.8,.2,1)}
+.sx-mi{width:56px;height:56px;margin:0 auto 14px;border-radius:16px;display:grid;place-items:center;font-size:26px;background:#0D94881f}
+.sx-mc h3{font-size:20px;font-weight:700;letter-spacing:-.01em;margin:0 0 8px;line-height:1.3}
+.sx-mc p{font-size:15px;line-height:1.6;color:#4b5a52;margin:0 0 20px}
+.sx-mp,.sx-ms,.sx-mx{display:block;width:100%;border-radius:12px;padding:13px 16px;font:600 15px/1.2 "Plus Jakarta Sans",-apple-system,sans-serif;text-decoration:none;cursor:pointer;border:0;margin-top:8px}
+.sx-mp{background:#0D9488;color:#ffffff}
+.sx-ms{background:#f1f4f2;color:#14201a}
+.sx-mx{background:none;color:#6b7a72;font-weight:500}
+.sx-mp:focus-visible,.sx-ms:focus-visible,.sx-mx:focus-visible{outline:2px solid #0D9488;outline-offset:2px}
+@keyframes sxF{from{opacity:0}}@keyframes sxU{from{opacity:0;transform:translateY(12px) scale(.98)}}
+@media (prefers-reduced-motion:reduce){.sx-mb,.sx-mc{animation:none}}
+</style>
+<div id="sx-modal" class="sx-m" hidden role="dialog" aria-modal="true" aria-labelledby="sx-mt">
+  <div class="sx-mb" data-sx-close></div>
+  <div class="sx-mc">
+    <div class="sx-mi" aria-hidden="true">📱</div>
+    <h3 id="sx-mt">Uygulama güncellenmekte</h3>
+    <p>DişSeansım mobil uygulaması şu anda güncelleniyor. Telefonunuza kurmak için lütfen ekibimizle iletişime geçin.</p>
+    <a class="sx-mp" href="mailto:info@seansim.com?subject=DişSeansım%20mobil%20uygulama">Ekibimize yazın · info@seansim.com</a>
+    <a class="sx-ms" href="giris.html?action=register">Bu sırada tarayıcıdan ücretsiz başlayın</a>
+    <button type="button" class="sx-mx" data-sx-close>Kapat</button>
+  </div>
+</div>
+<script>
+(function(){
+  var m=document.getElementById('sx-modal'),last=null;
+  function open(){
+    last=document.activeElement;m.hidden=false;m.querySelector('.sx-mp').focus();
+    try{if(!sessionStorage.getItem('sx_it')){sessionStorage.setItem('sx_it','1');window.seansim&&window.seansim('Telefona yükle tıklandı');}}catch(e){window.seansim&&window.seansim('Telefona yükle tıklandı');}
+  }
+  function close(){m.hidden=true;if(last&&last.focus)last.focus();}
+  document.addEventListener('click',function(e){
+    if(e.target.closest('[data-sx-install]')){e.preventDefault();open();}
+    else if(e.target.closest('[data-sx-close]'))close();
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden)close();});
+})();
 </script>
 </body>
 </html>
