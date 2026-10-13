@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+<script defer src="https://guzellik.seansim.com/t.js" data-site="dis"></script>
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -397,7 +398,7 @@ input[type=file]{padding:7px 12px;cursor:pointer;font-size:12.5px}
     <div class="ni" data-v="referral" onclick="nav('referral')"><span class="ico">🎁</span><span>Referans</span></div>
     <div class="ni" data-v="settings" onclick="nav('settings')"><span class="ico">⚙️</span><span>Ayarlar</span></div>
   </nav>
-  <div id="trial-sb" style="display:none" class="sb-trial" onclick="location.href='fiyat.html'">
+  <div id="trial-sb" style="display:none" class="sb-trial" onclick="requestPlan()">
     <div class="tr-title">⭐ Ücretsiz Deneme</div>
     <div class="tr-days"><span id="trial-days">14</span> gün kaldı</div>
     <div class="tr-bar-bg"><div class="tr-bar" id="trial-bar" style="width:100%"></div></div>
@@ -499,7 +500,7 @@ input[type=file]{padding:7px 12px;cursor:pointer;font-size:12.5px}
       <button class="btn btn-p" onclick="openPtModal(null)">+ Yeni Hasta</button>
     </div>
   </div>
-  <div id="pt-limit-warn" class="upg-box mb16" style="display:none"><h3>Hasta Limitine Yaklaştınız</h3><p>Sınırsız hasta için planınızı yükseltin.</p><button class="btn btn-a" onclick="location.href='fiyat.html'">Plan Yükselt ⭐</button></div>
+  <div id="pt-limit-warn" class="upg-box mb16" style="display:none"><h3>Hasta Limitine Yaklaştınız</h3><p>Sınırsız hasta için planınızı yükseltin.</p><button class="btn btn-a" onclick="requestPlan()">Plan Yükselt ⭐</button></div>
   <div class="tbl"><table><thead><tr><th>Hasta</th><th>Telefon</th><th>Yaş / Doğum</th><th>Sigorta</th><th>Son Ziyaret</th><th>İşlem</th></tr></thead><tbody id="pt-tb"><tr><td colspan="6" class="te">Yükleniyor…</td></tr></tbody></table></div>
 </div>
 
@@ -644,7 +645,7 @@ input[type=file]{padding:7px 12px;cursor:pointer;font-size:12.5px}
 <!-- ╔══ REPORTS ══╗ -->
 <div class="view" id="view-reports">
   <div class="sh"><div class="st">Raporlar &amp; Analiz</div><div class="fl g8"><input type="date" id="rep-from" style="width:132px"><input type="date" id="rep-to" style="width:132px"><button class="btn btn-p btn-sm" onclick="loadReports()">Filtrele</button></div></div>
-  <div id="rep-upg" class="upg-box" style="display:none"><h3>Gelişmiş Raporlar</h3><p>Klinik planında mevcuttur.</p><button class="btn btn-a" onclick="location.href='fiyat.html'">Klinik Plana Geç ⭐</button></div>
+  <div id="rep-upg" class="upg-box" style="display:none"><h3>Gelişmiş Raporlar</h3><p>Klinik planında mevcuttur.</p><button class="btn btn-a" onclick="requestPlan()">Klinik Plana Geç ⭐</button></div>
   <div id="rep-data" style="display:none">
     <div class="g4 mb16" id="rep-kpis"></div>
     <div class="g2 mb16"><div class="card"><div class="st mb12" style="font-size:16px">Günlük Gelir</div><div id="rev-chart" style="display:flex;align-items:flex-end;gap:2px;height:160px"></div></div><div class="card"><div class="st mb12" style="font-size:16px">Ödeme Yöntemi</div><div id="pay-methods"></div></div></div>
@@ -851,12 +852,12 @@ input[type=file]{padding:7px 12px;cursor:pointer;font-size:12.5px}
 <div class="mb" style="text-align:center;padding-top:12px">
   <div style="font-size:52px;margin-bottom:12px">🚀</div>
   <div class="fd fi" style="font-size:22px;color:var(--c0);margin-bottom:8px" id="upg-t">Klinik Plana Yükselt</div>
-  <div class="sm c2 mb16">Bu özelliği kullanmak için planınızı yükseltin.</div>
+  <div class="sm c2 mb16">Bu özelliği kullanmak için planınızı yükseltin. Aktivasyonu ekibimiz aynı gün yapar.</div>
   <div style="background:var(--s2);border-radius:var(--r2);padding:16px;margin-bottom:16px;text-align:left"><div class="xs c2 mb8" style="text-transform:uppercase;letter-spacing:.06em">Klinik Planında:</div><div style="font-size:13px;color:var(--c1);line-height:2">✓ AI Not Asistanı &amp; İlaç Önerisi<br>✓ Sınırsız SMS + E-posta<br>✓ Hasta Portalı (dijital plan onayı)<br>✓ 8 kullanıcı · 3 şube<br>✓ Gelişmiş Raporlar</div></div>
   <div class="fd" style="font-size:32px;color:var(--a700);margin-bottom:4px">₺1.690<span style="font-size:13px;color:var(--c3)">/ay + KDV</span></div>
   <div class="xs c3">veya ₺16.900/yıl + KDV — 2 ay ücretsiz</div>
 </div>
-<div class="mft" style="justify-content:center"><button class="btn btn-s" onclick="closeM('m-upg')">Şimdi Değil</button><button class="btn btn-a" onclick="location.href='fiyat.html'">Hemen Yükselt ⭐</button></div></div></div>
+<div class="mft" style="justify-content:center"><button class="btn btn-s" onclick="closeM('m-upg')">Şimdi Değil</button><button class="btn btn-a" onclick="requestPlan()">Plan talep et ⭐</button></div></div></div>
 
 <!-- Portal -->
 <div class="mbg" id="m-portal"><div class="mbox"><div class="mhd"><div class="mt">🔗 Hasta Portalı</div><button class="mx" onclick="closeM('m-portal')">✕</button></div>
@@ -954,6 +955,11 @@ async function api(m,p,b,_retry){
     var r=await fetch(B+p,o);
     _showConnBanner(false);
     if(r.status===401){localStorage.clear();location.href='giris.html';return null;}
+    if(r.status===402){
+      var j=await r.json().catch(function(){return {};});
+      if(j.upgrade){showUpgrade(/doldu|suresi/i.test(j.error||'')?'Deneme süreniz doldu':null);return null;}
+      return j;
+    }
     if(r.status===429){
       if(!_retry){
         var wait=Math.min(parseInt(r.headers.get('Retry-After')||'8')*1000,12000);
@@ -1006,6 +1012,16 @@ async function loadMe(){
 }
 function roleLabel(r){return{owner:'Klinik Sahibi',admin:'Yönetici',dentist:'Diş Hekimi',assistant:'Asistan',receptionist:'Resepsiyon',accountant:'Muhasebe'}[r]||r||'—';}
 function logout(){localStorage.clear();location.href='giris.html';}
+function ymd(d){d=d||new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function trialLeft(){if(!MEM||!MEM.trialEndsAt)return 99;return Math.ceil((new Date(MEM.trialEndsAt)-new Date())/864e5);}
+// Online ödeme ekranı gelene kadar plan talebi e-posta + Merkez bildirimi ile alınır.
+function requestPlan(){
+  try{window.seansim&&window.seansim('lead');}catch(e){}
+  var who=(USER&&USER.name)||'',mail=(USER&&USER.email)||'';
+  var body='Merhaba,\n\nDişSeansım Klinik planını aktifleştirmek istiyorum.\n\nAd: '+who+'\nHesap e-postası: '+mail+'\n';
+  location.href='mailto:info@seansim.com?subject='+encodeURIComponent('DişSeansım plan aktivasyonu')+'&body='+encodeURIComponent(body);
+  toast('E-posta taslağı açıldı. Ekibimiz aynı gün size dönecek.');
+}
 function checkTrial(){
   if(!MEM||MEM.plan!=='trial')return;
   var d=Math.max(0,Math.ceil((new Date(MEM.trialEndsAt)-new Date())/864e5));
@@ -1114,6 +1130,9 @@ function pselClear(cid){
 // ── DASHBOARD ─────────────────────────────────────────────────
 async function loadDash(){
   var d=await api('GET','/api/dashboard');if(!d)return;
+  // Kurulum adımlarını gerçek veriden işaretle (başka cihazda yapılanlar da sayılsın)
+  if((d.totalPatients||0)>0)markOB('patient');
+  if((d.todayApts||0)>0||(d.tomorrowApts||0)>0||(d.weekSchedule&&d.weekSchedule.length))markOB('appointment');
   // KPIs
   document.getElementById('k-today').textContent=d.todayApts||0;
   document.getElementById('k-today-s').textContent=(d.completedToday||0)+' tamamlandı, '+(d.remainingToday||0)+' bekliyor';
@@ -1203,7 +1222,7 @@ function markOB(id){
 // ── APPOINTMENTS ──────────────────────────────────────────────
 async function loadApts(){
   var el=document.getElementById('apt-date-f');
-  if(!el.value)el.value=new Date().toISOString().slice(0,10);
+  if(!el.value)el.value=ymd();
   var d=await api('GET','/api/appointments?date='+el.value);if(!d)return;
   var apts=Array.isArray(d)?d:[];
   var ks={scheduled:0,completed:0,arrived:0,'no-show':0};
@@ -1233,7 +1252,7 @@ function shiftDate(o){
   var el=document.getElementById('apt-date-f');
   var d=el.value?new Date(el.value):new Date();
   if(o===0)d=new Date();else d.setDate(d.getDate()+o);
-  el.value=d.toISOString().slice(0,10);loadApts();
+  el.value=ymd(d);loadApts();
 }
 function openAptModal(pt){
   _editId=null;_aptPtId=pt?.id||_gPtId||null;
@@ -1481,7 +1500,7 @@ async function loadXrays(){
 }
 function openXrayModal(){
   _xrPtId=null;
-  document.getElementById('xr-date').value=new Date().toISOString().slice(0,10);
+  document.getElementById('xr-date').value=ymd();
   ['xr-pt-in','xr-teeth','xr-notes'].forEach(id=>document.getElementById(id).value='');
   var fi=document.getElementById('xr-file');if(fi)fi.value='';
   document.getElementById('xr-prev').style.display='none';
@@ -1537,7 +1556,7 @@ async function saveXray(){
     });
   }
   if(saveBtn){saveBtn.disabled=true;saveBtn.textContent='⏳ Kaydediliyor...';}
-  var body={patient_id:_xrPtId,xray_type:document.getElementById('xr-type').value,taken_at:document.getElementById('xr-date').value||new Date().toISOString().slice(0,10),tooth_numbers:document.getElementById('xr-teeth').value.trim()||null,notes:document.getElementById('xr-notes').value.trim()||null,image_data:imgData};
+  var body={patient_id:_xrPtId,xray_type:document.getElementById('xr-type').value,taken_at:document.getElementById('xr-date').value||ymd(),tooth_numbers:document.getElementById('xr-teeth').value.trim()||null,notes:document.getElementById('xr-notes').value.trim()||null,image_data:imgData};
   var resp=null;
   try{var res2=await fetch(B+'/api/xrays',{method:'POST',headers:authH(),body:JSON.stringify(body)});resp=await res2.json();}
   catch(e){if(saveBtn){saveBtn.disabled=false;saveBtn.textContent='💾 Kaydet';}toast('Ağ hatası — tekrar deneyin','e');return;}
@@ -1577,7 +1596,7 @@ async function loadNotes(){
 }
 function openNoteModal(pt){
   _editId=null;_notePtId=pt?.id||_gPtId||null;
-  document.getElementById('n-date').value=new Date().toISOString().slice(0,10);
+  document.getElementById('n-date').value=ymd();
   ['n-pt-in','n-proc','n-teeth','n-anest','n-mat','n-find','n-next'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('ai-res').style.display='none';document.getElementById('ai-res').textContent='';
   var p=pt||_gPt;if(p){document.getElementById('n-pt-in').value=p.first_name+' '+p.last_name;_notePtId=p.id;}
@@ -1594,7 +1613,7 @@ async function saveNote(){
 }
 async function delNote(id){if(!confirm('Sil?'))return;await api('DELETE','/api/notes/'+id);toast('Silindi');loadNotes();}
 async function runAINote(){
-  if(MEM?.plan==='trial'){showUpgrade('AI Not Asistanı');return;}
+  if(MEM?.plan==='trial'&&trialLeft()<=0){showUpgrade('AI Not Asistanı');return;}
   var kw=document.getElementById('ai-kw').value.trim();if(!kw){toast('Anahtar kelime girin','e');return;}
   document.getElementById('ai-sp').style.display='block';document.getElementById('ai-res').style.display='none';
   var r=await api('POST','/api/ai/note-assist',{keywords:kw,procedure:document.getElementById('n-proc').value});
@@ -1620,7 +1639,7 @@ async function loadRxList(){
 }
 function openRxModal(pt){
   _editId=null;_rxPtId=pt?.id||_gPtId||null;_rxDrugs=[];
-  document.getElementById('rx-date').value=new Date().toISOString().slice(0,10);
+  document.getElementById('rx-date').value=ymd();
   ['rx-pt-in','rx-diag','rx-notes'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('rx-drugs-list').innerHTML='';
   document.getElementById('rx-ai-res').style.display='none';
@@ -1643,7 +1662,7 @@ async function saveRx(){
 }
 async function delRx(id){if(!confirm('Sil?'))return;await api('DELETE','/api/prescriptions/'+id);toast('Silindi');loadRxList();}
 async function runAIRx(){
-  if(MEM?.plan==='trial'){showUpgrade('AI İlaç Önerisi');return;}
+  if(MEM?.plan==='trial'&&trialLeft()<=0){showUpgrade('AI İlaç Önerisi');return;}
   var inp=document.getElementById('rx-ai-in').value.trim();if(!inp){toast('Teşhis yazın','e');return;}
   document.getElementById('rx-ai-sp').style.display='block';document.getElementById('rx-ai-res').style.display='none';
   var r=await api('POST','/api/ai/rx-suggest',{diagnosis:inp});
@@ -1748,7 +1767,7 @@ async function loadBilling(){
 }
 function openInvModal(pt){
   _editId=null;_invPtId=pt?.id||_gPtId||null;_invItems=[];
-  document.getElementById('inv-date').value=new Date().toISOString().slice(0,10);
+  document.getElementById('inv-date').value=ymd();
   ['inv-pt-in','inv-sub'].forEach(id=>document.getElementById(id).value='');
   ['inv-disc','inv-tax','inv-paid'].forEach(id=>document.getElementById(id).value='0');
   document.getElementById('inv-items-list').innerHTML='';
@@ -1858,7 +1877,7 @@ async function loadSteril(){
   tb.innerHTML=logs.map(l=>`<tr><td>${new Date(l.date||l.log_date).toLocaleDateString('tr-TR')}</td><td><strong>${l.device_name}</strong></td><td>${l.serial_no||l.device_serial||'—'}</td><td>${l.cycle_no||'—'}</td><td><span class="bdg bk">${l.test_type||'—'}</span></td><td><span class="bdg ${(l.result||l.test_result)==='pass'?'bg2':'br2'}">${(l.result||l.test_result)==='pass'?'✓ Geçti':'✗ Başarısız'}</span></td><td>${l.operator_name||'—'}</td><td><button class="btn btn-d btn-xs" onclick="delSteril('${l.id}')">🗑</button></td></tr>`).join('');
 }
 function openSterilModal(){
-  document.getElementById('st-date').value=new Date().toISOString().slice(0,10);
+  document.getElementById('st-date').value=ymd();
   ['st-dev','st-serial','st-cycle','st-temp','st-pres','st-dur','st-notes'].forEach(id=>document.getElementById(id).value='');
   openM('m-steril');
 }
@@ -1875,8 +1894,8 @@ function exportSteril(){toast('CSV dışa aktarma PDF raporlar ile Klinik planda
 // ── REPORTS ───────────────────────────────────────────────────
 function initReports(){
   var now=new Date();
-  document.getElementById('rep-to').value=now.toISOString().slice(0,10);
-  document.getElementById('rep-from').value=new Date(now.getTime()-30*86400000).toISOString().slice(0,10);
+  document.getElementById('rep-to').value=ymd(now);
+  document.getElementById('rep-from').value=ymd(new Date(now.getTime()-30*86400000));
   loadReports();
 }
 async function loadReports(){
@@ -1910,7 +1929,7 @@ async function loadSettings(){
   var subEl=document.getElementById('sub-info');
   if(d.tenant&&subEl){
     var planLbls={trial:'Ücretsiz Deneme',starter:'Solo Hekim',growth:'Klinik',enterprise:'Poliklinik'};
-    subEl.innerHTML=`<div class="card" style="max-width:500px"><div class="st mb12" style="font-size:17px">💳 Abonelik Bilgileri</div><div class="panel mb12"><div class="fl jsb mb8"><span class="xs c3">Plan</span><span class="fw6">${planLbls[d.tenant.plan]||d.tenant.plan}</span></div><div class="fl jsb mb8"><span class="xs c3">Durum</span><span class="bdg ${d.tenant.plan_status==='active'?'bg2':'ba2'}">${d.tenant.plan_status==='active'?'Aktif':'Pasif'}</span></div>${d.tenant.trial_ends_at?`<div class="fl jsb"><span class="xs c3">Deneme Bitiş</span><span class="sm">${new Date(d.tenant.trial_ends_at).toLocaleDateString('tr-TR')}</span></div>`:''}</div><button class="btn btn-a" onclick="location.href='fiyat.html'">Plan Yükselt ⭐</button></div>`;
+    subEl.innerHTML=`<div class="card" style="max-width:500px"><div class="st mb12" style="font-size:17px">💳 Abonelik Bilgileri</div><div class="panel mb12"><div class="fl jsb mb8"><span class="xs c3">Plan</span><span class="fw6">${planLbls[d.tenant.plan]||d.tenant.plan}</span></div><div class="fl jsb mb8"><span class="xs c3">Durum</span><span class="bdg ${d.tenant.plan_status==='active'?'bg2':'ba2'}">${d.tenant.plan_status==='active'?'Aktif':'Pasif'}</span></div>${d.tenant.trial_ends_at?`<div class="fl jsb"><span class="xs c3">Deneme Bitiş</span><span class="sm">${new Date(d.tenant.trial_ends_at).toLocaleDateString('tr-TR')}</span></div>`:''}</div><button class="btn btn-a" onclick="requestPlan()">Plan Yükselt ⭐</button></div>`;
   }
   // Referral
   loadReferral();
@@ -1979,7 +1998,7 @@ async function anonPt(id){if(!confirm('Bu hastanın tüm kişisel verisi anoniml
 // ── PORTAL ────────────────────────────────────────────────────
 async function genPortalLink(){
   if(!_gPtId){toast('Önce hasta seçin','e');return;}
-  if(MEM?.plan==='trial'){showUpgrade('Hasta Portalı');return;}
+  if(MEM?.plan==='trial'&&trialLeft()<=0){showUpgrade('Hasta Portalı');return;}
   var r=await api('POST','/api/portal/link',{patient_id:_gPtId});
   if(r?.url){document.getElementById('portal-link').textContent=r.url;openM('m-portal');}
   else toast(r?.error||'Hata','e');
