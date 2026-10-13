@@ -852,7 +852,7 @@ input[type=file]{padding:7px 12px;cursor:pointer;font-size:12.5px}
 <div class="mb" style="text-align:center;padding-top:12px">
   <div style="font-size:52px;margin-bottom:12px">🚀</div>
   <div class="fd fi" style="font-size:22px;color:var(--c0);margin-bottom:8px" id="upg-t">Klinik Plana Yükselt</div>
-  <div class="sm c2 mb16">Bu özelliği kullanmak için planınızı yükseltin. Aktivasyonu ekibimiz aynı gün yapar.</div>
+  <div class="sm c2 mb16" id="upg-s">Bu özelliği kullanmak için planınızı yükseltin. Aktivasyonu ekibimiz aynı gün yapar.</div>
   <div style="background:var(--s2);border-radius:var(--r2);padding:16px;margin-bottom:16px;text-align:left"><div class="xs c2 mb8" style="text-transform:uppercase;letter-spacing:.06em">Klinik Planında:</div><div style="font-size:13px;color:var(--c1);line-height:2">✓ AI Not Asistanı &amp; İlaç Önerisi<br>✓ Sınırsız SMS + E-posta<br>✓ Hasta Portalı (dijital plan onayı)<br>✓ 8 kullanıcı · 3 şube<br>✓ Gelişmiş Raporlar</div></div>
   <div class="fd" style="font-size:32px;color:var(--a700);margin-bottom:4px">₺1.690<span style="font-size:13px;color:var(--c3)">/ay + KDV</span></div>
   <div class="xs c3">veya ₺16.900/yıl + KDV — 2 ay ücretsiz</div>
@@ -943,6 +943,24 @@ function init(){
   if('serviceWorker' in navigator)navigator.serviceWorker.register('/sw.js').catch(()=>{});
   loadMe();
 }
+// Erişim anahtarı 15 dk geçerli; süresi dolunca yenileme anahtarıyla sessizce yenile (aynı anda tek istek).
+var _refreshing=null;
+function refreshTok(){
+  if(_refreshing)return _refreshing;
+  var rt=localStorage.getItem('ds_ref');
+  if(!rt)return Promise.resolve(false);
+  _refreshing=fetch(B+'/api/auth/refresh',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({refreshToken:rt})})
+    .then(function(r){return r.ok?r.json():null;})
+    .then(function(d){
+      if(!d||!d.accessToken)return false;
+      TOK=d.accessToken;localStorage.setItem('ds_tok',TOK);
+      if(d.refreshToken)localStorage.setItem('ds_ref',d.refreshToken);
+      return true;
+    })
+    .catch(function(){return false;})
+    .finally(function(){_refreshing=null;});
+  return _refreshing;
+}
 function authH(){return{'Content-Type':'application/json','Authorization':'Bearer '+TOK,'X-Tenant-ID':TID}}
 var _connBanner=null;
 function _showConnBanner(show){
@@ -954,7 +972,7 @@ async function api(m,p,b,_retry){
     var o={method:m||'GET',headers:authH()};if(b)o.body=JSON.stringify(b);
     var r=await fetch(B+p,o);
     _showConnBanner(false);
-    if(r.status===401){localStorage.clear();location.href='giris.html';return null;}
+    if(r.status===401){if(!_retry&&await refreshTok())return api(m,p,b,true);localStorage.clear();location.href='giris.html';return null;}
     if(r.status===402){
       var j=await r.json().catch(function(){return {};});
       if(j.upgrade){showUpgrade(/doldu|suresi/i.test(j.error||'')?'Deneme süreniz doldu':null);return null;}
@@ -979,7 +997,7 @@ var _loadMeRetries=0;
 async function loadMe(){
   try{
     var _r=await fetch(B+'/api/auth/me',{headers:authH()});
-    if(_r.status===401){localStorage.clear();location.href='giris.html';return;}
+    if(_r.status===401){if(!loadMe._r&&await refreshTok()){loadMe._r=1;return loadMe();}localStorage.clear();location.href='giris.html';return;}
     if(!_r.ok){
       _loadMeRetries++;
       if(_loadMeRetries<=8){setTimeout(loadMe,Math.min(3000*_loadMeRetries,15000));return;}
@@ -2032,7 +2050,7 @@ document.addEventListener('click',function(e){if(!e.target.closest('.pt-dd')&&!e
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.querySelectorAll('.mbg.on').forEach(m=>m.classList.remove('on'));document.getElementById('xv').classList.remove('on');}});
 
 // ── UPGRADE ───────────────────────────────────────────────────
-function showUpgrade(feat){document.getElementById('upg-t').textContent=feat==='Deneme süreniz doldu'?'Deneme süreniz doldu':(feat||'Bu Özellik')+' — Klinik Plan';openM('m-upg');}
+function showUpgrade(feat){var exp=feat==='Deneme süreniz doldu';document.getElementById('upg-s').textContent=exp?'Kayıtlarınız güvende; görüntüleyebilir ve dışa aktarabilirsiniz. Yeni kayıt için planınızı aktifleştirin, ekibimiz aynı gün açar.':'Bu özelliği kullanmak için planınızı yükseltin. Aktivasyonu ekibimiz aynı gün yapar.';document.getElementById('upg-t').textContent=feat==='Deneme süreniz doldu'?'Deneme süreniz doldu':(feat||'Bu Özellik')+' — Klinik Plan';openM('m-upg');}
 
 // ── TOAST ─────────────────────────────────────────────────────
 function toast(msg,type){
