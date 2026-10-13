@@ -1024,10 +1024,15 @@ function requestPlan(){
 }
 function checkTrial(){
   if(!MEM||MEM.plan!=='trial')return;
-  var d=Math.max(0,Math.ceil((new Date(MEM.trialEndsAt)-new Date())/864e5));
+  var d=Math.max(0,trialLeft());
   document.getElementById('trial-days').textContent=d;
   document.getElementById('trial-bar').style.width=(d/14*100)+'%';
   document.getElementById('trial-sb').style.display='block';
+  if(d<=0){
+    var tt=document.querySelector('#trial-sb .tr-title');if(tt)tt.textContent='⏳ Deneme süreniz doldu';
+    var td=document.querySelector('#trial-sb .tr-days');if(td)td.textContent='Planı aktifleştirmek için dokunun';
+    try{if(!sessionStorage.getItem('ds_exp_seen')){sessionStorage.setItem('ds_exp_seen','1');setTimeout(function(){showUpgrade('Deneme süreniz doldu');},600);}}catch(e){}
+  }
 }
 
 // ── NAV ───────────────────────────────────────────────────────
@@ -2027,7 +2032,7 @@ document.addEventListener('click',function(e){if(!e.target.closest('.pt-dd')&&!e
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.querySelectorAll('.mbg.on').forEach(m=>m.classList.remove('on'));document.getElementById('xv').classList.remove('on');}});
 
 // ── UPGRADE ───────────────────────────────────────────────────
-function showUpgrade(feat){document.getElementById('upg-t').textContent=(feat||'Bu Özellik')+' — Klinik Plan';openM('m-upg');}
+function showUpgrade(feat){document.getElementById('upg-t').textContent=feat==='Deneme süreniz doldu'?'Deneme süreniz doldu':(feat||'Bu Özellik')+' — Klinik Plan';openM('m-upg');}
 
 // ── TOAST ─────────────────────────────────────────────────────
 function toast(msg,type){
