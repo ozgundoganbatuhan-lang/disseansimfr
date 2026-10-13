@@ -386,7 +386,7 @@ input[type=file]{padding:7px 12px;cursor:pointer;font-size:12.5px}
     <div class="nsec">Klinik İşlem</div>
     <div class="ni" data-v="odontogram" onclick="nav('odontogram')"><span class="ico">🦷</span><span>Odontogram</span></div>
     <div class="ni" data-v="xrays" onclick="nav('xrays')"><span class="ico">🩻</span><span>Röntgenler</span></div>
-    <div class="ni" data-v="notes" onclick="nav('notes')"><span class="ico">📝</span><span>Seans Notları</span></div>
+    <div class="ni" data-v="notes" onclick="nav('notes')"><span class="ico">📝</span><span>Tedavi Notları</span></div>
     <div class="ni" data-v="prescriptions" onclick="nav('prescriptions')"><span class="ico">💊</span><span>Reçeteler</span></div>
     <div class="ni" data-v="plans" onclick="nav('plans')"><span class="ico">📋</span><span>Tedavi Planları</span></div>
     <div class="nsec">Yönetim</div>
@@ -440,13 +440,13 @@ input[type=file]{padding:7px 12px;cursor:pointer;font-size:12.5px}
     <div class="kpi" style="--kc:var(--t500)"><div class="kpi-ic">📅</div><div class="kpi-l">Bugünkü Randevu</div><div class="kpi-v" id="k-today">—</div><div class="kpi-s" id="k-today-s">yükleniyor</div></div>
     <div class="kpi" style="--kc:var(--grn)"><div class="kpi-ic">💰</div><div class="kpi-l">Bu Ay Gelir</div><div class="kpi-v" id="k-rev">—</div><div class="kpi-s" id="k-rev-s">yükleniyor</div></div>
     <div class="kpi" style="--kc:var(--a500)"><div class="kpi-ic">👥</div><div class="kpi-l">Toplam Hasta</div><div class="kpi-v" id="k-pts">—</div><div class="kpi-s">Bu ay +<span id="k-npts">0</span> yeni</div></div>
-    <div class="kpi" style="--kc:var(--red)"><div class="kpi-ic">📵</div><div class="kpi-l">No-Show Oranı</div><div class="kpi-v" id="k-ns">—</div><div class="kpi-s">Son 30 gün</div></div>
+    <div class="kpi" style="--kc:var(--red)"><div class="kpi-ic">📵</div><div class="kpi-l">Gelmeyen Hasta</div><div class="kpi-v" id="k-ns">—</div><div class="kpi-s">Son 30 gün</div></div>
   </div>
   <!-- Quick actions -->
   <div class="g5 mb20">
     <div class="qa" onclick="openAptModal(null)"><div class="qa-ic">📅</div><div class="qa-lbl">Randevu Ekle</div></div>
     <div class="qa" onclick="quickNewPt()"><div class="qa-ic">👤</div><div class="qa-lbl">Yeni Hasta</div></div>
-    <div class="qa" onclick="openNoteModal(null)"><div class="qa-ic">📝</div><div class="qa-lbl">Seans Notu</div></div>
+    <div class="qa" onclick="openNoteModal(null)"><div class="qa-ic">📝</div><div class="qa-lbl">Tedavi Notu</div></div>
     <div class="qa" onclick="quickBill()"><div class="qa-ic">🧾</div><div class="qa-lbl">Fatura Kes</div></div>
     <div class="qa" onclick="nav('sms')"><div class="qa-ic">💬</div><div class="qa-lbl">SMS Gönder</div></div>
   </div>
@@ -568,7 +568,7 @@ input[type=file]{padding:7px 12px;cursor:pointer;font-size:12.5px}
 
 <!-- ╔══ NOTES ══╗ -->
 <div class="view" id="view-notes">
-  <div class="sh"><div><div class="st">Seans Notları <span class="bdg bt" style="font-size:9px;vertical-align:middle">AI ✨</span></div></div><button class="btn btn-p" onclick="openNoteModal(null)">+ Yeni Not</button></div>
+  <div class="sh"><div><div class="st">Tedavi Notları <span class="bdg bt" style="font-size:9px;vertical-align:middle">AI ✨</span></div></div><button class="btn btn-p" onclick="openNoteModal(null)">+ Yeni Not</button></div>
   <div id="notes-psel"></div>
   <div class="tbl"><table><thead><tr><th>Tarih</th><th>Hasta</th><th>İşlem</th><th>Diş</th><th>Hekim</th><th>İşlem</th></tr></thead><tbody id="notes-tb"><tr><td colspan="6" class="te">Yükleniyor…</td></tr></tbody></table></div>
 </div>
@@ -771,7 +771,7 @@ input[type=file]{padding:7px 12px;cursor:pointer;font-size:12.5px}
 <div class="mft"><button class="btn btn-s" onclick="closeM('m-pt')">İptal</button><button class="btn btn-p" onclick="savePt()">💾 Kaydet</button></div></div></div>
 
 <!-- Note -->
-<div class="mbg" id="m-note"><div class="mbox mlg"><div class="mhd"><div class="mt">Seans Notu</div><button class="mx" onclick="closeM('m-note')">✕</button></div>
+<div class="mbg" id="m-note"><div class="mbox mlg"><div class="mhd"><div class="mt">Tedavi Notu</div><button class="mx" onclick="closeM('m-note')">✕</button></div>
 <div class="mb">
   <div class="ai-pnl"><div class="ai-hd">✨ AI Not Asistanı <span class="bdg ba2" style="font-size:9px">Klinik Plan</span></div>
     <div class="fl g8"><input id="ai-kw" placeholder="Anahtar: pulpit 26, mesial çürük, ağrı…" style="flex:1"><button class="btn btn-a btn-sm" onclick="runAINote()">✨ SOAP Üret</button></div>
@@ -781,7 +781,7 @@ input[type=file]{padding:7px 12px;cursor:pointer;font-size:12.5px}
   <div class="fr fc2"><div><label>İşlem *</label><input id="n-proc" placeholder="Kanal tedavisi, dolgu…"></div><div><label>Diş No</label><input id="n-teeth" placeholder="18, 17…"></div></div>
   <div class="fr fc2"><div><label>Anestezi</label><input id="n-anest" placeholder="Artikain 4%…"></div><div><label>Materyal</label><input id="n-mat" placeholder="GIC, kompozit…"></div></div>
   <div class="fr"><label>Klinik Bulgular</label><textarea id="n-find" rows="2"></textarea></div>
-  <div class="fr"><label>Sonraki Adımlar</label><input id="n-next" placeholder="Sonraki seansta yapılacaklar…"></div>
+  <div class="fr"><label>Sonraki Adımlar</label><input id="n-next" placeholder="Sonraki randevuda yapılacaklar…"></div>
 </div>
 <div class="mft"><button class="btn btn-s" onclick="closeM('m-note')">İptal</button><button class="btn btn-p" onclick="saveNote()">💾 Kaydet</button></div></div></div>
 
@@ -1058,7 +1058,7 @@ function nav(v){
   document.querySelectorAll('.ni').forEach(e=>e.classList.toggle('on',e.dataset.v===v));
   document.querySelectorAll('.view').forEach(e=>e.classList.remove('on'));
   var el=document.getElementById('view-'+v);if(el)el.classList.add('on');
-  var titles={dashboard:'Dashboard',appointments:'Randevular',patients:'Hastalar','patient-detail':'Hasta Detayı',odontogram:'Odontogram',xrays:'Röntgenler',notes:'Seans Notları',prescriptions:'Reçeteler',plans:'Tedavi Planları',billing:'Fatura & Ödeme',inventory:'Malzeme Stoku',sms:'SMS & E-Posta',sterilization:'Sterilizasyon',reports:'Raporlar',settings:'Ayarlar',referral:'🎁 Referans Programı'};
+  var titles={dashboard:'Dashboard',appointments:'Randevular',patients:'Hastalar','patient-detail':'Hasta Detayı',odontogram:'Odontogram',xrays:'Röntgenler',notes:'Tedavi Notları',prescriptions:'Reçeteler',plans:'Tedavi Planları',billing:'Fatura & Ödeme',inventory:'Malzeme Stoku',sms:'SMS & E-Posta',sterilization:'Sterilizasyon',reports:'Raporlar',settings:'Ayarlar',referral:'🎁 Referans Programı'};
   document.getElementById('tb-title').textContent=titles[v]||v;
   var fn={appointments:loadApts,patients:loadPts,plans:loadPlans,notes:loadNotes,prescriptions:loadRxList,xrays:initXraysView,sterilization:loadSteril,sms:loadSMS,billing:loadBilling,inventory:loadInv,reports:initReports,settings:loadSettings,odontogram:initOdoView,referral:function(){loadReferralView&&loadReferralView();}};
   if(fn[v])try{fn[v]();}catch(e){}
@@ -1200,7 +1200,7 @@ function buildDashAlerts(d){
   if(d.pendingInvoices>0)alerts.push({c:'al-a',ic:'💰',msg:`<strong>₺${d.pendingInvoices.toLocaleString('tr-TR',{maximumFractionDigits:0})}</strong> bekleyen ödeme`,fn:"nav('billing')"});
   if(d.lowStockItems>0)alerts.push({c:'al-r',ic:'📦',msg:`<strong>${d.lowStockItems} ürün</strong> kritik stok seviyesinde`,fn:"nav('inventory')"});
   if(d.tomorrowApts>0)alerts.push({c:'al-t',ic:'📅',msg:`Yarın <strong>${d.tomorrowApts} randevu</strong> var`,fn:"nav('appointments')"});
-  if(d.noShowRate>25)alerts.push({c:'al-a',ic:'📵',msg:`No-show oranı <strong>%${d.noShowRate}</strong> — hatırlatma aktif mi?`,fn:"nav('sms')"});
+  if(d.noShowRate>25)alerts.push({c:'al-a',ic:'📵',msg:`Gelmeyen hasta oranı <strong>%${d.noShowRate}</strong> — hatırlatma aktif mi?`,fn:"nav('sms')"});
   el.innerHTML=alerts.length?alerts.map(a=>`<div class="al ${a.c}" onclick="${a.fn}">${a.ic} <span style="flex:1">${a.msg}</span> →</div>`).join(''):'<div style="text-align:center;padding:16px;font-size:12px;color:var(--c3)">✅ Tüm sistemler normal</div>';
 }
 
@@ -1215,7 +1215,7 @@ var OB_STEPS=[
   {id:'clinic',n:'1',lbl:'Klinik bilgilerini tamamla',sub:'İsim, adres, vergi no',fn:()=>{nav('settings');setTimeout(()=>settTab(document.querySelectorAll('#view-settings .tab')[1],'sc'),100);}},
   {id:'patient',n:'2',lbl:'İlk hastanı ekle',sub:'Hasta kaydı oluştur',fn:()=>{nav('patients');setTimeout(()=>openPtModal(null),100);}},
   {id:'appointment',n:'3',lbl:'İlk randevuyu oluştur',sub:'Takvime randevu ekle',fn:()=>nav('appointments')},
-  {id:'note',n:'4',lbl:'Seans notu yaz',sub:'AI asistanı dene',fn:()=>nav('notes')},
+  {id:'note',n:'4',lbl:'Tedavi notu yaz',sub:'AI asistanı dene',fn:()=>nav('notes')},
 ];
 function setupOB(){
   var done=JSON.parse(localStorage.getItem('ds_ob')||'[]');
@@ -1247,7 +1247,7 @@ async function loadApts(){
   var el=document.getElementById('apt-date-f');
   if(!el.value)el.value=ymd();
   var d=await api('GET','/api/appointments?date='+el.value);if(!d)return;
-  var apts=Array.isArray(d)?d:[];
+  var apts=Array.isArray(d)?d:[];_aptCache=apts;
   var ks={scheduled:0,completed:0,arrived:0,'no-show':0};
   apts.forEach(a=>{if(ks[a.status]!=null)ks[a.status]++;});
   document.getElementById('ak-s').textContent=ks.scheduled;
@@ -1261,13 +1261,14 @@ async function loadApts(){
     var et=new Date(a.ends_at).toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'});
     return `<tr onclick="openPtDetail('${a.patient_id}')">
       <td><strong>${st}</strong> – ${et}</td>
-      <td><strong>${a.first_name} ${a.last_name}</strong><div class="xs c3">${a.phone||''}</div></td>
-      <td>${a.doctor_name||'—'}</td><td>${a.type||'—'}</td>
-      <td>${a.reminder_sent?'<span class="bdg bg2">✓ Gönderildi</span>':`<button class="btn btn-g btn-xs" onclick="event.stopPropagation();sendRemind('${a.id}')">SMS Gönder</button>`}</td>
+      <td><strong>${escH(a.first_name)} ${escH(a.last_name)}</strong><div class="xs c3">${escH(a.phone||'')}</div></td>
+      <td>${escH(a.doctor_name||'—')}</td><td>${escH(a.type||'—')}</td>
+      <td><div class="fl g8">${a.phone?`<button class="btn btn-s btn-xs" title="WhatsApp ile hatırlat" onclick="event.stopPropagation();waRemind('${a.id}')">💬 WhatsApp</button>`:''}${a.reminder_sent?'<span class="bdg bg2">✓ SMS</span>':`<button class="btn btn-g btn-xs" onclick="event.stopPropagation();sendRemind('${a.id}')">SMS</button>`}</div></td>
       <td><span class="bdg ${stBdg(a.status)}">${stLbl(a.status)}</span></td>
       <td><div class="fl g8">
-        <button class="btn btn-g btn-xs" onclick="event.stopPropagation();chAptSt('${a.id}','completed')">✓</button>
-        <button class="btn btn-d btn-xs" onclick="event.stopPropagation();cancelApt('${a.id}')">✕</button>
+        ${a.status==='scheduled'?`<button class="btn btn-s btn-xs" title="Hasta geldi, bekleme odasında" onclick="event.stopPropagation();chAptSt('${a.id}','arrived')">Geldi</button><button class="btn btn-s btn-xs" title="Hasta randevuya gelmedi" onclick="event.stopPropagation();chAptSt('${a.id}','no-show')">Gelmedi</button>`:''}
+        ${a.status==='scheduled'||a.status==='arrived'?`<button class="btn btn-g btn-xs" title="Tedavi tamamlandı" onclick="event.stopPropagation();chAptSt('${a.id}','completed')">✓ Tamamla</button>`:''}
+        ${a.status!=='cancelled'&&a.status!=='completed'?`<button class="btn btn-d btn-xs" title="Randevuyu iptal et" onclick="event.stopPropagation();cancelApt('${a.id}')">✕</button>`:''}
       </div></td></tr>`;
   }).join('');
 }
@@ -1300,6 +1301,18 @@ async function saveApt(){
   else if(r)toast(r.error,'e');
 }
 async function cancelApt(id){if(!confirm('Randevuyu iptal et?'))return;var r=await api('DELETE','/api/appointments/'+id);if(r?.ok){toast('İptal edildi');loadApts();}}
+function escH(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+var _aptCache=[];
+function waPhone(ph){var d=String(ph||'').replace(/\D/g,'');if(!d)return '';if(d.indexOf('90')===0&&d.length===12)return d;if(d.charAt(0)==='0')d=d.slice(1);return d.length===10?'90'+d:d;}
+// WhatsApp hatırlatma: SMS ücreti olmadan, hastanın telefonuna hazır mesajla wa.me açılır.
+function waRemind(id){
+  var a=_aptCache.find(function(x){return x.id===id;});if(!a)return;
+  var ph=waPhone(a.phone);if(!ph){toast('Hastanın telefonu kayıtlı değil','e');return;}
+  var d=new Date(a.starts_at);
+  var gun=d.toLocaleDateString('tr-TR',{day:'numeric',month:'long',weekday:'long'}),saat=d.toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'});
+  var msg='Merhaba '+(a.first_name||'')+', '+gun+' saat '+saat+' '+((MEM&&MEM.tenantName)?MEM.tenantName+' ':'')+'randevunuzu hatırlatırız. Gelemeyecekseniz lütfen bu mesaja yanıt verin.';
+  window.open('https://wa.me/'+ph+'?text='+encodeURIComponent(msg),'_blank','noopener');
+}
 async function chAptSt(id,st){await api('PUT','/api/appointments/'+id,{status:st});toast('Güncellendi ✓');loadApts();}
 async function sendRemind(id){var r=await api('POST','/api/sms/remind/'+id);if(r?.success)toast('SMS gönderildi ✓');else toast(r?.error||'Gönderim hatası','e');loadApts();}
 
@@ -1313,13 +1326,14 @@ function renderPtsTable(pts){
   var tb=document.getElementById('pt-tb');
   if(!pts.length){tb.innerHTML='<tr><td colspan="6" class="te"><div class="empty"><div class="empty-ic">👥</div><div class="empty-t">Henüz hasta kaydı yok</div><div class="empty-s">+ Yeni Hasta butonu ile ekleyin</div></div></td></tr>';return;}
   tb.innerHTML=pts.map(p=>{
-    var age=p.birth_date?Math.floor((Date.now()-new Date(p.birth_date))/(365.25*864e5))+'y':'—';
+    var age=p.birth_date?Math.floor((Date.now()-new Date(p.birth_date))/(365.25*864e5))+' yaş':'—';
+    var tcM=p.tc&&String(p.tc).length>=11?String(p.tc).slice(0,3)+'••••••'+String(p.tc).slice(-2):'';
     return `<tr onclick="openPtDetail('${p.id}')">
-      <td><div class="fl aic g12"><div style="width:34px;height:34px;background:linear-gradient(135deg,var(--t500),var(--a400));border-radius:9px;display:grid;place-items:center;font-weight:700;color:white;font-size:12px;flex-shrink:0">${p.first_name[0]+p.last_name[0]}</div>
-      <div><strong>${p.first_name} ${p.last_name}</strong><div class="xs c3">${p.tc||''}</div></div></div></td>
-      <td>${p.phone||'—'}</td>
+      <td><div class="fl aic g12"><div style="width:34px;height:34px;background:linear-gradient(135deg,var(--t500),var(--a400));border-radius:9px;display:grid;place-items:center;font-weight:700;color:white;font-size:12px;flex-shrink:0">${escH((p.first_name||' ')[0]+(p.last_name||' ')[0])}</div>
+      <div><strong>${escH(p.first_name)} ${escH(p.last_name)}</strong><div class="xs c3">${tcM}</div></div></div></td>
+      <td>${escH(p.phone||'—')}</td>
       <td>${p.birth_date?new Date(p.birth_date).toLocaleDateString('tr-TR'):'—'} <span class="xs c3">${age}</span></td>
-      <td>${p.insurance?`<span class="bdg bb2">${p.insurance}</span>`:'—'}</td>
+      <td>${p.insurance?`<span class="bdg bb2">${escH(p.insurance)}</span>`:'—'}</td>
       <td class="xs c3">${p.last_visit?new Date(p.last_visit).toLocaleDateString('tr-TR'):'—'}</td>
       <td><div class="fl g8"><button class="btn btn-s btn-xs" onclick="event.stopPropagation();openPtDetail('${p.id}')">Dosya →</button><button class="btn btn-p btn-xs" onclick="event.stopPropagation();openAptModal({id:'${p.id}',first_name:'${p.first_name}',last_name:'${p.last_name}'})">+ Randevu</button></div></td></tr>`;
   }).join('');
@@ -1399,7 +1413,7 @@ function renderPtPlans(d){
   document.getElementById('ptt-plans').innerHTML=`<div class="fl jsb aic mb12"><span class="xs c3">${d.plans?.length||0} plan</span><button class="btn btn-p btn-sm" onclick="openNewPlanFor(_curPtId,_gPt?.first_name+' '+_gPt?.last_name)">+ Yeni Plan</button></div>${(d.plans?.length)?d.plans.map(p=>`<div class="panel mb8 fl aic g12"><div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--c0)">${p.title}</div><div class="xs c3">${p.priority} öncelik${p.est_cost?' · ₺'+p.est_cost:''}${p.patient_ok_at?' · <span style="color:var(--grn)">✓ Onaylı</span>':''}</div></div><span class="bdg ${plBdg(p.status)}">${plLbl(p.status)}</span></div>`).join(''):'<div class="empty"><div class="empty-ic">📋</div><div class="empty-t">Tedavi planı yok</div></div>'}`;
 }
 function renderPtNotes(d){
-  document.getElementById('ptt-notes').innerHTML=`<div class="fl jsb aic mb12"><span class="xs c3">${d.notes?.length||0} not</span><button class="btn btn-p btn-sm" onclick="openNoteModal(_gPt)">+ Not</button></div>${(d.notes?.length)?d.notes.map(n=>`<div class="panel mb8"><div class="fl jsb mb4"><span class="xs c3">${new Date(n.session_date).toLocaleDateString('tr-TR')}</span>${n.tooth_numbers?`<span class="bdg bt">${n.tooth_numbers.join(',')}</span>`:''}</div><div style="font-size:13px;font-weight:600;color:var(--c0)">${n.procedure}</div>${n.findings?`<div class="xs c2 mt8">${n.findings}</div>`:''}</div>`).join(''):'<div class="empty"><div class="empty-ic">📝</div><div class="empty-t">Seans notu yok</div></div>'}`;
+  document.getElementById('ptt-notes').innerHTML=`<div class="fl jsb aic mb12"><span class="xs c3">${d.notes?.length||0} not</span><button class="btn btn-p btn-sm" onclick="openNoteModal(_gPt)">+ Not</button></div>${(d.notes?.length)?d.notes.map(n=>`<div class="panel mb8"><div class="fl jsb mb4"><span class="xs c3">${new Date(n.session_date).toLocaleDateString('tr-TR')}</span>${n.tooth_numbers?`<span class="bdg bt">${n.tooth_numbers.join(',')}</span>`:''}</div><div style="font-size:13px;font-weight:600;color:var(--c0)">${n.procedure}</div>${n.findings?`<div class="xs c2 mt8">${n.findings}</div>`:''}</div>`).join(''):'<div class="empty"><div class="empty-ic">📝</div><div class="empty-t">Tedavi notu yok</div></div>'}`;
 }
 function renderPtRx(d){
   document.getElementById('ptt-rx').innerHTML=`<div class="fl jsb aic mb12"><span class="xs c3">${d.prescriptions?.length||0} reçete</span><button class="btn btn-p btn-sm" onclick="openRxModal(_gPt)">+ Reçete</button></div>${(d.prescriptions?.length)?d.prescriptions.map(rx=>`<div class="panel mb8 fl aic jsb"><div><div style="font-size:13px;color:var(--c0)">${new Date(rx.rx_date).toLocaleDateString('tr-TR')}</div><div class="xs c3">${(rx.drugs||[]).length} ilaç${rx.diagnosis?' · '+rx.diagnosis:''}</div></div><button class="btn btn-s btn-xs" onclick="printRxById('${rx.id}')">🖨️</button></div>`).join(''):'<div class="empty"><div class="empty-ic">💊</div><div class="empty-t">Reçete yok</div></div>'}`;
@@ -1608,7 +1622,7 @@ async function loadNotes(){
   var d=await api('GET',url);
   var notes=Array.isArray(d)?d:(d?.notes||[]);
   var tb=document.getElementById('notes-tb');
-  if(!notes.length){tb.innerHTML='<tr><td colspan="6" class="te"><div class="empty"><div class="empty-ic">📝</div><div class="empty-t">Seans notu yok</div></div></td></tr>';return;}
+  if(!notes.length){tb.innerHTML='<tr><td colspan="6" class="te"><div class="empty"><div class="empty-ic">📝</div><div class="empty-t">Tedavi notu yok</div></div></td></tr>';return;}
   tb.innerHTML=notes.map(n=>`<tr onclick="openPtDetail('${n.patient_id}')">
     <td>${new Date(n.session_date).toLocaleDateString('tr-TR')}</td>
     <td><strong>${n.first_name||''} ${n.last_name||''}</strong></td>
