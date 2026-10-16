@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#0f766e">
+<title>Onam formu · DişSeansım</title>
+<style>
+:root{--ink:#1c1917;--ink2:#44403c;--mut:#78716c;--line:#e7e2dc;--bg:#f8f7f5;--card:#fff;--t:#0f766e;--t2:#0d9488;--red:#b91c1c}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font:16px/1.6 -apple-system,system-ui,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink);padding:20px 16px calc(28px + env(safe-area-inset-bottom))}
+.w{max-width:680px;margin:0 auto}
+.hd{font-size:13px;color:var(--mut);margin-bottom:6px}
+h1{font-size:22px;line-height:1.3;margin-bottom:4px}
+.pt{color:var(--ink2);font-size:14px;margin-bottom:16px}
+.txt{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;white-space:pre-wrap;font-size:15px;line-height:1.65;color:var(--ink2);margin-bottom:16px}
+label{display:block;font-size:13px;font-weight:600;color:var(--ink2);margin:14px 0 6px}
+input[type=text]{width:100%;font:16px inherit;font-family:inherit;padding:12px;border:1.5px solid var(--line);border-radius:10px;background:#fff}
+.chk{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:var(--ink2);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}
+.chk input{width:22px;height:22px;flex:none;margin-top:1px;accent-color:var(--t)}
+canvas{display:block;width:100%;height:190px;background:#fff;border:1.5px dashed #c8c2bb;border-radius:12px;touch-action:none}
+.row{display:flex;justify-content:space-between;align-items:center;margin-top:6px;font-size:13px;color:var(--mut)}
+.clr{border:0;background:none;color:var(--t);font:600 14px inherit;font-family:inherit;padding:8px;cursor:pointer}
+.btn{display:block;width:100%;margin-top:18px;border:0;border-radius:12px;background:var(--t);color:#fff;font:700 16px inherit;font-family:inherit;padding:15px;cursor:pointer;min-height:52px}
+.btn:disabled{opacity:.6}
+.msg{border-radius:12px;padding:14px;font-size:15px;margin:12px 0}
+.err{background:#fde8e8;color:var(--red)}
+.ok{background:#e2f5ec;color:#065f46;text-align:center;padding:28px 16px}
+.ok b{display:block;font-size:20px;margin-bottom:6px}
+.foot{font-size:12px;color:var(--mut);margin-top:22px;text-align:center}
+:focus-visible{outline:2.5px solid var(--t);outline-offset:2px}
+</style>
+</head>
+<body>
+<main class="w" id="app"><p class="hd">Yükleniyor…</p></main>
+<script>
+(function(){
+  var API='https://disseansimback-production.up.railway.app';
+  var t=new URLSearchParams(location.search).get('t')||'';
+  var app=document.getElementById('app');
+  var esc=function(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});};
+  function fail(m){app.innerHTML='<div class="msg err" role="alert">'+esc(m)+'</div>';}
+  function done(title,clinic){app.innerHTML='<div class="msg ok" role="status"><b>Teşekkürler, formunuz imzalandı.</b>'+esc(title)+(clinic?' · '+esc(clinic):'')+'<br>Bu sayfayı kapatabilirsiniz.</div>';}
+  if(!t){fail('Bağlantı eksik. Kliniğinizden yeni bağlantı isteyin.');return;}
+  fetch(API+'/api/public/onam/'+encodeURIComponent(t)).then(function(r){return r.json().then(function(j){return{ok:r.ok,j:j};});}).then(function(x){
+    if(!x.ok)return fail(x.j.error||'Form açılamadı.');
+    if(x.j.signed)return done(x.j.title,x.j.tenant_name);
+    var d=x.j;
+    app.innerHTML='<p class="hd">'+esc(d.tenant_name)+'</p><h1>'+esc(d.title)+'</h1><p class="pt">Hasta: '+esc(d.patient)+'</p>'+
+      '<div class="txt">'+esc(d.body)+'</div>'+
+      '<label class="chk"><input type="checkbox" id="ok"> Metni okudum, anladım ve onaylıyorum.</label>'+
+      '<label for="nm">Adınız soyadınız</label><input type="text" id="nm" autocomplete="name">'+
+      '<label>İmzanız</label><canvas id="pad" aria-label="İmza alanı"></canvas><div class="row"><span>Parmağınızla imza atın</span><button type="button" class="clr" id="clr">Temizle</button></div>'+
+      '<div id="err"></div><button type="button" class="btn" id="go">Onaylıyorum ve imzalıyorum</button>'+
+      '<p class="foot">İmzanız tarih, saat ve cihaz bilgisiyle birlikte kliniğinizin kayıtlarında saklanır.</p>';
+    var c=document.getElementById('pad'),dpr=window.devicePixelRatio||1,drawn=false,on=false,x2;
+    function size(){var r=c.getBoundingClientRect();c.width=r.width*dpr;c.height=r.height*dpr;x2=c.getContext('2d');x2.scale(dpr,dpr);x2.lineWidth=2.4;x2.lineCap='round';x2.lineJoin='round';x2.strokeStyle='#111';drawn=false;}
+    size();
+    var p=function(e){var r=c.getBoundingClientRect();return[e.clientX-r.left,e.clientY-r.top];};
+    c.onpointerdown=function(e){on=true;c.setPointerCapture(e.pointerId);var q=p(e);x2.beginPath();x2.moveTo(q[0],q[1]);};
+    c.onpointermove=function(e){if(!on)return;var q=p(e);x2.lineTo(q[0],q[1]);x2.stroke();drawn=true;};
+    c.onpointerup=c.onpointercancel=function(){on=false;};
+    document.getElementById('clr').onclick=size;
+    document.getElementById('go').onclick=function(){
+      var er=document.getElementById('err'),b=this;er.innerHTML='';
+      var nm=document.getElementById('nm').value.trim();
+      if(!document.getElementById('ok').checked)return er.innerHTML='<div class="msg err" role="alert">Metni okuduğunuzu onaylayın.</div>';
+      if(nm.length<3)return er.innerHTML='<div class="msg err" role="alert">Adınızı ve soyadınızı yazın.</div>';
+      if(!drawn)return er.innerHTML='<div class="msg err" role="alert">İmza alanına imzanızı atın.</div>';
+      b.disabled=true;b.textContent='Gönderiliyor…';
+      fetch(API+'/api/public/onam/'+encodeURIComponent(t),{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({signature:c.toDataURL('image/png'),signer_name:nm,accept:true})})
+        .then(function(r){return r.json().then(function(j){return{ok:r.ok,j:j};});})
+        .then(function(x){if(x.ok)done(d.title,d.tenant_name);else{b.disabled=false;b.textContent='Onaylıyorum ve imzalıyorum';er.innerHTML='<div class="msg err" role="alert">'+esc(x.j.error||'Gönderilemedi.')+'</div>';}})
+        .catch(function(){b.disabled=false;b.textContent='Onaylıyorum ve imzalıyorum';er.innerHTML='<div class="msg err" role="alert">Bağlantı hatası. Tekrar deneyin.</div>';});
+    };
+  }).catch(function(){fail('Bağlantı hatası. İnternetinizi kontrol edip sayfayı yenileyin.');});
+})();
+</script>
+</body>
+</html>
